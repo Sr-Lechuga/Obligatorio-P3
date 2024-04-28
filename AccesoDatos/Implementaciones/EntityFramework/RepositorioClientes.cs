@@ -128,7 +128,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             return clientes.Any() ? clientes : throw new ClienteNoEncontradoException($"No se pudo encontrar ningun cliente que contenga {texto} en su nombre o apellido");
         }
 
-        public Cliente BuscarClientePorRut(string rut)
+        public Cliente GetByRut(string rut)
         {
             if (!_papeleriaContext.Clientes.Any())
                 throw new DataBaseSetException("No hay clientes para mostrar, ingrese uno primero");

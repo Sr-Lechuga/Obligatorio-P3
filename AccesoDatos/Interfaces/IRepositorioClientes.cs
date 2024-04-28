@@ -11,5 +11,6 @@ namespace AccesoDatos.Interfaces
     {
         public IEnumerable<Cliente> GetByText(string texto);
         public IEnumerable<Cliente> GetByMonto(decimal monto);
+        public Cliente GetByRut(string monto);
     }
 }
