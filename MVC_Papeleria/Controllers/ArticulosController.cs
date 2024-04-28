@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.Articulos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +14,20 @@ namespace MVC_Papeleria.Controllers
         //repositorios 
         private IRepositorioArticulos _repositorioArticulos = new RepositorioArticulos(new PapeleriaContext());
         //casos de uso
-        private IAltaArticulos _altaArticulos;
-        private IGetAllArticulos _getAllArticulos;
+        private ICasoUsoAltaArticulo _altaArticulos;
+        private ICasoUsoListarArticulos _getAllArticulos;
 
         public ArticulosController()
         {
-            _altaArticulos = new AltaArticulos(_repositorioArticulos);
-            _getAllArticulos = new GetAllArticulos(_repositorioArticulos);
+            _altaArticulos = new CasoUsoAltaArticulo(_repositorioArticulos);
+            _getAllArticulos = new CasoUsoListarArticulos(_repositorioArticulos);
         }
 
 
         // GET: ArticulosController
         public ActionResult Index()
         {
-            return View(_getAllArticulos.Ejecutar());
+            return View(_getAllArticulos.LsitarArticulos());
         }
 
         // GET: ArticulosController/Details/5
@@ -47,7 +49,7 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                _altaArticulos.Ejecutar(art);
+                _altaArticulos.AltaArticulo(art);
                 return RedirectToAction(nameof(Index));
             }
             catch

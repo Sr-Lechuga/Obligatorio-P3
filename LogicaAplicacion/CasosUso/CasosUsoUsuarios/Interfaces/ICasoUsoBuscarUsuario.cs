@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
+using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces
 {
     public interface ICasoUsoBuscarUsuario
     {
-        public Usuario BuscarUsuario(int id);
+        public UsuarioListadoDTO BuscarUsuario(int id);
     }
 }

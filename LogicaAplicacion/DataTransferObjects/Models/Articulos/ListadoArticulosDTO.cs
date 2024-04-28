@@ -8,12 +8,12 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Articulos
 {
     public class ArticulosListadoDTO
     {
-        public int? Id { get; set; }
-        public string? Nombre { get; set; }
-        public string? Descripcion { get; set; }
-        public long? Codigo { get; set; }
-        public int? PrecioVenta { get; set; }
-        public int? Stock { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public long Codigo { get; set; }
+        public int PrecioVenta { get; set; }
+        public int Stock { get; set; }
 
         public ArticulosListadoDTO() { }
     }

@@ -1,5 +1,9 @@
 ﻿using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoLogin.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoLogin.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
 using Microsoft.AspNetCore.Mvc;
@@ -10,22 +14,22 @@ namespace MVC_Papeleria.Controllers
     {   //repositorios
         private IRepositorioUsuarios _repositorioUsuarios = new RepositorioUsuarios(new PapeleriaContext());
         //casos de uso
-        private ILoginUsuario _loginUsuario;
-        private IAltaUsuario _altaUsuario;
-        private IGetAllUsuarios _getAllUsuarios;
-        private IModificarUsuario _modificarUsuario;
-        private IBorrarUsuario _borrarUsuario;
-        private IGetUsuario _getUsuario;
+        private ICasoUsoLoginUsuario _loginUsuario;
+        private ICasoUsoAltaUsuario _altaUsuario;
+        private ICasoUsoListarUsuario _getAllUsuarios;
+        private ICasoUsoEditarUsuario _modificarUsuario;
+        private ICasoUsoBajaUsuario _borrarUsuario;
+        private ICasoUsoBuscarUsuario _getUsuario;
 
 
         public UsuariosController()
         {
-            _loginUsuario = new LoginUsuario(_repositorioUsuarios);
-            _altaUsuario = new AltaUsuario(_repositorioUsuarios);
-            _getAllUsuarios = new GetAllUsuarios(_repositorioUsuarios);
-            _modificarUsuario = new ModificarUsuario(_repositorioUsuarios);
-            _borrarUsuario = new BorrarUsuario(_repositorioUsuarios);
-            _getUsuario = new GetUsuario(_repositorioUsuarios);
+            _loginUsuario = new CasoUsoLoginUsuario(_repositorioUsuarios);
+            _altaUsuario = new CasoUsoAltaUsuario(_repositorioUsuarios);
+            _getAllUsuarios = new CasoUsoListarUsuario(_repositorioUsuarios);
+            _modificarUsuario = new CasoUsoEditarUsuario(_repositorioUsuarios);
+            _borrarUsuario = new CasoUsoBajaUsuario(_repositorioUsuarios);
+            _getUsuario = new CasoUsoBuscarUsuario(_repositorioUsuarios);
         }
 
 
@@ -33,7 +37,7 @@ namespace MVC_Papeleria.Controllers
         // GET: UsuariosController
         public ActionResult Index()
         {
-            return View(_getAllUsuarios.Ejecutar());
+            return View(_getAllUsuarios.ListarUsuarios());
         }
 
         // GET: UsuariosController/Details/5
@@ -55,7 +59,7 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                _altaUsuario.Ejecutar(user);
+                _altaUsuario.AltaUsuario(user);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -75,7 +79,7 @@ namespace MVC_Papeleria.Controllers
             }
             try
             {
-                UsuarioListadoDTO dto = _getUsuario.GetById(id.GetValueOrDefault());
+                UsuarioListadoDTO dto = _getUsuario.BuscarUsuario(id.GetValueOrDefault());
                 UsuarioModificacionDTO mod = new UsuarioModificacionDTO()
                 {
                     Id = dto.Id,
@@ -83,7 +87,7 @@ namespace MVC_Papeleria.Controllers
                     Apellido = dto.Apellido,
                     Email = dto.Email,
                     Password = dto.Password,
-                    Rol = dto.Rol
+                    Rol = (LogicaNegocio.Enumerados.Rol)dto.Rol
 
                 };
 
@@ -109,7 +113,7 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                _modificarUsuario.Ejecutar(id, usuarioDto);
+                _modificarUsuario.EditarUsuario(id, usuarioDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -124,7 +128,7 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                UsuarioListadoDTO user = _getUsuario.GetById(id);
+                UsuarioListadoDTO user = _getUsuario.BuscarUsuario(id);
                 return View(user);
             }
             catch (Exception ex)
@@ -141,7 +145,7 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                _borrarUsuario.borrarUsuario(id);
+                _borrarUsuario.BajaUsuario(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

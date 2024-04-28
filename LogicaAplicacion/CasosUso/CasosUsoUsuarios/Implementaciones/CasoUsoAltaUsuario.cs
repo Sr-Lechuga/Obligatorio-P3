@@ -1,5 +1,8 @@
-﻿using AccesoDatos.Interfaces;
+﻿using AccesoDatos.Implementaciones.EntityFramework;
+using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,9 +22,14 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public void AltaUsuario(Usuario usuario)
+        public void AltaUsuario(AltaUsuarioDTO usuarioNuevo)
         {
-            RepositorioUsuarios.Add(usuario);
+            if (usuarioNuevo == null)
+            {
+                throw new ArgumentNullException(nameof(usuarioNuevo));
+            }
+            Usuario user = MapperUsuario.FromDTO(usuarioNuevo);
+            RepositorioUsuarios.Add(user);
         }
 
     }

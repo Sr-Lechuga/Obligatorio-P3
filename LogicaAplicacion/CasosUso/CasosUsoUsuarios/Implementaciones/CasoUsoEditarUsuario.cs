@@ -1,5 +1,8 @@
-﻿using AccesoDatos.Interfaces;
+﻿using AccesoDatos.Implementaciones.EntityFramework;
+using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,9 +22,15 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public void EditarUsuario(int idUsuario,Usuario usuario)
+        public void EditarUsuario(int idUsuario,UsuarioModificacionDTO usuarioModificado)
         {
-            RepositorioUsuarios.Update(idUsuario,usuario);
+            Usuario buscar = RepositorioUsuarios.GetById(idUsuario);
+
+            usuarioModificado.Rol = buscar.Rol;
+            usuarioModificado.Email = buscar.Email.DireccionEmail;
+
+            Usuario usuario = MapperUsuario.FromDTO(usuarioModificado);
+            RepositorioUsuarios.Update(idUsuario, usuario);
         }
 
     }

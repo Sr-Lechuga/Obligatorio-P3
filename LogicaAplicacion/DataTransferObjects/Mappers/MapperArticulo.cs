@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
-    public class ArticulosMappers
+    public class MapperArticulo
     {
         public static Articulo FromDTO(ArticulosDTO dto)
         {

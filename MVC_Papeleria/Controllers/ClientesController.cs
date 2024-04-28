@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoClientes.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoClientes.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.Clientes;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,22 +12,22 @@ namespace MVC_Papeleria.Controllers
         //repositorios
         private IRepositorioClientes _repositorioClientes = new RepositorioClientes(new PapeleriaContext());
         //casos de uso
-        private IFiltrarTexto _filtrarTexto;
-        private IFiltrarMonto _filtrarMonto;
-        private IGetAllClientes _getAllClientes;
+        private ICasoUsoBuscarCliente _filtrarTexto;
+        private ICasoUsoBuscarCliente _filtrarMonto;
+        private ICasoUsoListarClientes _getAllClientes;
 
         public ClientesController()
         {
-            _filtrarTexto = new FiltrarTexto(_repositorioClientes);
-            _filtrarMonto = new FiltrarMonto(_repositorioClientes);
-            _getAllClientes = new GetAllClientes(_repositorioClientes);
+            _filtrarTexto = new CasoUsoBuscarCliente(_repositorioClientes);
+            _filtrarMonto = new CasoUsoBuscarCliente(_repositorioClientes);
+            _getAllClientes = new CasoUsoListarClientes(_repositorioClientes);
 
         }
 
         // GET: ClientesController
         public ActionResult Index()
         {
-            return View(_getAllClientes.Ejecutar());
+            return View(_getAllClientes.ListarClientes());
         }
 
 
@@ -36,16 +38,16 @@ namespace MVC_Papeleria.Controllers
             if (textoAFiltrar != null && montoAFiltrar != null)
             {
                 ViewBag.Error = "Solo filtrar por un campo";
-                return View(_getAllClientes.Ejecutar());
+                return View(_getAllClientes.ListarClientes());
             }
             if (textoAFiltrar == null && montoAFiltrar == null)
             {
                 ViewBag.Error = "Solo filtrar por al menos un campo";
-                return View(_getAllClientes.Ejecutar());
+                return View(_getAllClientes.ListarClientes());
             }
             if (textoAFiltrar != null)
             {
-                filtrados = _filtrarTexto.Ejecutar(textoAFiltrar);
+                filtrados = _filtrarTexto.BuscarClientePorTexto(textoAFiltrar);
             }
             if (montoAFiltrar != null)
             {

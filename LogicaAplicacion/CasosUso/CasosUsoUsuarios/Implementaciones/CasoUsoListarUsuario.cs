@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,9 +21,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public IEnumerable<Usuario> ListarUsuario()
+        public IEnumerable<UsuarioListadoDTO> ListarUsuarios()
         {
-            return RepositorioUsuarios.GetAll();
+            return MapperUsuario.FromList(RepositorioUsuarios.GetAll());
         }
 
     }

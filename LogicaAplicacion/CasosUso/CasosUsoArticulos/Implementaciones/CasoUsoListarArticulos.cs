@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Articulos;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
     {
         public IRepositorioArticulos RepositorioArticulos { get; set; } = repositorioArticulos;
 
-        public IEnumerable<Articulo> LsitarArticulos()
+        public IEnumerable<ArticulosListadoDTO> LsitarArticulos()
         {
-            return this.RepositorioArticulos.GetAll();
+            return MapperArticulo.FromList(RepositorioArticulos.GetAll());
         }
     }
 }

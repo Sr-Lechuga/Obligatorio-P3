@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAplicacion.DataTransferObjects.Models.Clientes;
+using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoClientes.Interfaces
 {
     public interface ICasoUsoListarClientes
     {
-        public IEnumerable<Cliente> ListarClientes();
+        public IEnumerable<ClienteDTO> ListarClientes();
 
     }
 }

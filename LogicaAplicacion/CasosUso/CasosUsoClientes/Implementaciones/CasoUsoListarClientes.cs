@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoClientes.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Clientes;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -20,9 +22,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoClientes.Implementaciones
 
         }
 
-        public IEnumerable<Cliente> ListarClientes()
+        public IEnumerable<ClienteDTO> ListarClientes()
         {
-            return RepositorioClientes.GetAll();
+            return MapperCliente.FromList(RepositorioClientes.GetAll());
         }
     }
 }

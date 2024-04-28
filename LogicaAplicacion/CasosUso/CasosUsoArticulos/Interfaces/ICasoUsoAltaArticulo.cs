@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAplicacion.DataTransferObjects.Models.Articulos;
+using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces
 {
     public interface ICasoUsoAltaArticulo
     {
-        public void AltaArticulo(Articulo articuloNuevo);
+        public void AltaArticulo(ArticulosDTO articuloNuevo);
     }
 }

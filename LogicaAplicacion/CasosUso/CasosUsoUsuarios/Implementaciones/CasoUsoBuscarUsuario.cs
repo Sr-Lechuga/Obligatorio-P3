@@ -1,6 +1,10 @@
-﻿using AccesoDatos.Interfaces;
+﻿using AccesoDatos.Implementaciones.EntityFramework;
+using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +23,13 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public Usuario BuscarUsuario(int id)
+        public UsuarioListadoDTO BuscarUsuario(int id)
         {
-            return RepositorioUsuarios.GetById(id);
+            Usuario user = RepositorioUsuarios.GetById(id) ?? throw new UsuarioNoEncontradoException("No hay usuarios con ese id");
+            
+            UsuarioListadoDTO userDTO = MapperUsuario.ToDTO(user);
+            
+            return userDTO;
         }
 
     }
