@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{ADC94F48-C140-466E-9CEA-281583C3BB05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{ADC94F48-C140-466E-9CEA-281583C3BB05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaAplicacion", "LogicaAplicacion\LogicaAplicacion.csproj", "{27AD71BE-6345-4FF5-8575-C65B310F6519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaAplicacion", "LogicaAplicacion\LogicaAplicacion.csproj", "{27AD71BE-6345-4FF5-8575-C65B310F6519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{370B8129-6458-48A5-AC6E-CCBD7677DBDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{370B8129-6458-48A5-AC6E-CCBD7677DBDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{8A32C92B-2102-4EED-99C1-BE7FDD138F95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Papeleria", "MVC_Papeleria\MVC_Papeleria.csproj", "{D79E4721-9399-4D83-9A48-1DECE34C6CC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{370B8129-6458-48A5-AC6E-CCBD7677DBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370B8129-6458-48A5-AC6E-CCBD7677DBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370B8129-6458-48A5-AC6E-CCBD7677DBDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A32C92B-2102-4EED-99C1-BE7FDD138F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A32C92B-2102-4EED-99C1-BE7FDD138F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A32C92B-2102-4EED-99C1-BE7FDD138F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A32C92B-2102-4EED-99C1-BE7FDD138F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

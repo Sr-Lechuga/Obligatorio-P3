@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LogicaNegocio.Enumerados
+{
+    public enum Rol
+    {
+        USUARIO = 1,
+        ADMINISTRADOR = 2
+    }
+}

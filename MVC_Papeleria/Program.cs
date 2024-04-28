@@ -1,4 +1,4 @@
-namespace MVC
+namespace MVC_Papeleria
 {
     public class Program
     {

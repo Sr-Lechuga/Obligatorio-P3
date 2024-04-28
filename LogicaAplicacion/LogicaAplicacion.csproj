@@ -6,4 +6,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CasosUso\Articulos\Implementaciones\" />
+    <Folder Include="CasosUso\Articulos\Interfaces\" />
+    <Folder Include="CasosUso\Cliente\Implementaciones\" />
+    <Folder Include="CasosUso\Cliente\Interfaces\" />
+    <Folder Include="CasosUso\Login\Implementaciones\" />
+    <Folder Include="CasosUso\Login\Interfaces\" />
+    <Folder Include="CasosUso\Pedidos\Implementaciones\" />
+    <Folder Include="CasosUso\Pedidos\Interfaces\" />
+    <Folder Include="CasosUso\Usuarios\Implementaciones\" />
+    <Folder Include="CasosUso\Usuarios\Interfaces\" />
+    <Folder Include="CasosUso\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaNegocio\LogicaNegocio.csproj" />
+  </ItemGroup>
+
 </Project>
