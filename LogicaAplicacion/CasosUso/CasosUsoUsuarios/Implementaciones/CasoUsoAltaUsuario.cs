@@ -22,7 +22,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public void AltaUsuario(AltaUsuarioDTO usuarioNuevo)
+        public void AltaUsuario(UsuarioAltaDTO usuarioNuevo)
         {
             if (usuarioNuevo == null)
             {

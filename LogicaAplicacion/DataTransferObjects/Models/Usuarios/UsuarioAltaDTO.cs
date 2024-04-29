@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
 {
-    public class AltaUsuarioDTO
+    public class UsuarioAltaDTO
     {
         public string Id { get; set; }
         public string Nombre { get; set; }
@@ -16,6 +16,6 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
         public string Password { get; set; }
         public Rol Rol { get; set; }
 
-        public AltaUsuarioDTO() { }
+        public UsuarioAltaDTO() { }
     }
 }

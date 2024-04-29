@@ -27,8 +27,8 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             {
                 //TODO: Como se valida un pedido
                 //pedidoNuevo.EsValido();
-                _papeleriaContext.Pedidos.Add(pedidoNuevo);
-                _papeleriaContext.SaveChanges();
+                /*_papeleriaContext.Pedidos.Add(pedidoNuevo);
+                _papeleriaContext.SaveChanges();*/
             }
             catch (PedidoNoValidoException)
             {
@@ -42,7 +42,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public Pedido GetById(int id)
         {
-            if (!_papeleriaContext.Pedidos.Any())
+            /*if (!_papeleriaContext.Pedidos.Any())
                 throw new DataBaseSetException("No hay ningún pedido ingresado, ingrese uno primero.");
 
             try
@@ -54,20 +54,20 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             catch (Exception ex)
             {
                 throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            }
+            }*/
+            return null;
         }
         
         public IEnumerable<Pedido> GetAll()
         {
-            if (!_papeleriaContext.Pedidos.Any())
-                throw new DataBaseSetException("No hay ningún pedido ingresado, ingrese uno primero.");
-
-            return _papeleriaContext.Pedidos.ToList();
+            /*
+            return _papeleriaContext.Pedidos.ToList();*/
+            return null;
         }
 
         public void Update(int id, Pedido pedidoEditado)
         {
-            try
+            /*try
             {
                 //TODO: Revisar
                 //pedidoEditado.EsValido();
@@ -81,12 +81,13 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             catch (Exception ex)
             {
                 throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            }
+            }*/
+            
         }
 
         public void Remove(int id)
         {
-            try
+            /*try
             {
                 //TODO: No recomendado
                 Pedido pedidoEncontrado = this.GetById(id);
@@ -100,7 +101,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             catch (Exception ex)
             {
                 throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            }
+            */
         }
         #endregion
     }

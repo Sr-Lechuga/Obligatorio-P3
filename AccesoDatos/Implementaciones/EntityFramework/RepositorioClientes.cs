@@ -66,9 +66,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<Cliente> GetAll()
         {
-            if (!_papeleriaContext.Clientes.Any())
-                throw new DataBaseSetException("No hay clientes para mostrar, ingrese uno primero");
-
             return _papeleriaContext.Clientes.ToList();
         }
 
@@ -151,12 +148,14 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<Cliente> GetByMonto(decimal monto)
         {
-            IEnumerable<Cliente> clientes = _papeleriaContext.Pedidos.Include(pedido => pedido.Cliente)
+            /*IEnumerable<Cliente> clientes = _papeleriaContext.Pedidos.Include(pedido => pedido.Cliente)
                 .Where(pedido => pedido.Total > monto)
                 .Select(pedido => pedido.Cliente)
                 .ToList();
 
             return clientes.Any() ? clientes : throw new ClienteNoEncontradoException($"No se pudo encontrar ningun cliente que con un total de pedidos superior a ${monto}");
+            */
+            return null;
         }
         #endregion
     }

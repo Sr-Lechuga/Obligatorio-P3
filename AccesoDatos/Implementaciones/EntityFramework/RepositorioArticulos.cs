@@ -65,9 +65,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<Articulo> GetAll()
         {
-            if (!_papeleriaContext.Articulos.Any())
-                throw new DataBaseSetException("La tabla Articulos esta vacia");
-
             return _papeleriaContext.Articulos.ToList();
         }
 

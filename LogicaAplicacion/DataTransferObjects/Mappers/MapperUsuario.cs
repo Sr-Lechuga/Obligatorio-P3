@@ -10,7 +10,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
     public class MapperUsuario
     {
-        public static Usuario FromDTO(AltaUsuarioDTO dto)
+        public static Usuario FromDTO(UsuarioAltaDTO dto)
         {
             ArgumentNullException.ThrowIfNull(dto);
             return new Usuario(dto.Email, dto.Nombre, dto.Apellido, dto.Password, dto.Rol);

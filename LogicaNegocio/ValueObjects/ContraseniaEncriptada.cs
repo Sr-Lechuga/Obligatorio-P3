@@ -37,7 +37,7 @@ namespace LogicaNegocio.ValueObjects
 
         private void ValidarContrasenia()
         {
-            string patronValido = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[.,;!])[A-Za-z\d.,;!]{6,}$";
+            string patronValido = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[.,;!]).{6,}$";
             
             if (!Regex.IsMatch(ValorContrasenia, patronValido))
                 throw new ContraseñaNoValidaException("La contraseña debe tener al menos largo 6. Largo mínimo de 6 caracteres, al menos una letra mayúscula, una minúscula, un dígito y un carácter de puntuación (.,;!)");

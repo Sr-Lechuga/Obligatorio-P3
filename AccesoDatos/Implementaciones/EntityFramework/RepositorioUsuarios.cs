@@ -33,9 +33,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         
         public IEnumerable<Usuario> GetAll()
         {
-            if (!_papeleriaContext.Usuarios.Any())
-                throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
-
             return _papeleriaContext.Usuarios.ToList();
         }
 

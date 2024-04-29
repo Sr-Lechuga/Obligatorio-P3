@@ -10,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces
 {
     public interface ICasoUsoAltaUsuario
     {
-        public void AltaUsuario(AltaUsuarioDTO usuario);
+        public void AltaUsuario(UsuarioAltaDTO usuario);
     }
 }

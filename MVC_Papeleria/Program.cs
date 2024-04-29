@@ -1,3 +1,6 @@
+using AccesoDatos.Implementaciones.EntityFramework;
+using AccesoDatos.Interfaces;
+
 namespace MVC_Papeleria
 {
     public class Program
@@ -8,7 +11,24 @@ namespace MVC_Papeleria
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddSession(); //NECESARIO
+
+            #region Repositorios
+            //builder.Services.AddScoped<IRepositorioArticulos, RepositorioArticulos>();
+            //builder.Services.AddScoped<IRepositorioClientes, RepositorioClientes>();
+            //builder.Services.AddScoped<IRepositorioPedidos, RepositorioPedidos>();
+            //builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
+            #endregion
+
+            //Sesion
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                //15 minutos por sesion
+                options.IdleTimeout = TimeSpan.FromSeconds(900);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,7 +45,9 @@ namespace MVC_Papeleria
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseSession(); //NECESARIO
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

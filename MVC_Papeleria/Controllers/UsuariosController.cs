@@ -55,7 +55,7 @@ namespace MVC_Papeleria.Controllers
         // POST: UsuariosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AltaUsuarioDTO user)
+        public ActionResult Create(UsuarioAltaDTO user)
         {
             try
             {
@@ -63,8 +63,9 @@ namespace MVC_Papeleria.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
