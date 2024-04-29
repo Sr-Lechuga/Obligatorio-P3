@@ -51,6 +51,26 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
             try
             {
+                Cliente? clienteEncontrado = _papeleriaContext.Clientes.AsNoTracking().FirstOrDefault(cliente => cliente.Id == id);
+                return clienteEncontrado ?? throw new ClienteNoEncontradoException($"No se encontro el cliente de ID: {id}");
+            }
+            catch (ClienteNoEncontradoException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
+            }
+        }
+
+        public Cliente RetrieveById(int id)
+        {
+            if (!_papeleriaContext.Clientes.Any())
+                throw new DataBaseSetException("No hay clientes para mostrar, ingrese uno primero");
+
+            try
+            {
                 Cliente? clienteEncontrado = _papeleriaContext.Clientes.FirstOrDefault(cliente => cliente.Id == id);
                 return clienteEncontrado ?? throw new ClienteNoEncontradoException($"No se encontro el cliente de ID: {id}");
             }

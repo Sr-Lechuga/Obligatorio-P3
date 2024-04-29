@@ -11,9 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace MVC_Papeleria.Controllers
 {
     public class UsuariosController : Controller
-    {   //repositorios
-        private IRepositorioUsuarios _repositorioUsuarios = new RepositorioUsuarios(new PapeleriaContext());
-        //casos de uso
+    {   
+        //Casos de Uso
         private ICasoUsoLoginUsuario _loginUsuario;
         private ICasoUsoAltaUsuario _altaUsuario;
         private ICasoUsoListarUsuario _getAllUsuarios;
@@ -21,15 +20,14 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoBajaUsuario _borrarUsuario;
         private ICasoUsoBuscarUsuario _getUsuario;
 
-
-        public UsuariosController()
+        public UsuariosController(ICasoUsoLoginUsuario loginUsuario, ICasoUsoAltaUsuario altaUsuario, ICasoUsoListarUsuario getAllUsuarios, ICasoUsoEditarUsuario modificarUsuario, ICasoUsoBajaUsuario borrarUsuario, ICasoUsoBuscarUsuario getUsuario)
         {
-            _loginUsuario = new CasoUsoLoginUsuario(_repositorioUsuarios);
-            _altaUsuario = new CasoUsoAltaUsuario(_repositorioUsuarios);
-            _getAllUsuarios = new CasoUsoListarUsuario(_repositorioUsuarios);
-            _modificarUsuario = new CasoUsoEditarUsuario(_repositorioUsuarios);
-            _borrarUsuario = new CasoUsoBajaUsuario(_repositorioUsuarios);
-            _getUsuario = new CasoUsoBuscarUsuario(_repositorioUsuarios);
+            _loginUsuario = loginUsuario;
+            _altaUsuario = altaUsuario;
+            _getAllUsuarios = getAllUsuarios;
+            _modificarUsuario = modificarUsuario;
+            _borrarUsuario = borrarUsuario;
+            _getUsuario = getUsuario;
         }
 
 

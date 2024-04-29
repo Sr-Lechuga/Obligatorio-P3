@@ -13,12 +13,12 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 {
     public class RepositorioUsuarios : IRepositorioUsuarios
     {
-        private readonly PapeleriaContext _papeleriaContext;
+        private PapeleriaContext _papeleriaContext;
 
-        public RepositorioUsuarios(PapeleriaContext context)
+        public RepositorioUsuarios()
         {
             //Inyeccion de dependencia
-            _papeleriaContext = context;
+            _papeleriaContext = new PapeleriaContext();
         }
 
         #region CRUD Operations
@@ -27,7 +27,17 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             if (!_papeleriaContext.Usuarios.Any())
                 throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
 
-            Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Id == id);
+            Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
+
+            return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de ID: {id}");
+        }
+
+        public Usuario RetrieveById(int id)
+        {
+            if (!_papeleriaContext.Usuarios.Any())
+                throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
+
+            Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
             
             return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de ID: {id}");
         }

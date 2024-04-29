@@ -42,10 +42,22 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public Pedido GetById(int id)
         {
-            /*if (!_papeleriaContext.Pedidos.Any())
-                throw new DataBaseSetException("No hay ningún pedido ingresado, ingrese uno primero.");
+            /*try
+            {
+                //TODO: Deberia ser un pedido DTO(?)
+                Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.AsNoTracking().FirstOrDefault(pedido => pedido.Id == id);
+                return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
+            }*/
+            return null;
+        }
 
-            try
+        public Pedido RetrieveById(int id)
+        {
+            /*try
             {
                 //TODO: Deberia ser un pedido DTO(?)
                 Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.FirstOrDefault(pedido => pedido.Id == id);
@@ -57,7 +69,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             }*/
             return null;
         }
-        
+
         public IEnumerable<Pedido> GetAll()
         {
             /*

@@ -1,10 +1,13 @@
 # Papeleria
 
-Faltan
+# Recursos
 
-Casos de uso
+Encontre informacion sobre trackeo de consultas aca:
+https://learn.microsoft.com/es-es/ef/core/querying/tracking
 
-- Intefaces
-- Implementaciones
+Encontre informacion sobre Value Objetcs aca:
+https://learn.microsoft.com/en-us/ef/ef6/modeling/designer/data-types/complex-types
 
-Vistas
+#TY
+Gracias Orlin por tus botones geniales
+https://codepen.io/OrlinDiaz/pen/ZaOBYQ

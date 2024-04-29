@@ -20,3 +20,48 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.action-buttons a {
+    text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    display: inline-block;
+    color: #FFF;
+    background: #7F8C8D;
+    padding: 2px 13px;
+    white-space: nowrap;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 100px;
+    margin: 10px 5px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+    .action-buttons a:nth-child(1) {
+        background: #3498DB;
+        box-shadow: 0px 5px 0px 0px #2980B9;
+    }
+
+        .action-buttons a:nth-child(1):hover {
+            background: #39a0e5;
+        }
+
+        .action-buttons a:nth-child(1):active {
+            box-shadow: 0px 2px 0px 0px #2980B9;
+        }
+
+    .action-buttons a:nth-child(2) {
+        background: #E74C3C;
+        box-shadow: 0px 5px 0px 0px #C0392B;
+    }
+
+        .action-buttons a:nth-child(2):hover {
+            background: #ff5242;
+        }
+
+        .action-buttons a:nth-child(2):active {
+            box-shadow: 0px 2px 0px 0px #C0392B;
+        }

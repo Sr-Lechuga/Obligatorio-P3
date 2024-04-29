@@ -1,5 +1,9 @@
 using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoLogin.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoLogin.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
 
 namespace MVC_Papeleria
 {
@@ -16,7 +20,17 @@ namespace MVC_Papeleria
             //builder.Services.AddScoped<IRepositorioArticulos, RepositorioArticulos>();
             //builder.Services.AddScoped<IRepositorioClientes, RepositorioClientes>();
             //builder.Services.AddScoped<IRepositorioPedidos, RepositorioPedidos>();
-            //builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
+            builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
+            #endregion
+
+            #region CasosUso
+            //Usuario
+            builder.Services.AddScoped<ICasoUsoLoginUsuario, CasoUsoLoginUsuario>();
+            builder.Services.AddScoped<ICasoUsoAltaUsuario, CasoUsoAltaUsuario>();
+            builder.Services.AddScoped<ICasoUsoListarUsuario, CasoUsoListarUsuario>();
+            builder.Services.AddScoped<ICasoUsoEditarUsuario, CasoUsoEditarUsuario>();
+            builder.Services.AddScoped<ICasoUsoBajaUsuario, CasoUsoBajaUsuario>();
+            builder.Services.AddScoped<ICasoUsoBuscarUsuario, CasoUsoBuscarUsuario>();
             #endregion
 
             builder.Services.AddDistributedMemoryCache();
