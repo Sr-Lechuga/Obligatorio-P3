@@ -14,11 +14,11 @@ namespace LogicaNegocio.ValueObjects
     public class CodigoArticulo : IValidable<CodigoArticulo>
     {
         #region Properties
-        public string CodigoArticuloValor { get; init; }
+        public long CodigoArticuloValor { get; init; }
         #endregion
 
         #region Constructors
-        public CodigoArticulo(string codigoArticuloValor)
+        public CodigoArticulo(long codigoArticuloValor)
         {
             CodigoArticuloValor = codigoArticuloValor;
             EsValido();
@@ -38,7 +38,9 @@ namespace LogicaNegocio.ValueObjects
         {
             string patronValido = @"\d{13+}";
 
-            if (!Regex.IsMatch(CodigoArticuloValor, patronValido))
+            if (string.IsNullOrEmpty(CodigoArticuloValor.ToString()))
+                throw new ArticuloNoValidoException("El código del artículo no puede estar vacio");
+            else if (!Regex.IsMatch(CodigoArticuloValor.ToString(), patronValido))
                 throw new ArticuloNoValidoException("El código del artículo debe tener 13 carácteres");
         }
         #endregion

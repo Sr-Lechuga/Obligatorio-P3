@@ -37,6 +37,8 @@ namespace LogicaNegocio.ValueObjects
         {
             if (string.IsNullOrEmpty(NombreArticuloValor))
                 throw new ArticuloNoValidoException("Debe ingresar un nombre para el articulo");
+            else if (NombreArticuloValor.Length < 10 || NombreArticuloValor.Length > 200)
+                throw new ArticuloNoValidoException("El nombre del artículo debetener entre 10 y 200 carácteres");
         }
         #endregion
     }

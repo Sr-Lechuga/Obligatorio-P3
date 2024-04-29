@@ -25,7 +25,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                articuloNuevo.EsValido();
                 _papeleriaContext.Articulos.Add(articuloNuevo);
                 _papeleriaContext.SaveChanges();
             }
