@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MVC_Papeleria</title>
+    <title>@ViewData["Title"] - Papeleria</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MVC_Papeleria.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Papeleria_Obligatorio.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -19,23 +19,46 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
-                        </li>
+                        @if (Context.Session.GetString("email") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Articulos" asp-action="Index">Articulos</a>
+                            </li>
+                        }
                     </ul>
                 </div>
+                @if (Context.Session.GetString("email") != null)
+                {
+                    <div>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    @* <figure>
+                                <img class="rounded" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fuser&psig=AOvVaw0Zt46bbrSvErjLoJbOA_Ec&ust=1713657927232000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPCVtra_z4UDFQAAAAAdAAAAABAE" />
+                                </figure> *@
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Cerrar sesion</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @* Mensajes en general *@
             <partial name="_Informacion" />
             @RenderBody()
         </main>

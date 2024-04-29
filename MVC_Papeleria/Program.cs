@@ -19,8 +19,9 @@ namespace MVC_Papeleria
             //builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             #endregion
 
-            //Sesion
             builder.Services.AddDistributedMemoryCache();
+            //Sesion
+            
             builder.Services.AddSession(options =>
             {
                 //15 minutos por sesion

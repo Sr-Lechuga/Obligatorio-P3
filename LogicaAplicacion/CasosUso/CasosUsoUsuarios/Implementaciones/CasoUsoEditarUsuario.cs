@@ -22,15 +22,17 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             RepositorioUsuarios = repositorioUsuarios;
         }
 
-        public void EditarUsuario(int idUsuario,UsuarioModificacionDTO usuarioModificado)
+        public void EditarUsuario(int idUsuario,UsuarioModificacionDTO usuarioModificadoDTO)
         {
             Usuario buscar = RepositorioUsuarios.GetById(idUsuario);
 
-            usuarioModificado.Rol = buscar.Rol;
-            usuarioModificado.Email = buscar.Email.DireccionEmail;
+            //No se puede modificar ni el rol ni el email
+            usuarioModificadoDTO.Rol = buscar.Rol;
+            usuarioModificadoDTO.Email = buscar.Email.DireccionEmail;
 
-            Usuario usuario = MapperUsuario.FromDTO(usuarioModificado);
-            RepositorioUsuarios.Update(idUsuario, usuario);
+
+            Usuario usuarioModificado = MapperUsuario.FromDTO(usuarioModificadoDTO);
+            RepositorioUsuarios.Update(idUsuario, usuarioModificado);
         }
 
     }

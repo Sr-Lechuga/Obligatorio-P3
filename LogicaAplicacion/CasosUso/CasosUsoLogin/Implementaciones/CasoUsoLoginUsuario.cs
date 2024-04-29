@@ -12,6 +12,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoLogin.Implementaciones
     public class CasoUsoLoginUsuario : ICasoUsoLoginUsuario
     {
         public IRepositorioUsuarios RepositorioUsuarios { get; init; }
+
         public CasoUsoLoginUsuario(IRepositorioUsuarios repositorioUsuario)
         {
             RepositorioUsuarios = repositorioUsuario;

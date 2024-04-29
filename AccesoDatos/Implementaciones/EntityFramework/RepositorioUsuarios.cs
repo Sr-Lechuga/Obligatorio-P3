@@ -28,6 +28,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                 throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
 
             Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Id == id);
+            
             return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de ID: {id}");
         }
         

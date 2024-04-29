@@ -10,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces
 {
     public interface ICasoUsoEditarUsuario
     {
-        public void EditarUsuario(int idUsuario,UsuarioModificacionDTO usuario);
+        public void EditarUsuario(int idUsuario,UsuarioModificacionDTO usuarioDTO);
     }
 }

@@ -75,7 +75,7 @@ namespace MVC_Papeleria.Controllers
         {
             if (id == null)
             {
-                ViewBag.Error = "Se requiere el id del usuario";
+                ViewBag.ErrorMessage = "Se requiere el id del usuario";
                 return View();
             }
             try
@@ -102,7 +102,7 @@ namespace MVC_Papeleria.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -110,16 +110,16 @@ namespace MVC_Papeleria.Controllers
         // POST: UsuariosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, UsuarioModificacionDTO usuarioDto)
+        public ActionResult Edit(int id, UsuarioModificacionDTO usuarioDTO)
         {
             try
             {
-                _modificarUsuario.EditarUsuario(id, usuarioDto);
+                _modificarUsuario.EditarUsuario(id, usuarioDTO);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -134,7 +134,7 @@ namespace MVC_Papeleria.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -151,7 +151,7 @@ namespace MVC_Papeleria.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

@@ -47,6 +47,7 @@ namespace LogicaNegocio.Entidades
         #region Validations
         public void EsValido()
         {
+            //TODO: Esto no va aca
             if (Rol != Rol.ADMINISTRADOR) throw new RolNoValidoException("Rol inexistente");
 
         }
