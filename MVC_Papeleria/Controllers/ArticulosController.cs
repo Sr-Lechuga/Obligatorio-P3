@@ -27,7 +27,11 @@ namespace MVC_Papeleria.Controllers
         // GET: ArticulosController
         public ActionResult Index()
         {
-            return View(_getAllArticulos.LsitarArticulos());
+            if (HttpContext.Session.GetString("email") != null)
+            {
+                return View(_getAllArticulos.LsitarArticulos());
+            }
+            return RedirectToAction("Login");
         }
 
         // GET: ArticulosController/Details/5

@@ -27,9 +27,12 @@ namespace MVC_Papeleria.Controllers
         // GET: ClientesController
         public ActionResult Index()
         {
-            return View(_getAllClientes.ListarClientes());
+            if (HttpContext.Session.GetString("email") != null)
+            {
+                return View(_getAllClientes.ListarClientes());
+            }
+            return RedirectToAction("Login");
         }
-
 
         [HttpPost]
         public ActionResult Index(string textoAFiltrar, string montoAFiltrar)

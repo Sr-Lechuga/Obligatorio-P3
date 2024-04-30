@@ -35,7 +35,11 @@ namespace MVC_Papeleria.Controllers
         // GET: UsuariosController
         public ActionResult Index()
         {
-            return View(_getAllUsuarios.ListarUsuarios());
+            if (HttpContext.Session.GetString("email") != null)
+            {
+                return View(_getAllUsuarios.ListarUsuarios());
+            }
+            return RedirectToAction("Login");
         }
 
         // GET: UsuariosController/Details/5
