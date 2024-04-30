@@ -31,7 +31,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             {
                 Email = user.Email.DireccionEmail,
                 Password = user.Contrasenia.Password,
-                Rol = (int)user.Rol,
+                Rol = (int)user.Rol.RolValor,
                 Nombre = user.NombreCompleto.Nombre,
                 Apellido = user.NombreCompleto.Apellido,
                 Id = user.Id

@@ -29,7 +29,7 @@ namespace LogicaNegocio.Entidades
 
         public DateTime? FechaEntregado { get; set; }
 
-        public Estado Estado { get; set; }
+        public EEstado Estado { get; set; }
         #endregion
 
         protected Pedido(DateTime fechaPrometida, Cliente cliente)
@@ -41,7 +41,7 @@ namespace LogicaNegocio.Entidades
             IVAAplicado = s_IVA;
             Lineas = [];
             FechaEntregado = null;
-            Estado = Estado.NUEVO;
+            Estado = EEstado.NUEVO;
         }
 
         #region Methods definitions

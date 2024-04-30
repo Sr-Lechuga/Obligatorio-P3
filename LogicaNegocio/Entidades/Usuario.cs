@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Usuario : IValidable<Usuario>
+    public class Usuario 
     {
         #region Properties
         public int Id { get; set; }
@@ -22,35 +22,25 @@ namespace LogicaNegocio.Entidades
         #endregion
 
         #region Constructor
-        public Usuario(string email, string nombre, string apellido, string password, Rol rol)
+        public Usuario(string email, string nombre, string apellido, string password, ERol rol)
         {
             Email = new Email(email);
             NombreCompleto = new NombreCompleto(nombre, apellido);
             Contrasenia = new Contrasenia(password);
             ContraseniaEncriptada = new ContraseniaEncriptada(password);
-            Rol = rol;
+            Rol = new Rol(rol);
         }
 
-        public Usuario(int id, string email, string nombre, string apellido, string password, Rol rol)
+        public Usuario(int id, string email, string nombre, string apellido, string password, ERol rol)
         {
             Id = id;
             Email = new Email(email);
             NombreCompleto = new NombreCompleto(nombre, apellido);
             Contrasenia = new Contrasenia(password);
             ContraseniaEncriptada = new ContraseniaEncriptada(password);
-            Rol = rol;
-            EsValido();
+            Rol = new Rol(rol);
         }
         public Usuario() { }
-        #endregion
-
-        #region Validations
-        public void EsValido()
-        {
-            //TODO: Esto no va aca
-            if (Rol != Rol.ADMINISTRADOR) throw new RolNoValidoException("Rol inexistente");
-
-        }
         #endregion
 
         #region Methods

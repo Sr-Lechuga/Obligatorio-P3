@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Enumerados
 {
-    public enum Rol
+    public enum ERol
     {
         USUARIO = 1,
         ADMINISTRADOR = 2
