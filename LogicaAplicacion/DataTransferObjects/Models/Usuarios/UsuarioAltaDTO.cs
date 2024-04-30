@@ -14,7 +14,7 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public Rol Rol { get; set; }
+        public ERol Rol { get; set; }
 
         public UsuarioAltaDTO() { }
     }

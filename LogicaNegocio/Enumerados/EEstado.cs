@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Enumerados
 {
-    public enum Estado
+    public enum EEstado
     {
         NUEVO = 1,
         PENDIENTE = 2,

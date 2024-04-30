@@ -25,8 +25,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Como se valida un pedido
-                //pedidoNuevo.EsValido();
                 /*_papeleriaContext.Pedidos.Add(pedidoNuevo);
                 _papeleriaContext.SaveChanges();*/
             }
@@ -44,7 +42,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             /*try
             {
-                //TODO: Deberia ser un pedido DTO(?)
                 Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.AsNoTracking().FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
@@ -59,7 +56,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             /*try
             {
-                //TODO: Deberia ser un pedido DTO(?)
                 Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
@@ -81,8 +77,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             /*try
             {
-                //TODO: Revisar
-                //pedidoEditado.EsValido();
                 _papeleriaContext.Pedidos.Update(pedidoEditado);
                 _papeleriaContext.SaveChanges();
             }
@@ -101,8 +95,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             /*try
             {
-                //TODO: No recomendado
-                Pedido pedidoEncontrado = this.GetById(id);
                 _papeleriaContext.Pedidos.Remove(pedidoEncontrado);
                 _papeleriaContext.SaveChanges();
             }

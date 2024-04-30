@@ -90,7 +90,7 @@ namespace MVC_Papeleria.Controllers
                     Apellido = dto.Apellido,
                     Email = dto.Email,
                     Password = dto.Password,
-                    Rol = (LogicaNegocio.Enumerados.Rol)dto.Rol
+                    Rol = (LogicaNegocio.Enumerados.ERol)dto.Rol
 
                 };
 

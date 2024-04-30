@@ -27,7 +27,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones
             Usuario buscar = RepositorioUsuarios.GetById(idUsuario);
 
             //No se puede modificar ni el rol ni el email
-            usuarioModificadoDTO.Rol = buscar.Rol;
+            usuarioModificadoDTO.Rol = buscar.Rol.RolValor;
             usuarioModificadoDTO.Email = buscar.Email.DireccionEmail;
 
 
