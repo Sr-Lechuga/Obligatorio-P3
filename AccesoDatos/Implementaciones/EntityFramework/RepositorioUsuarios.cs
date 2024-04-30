@@ -68,8 +68,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Revisar
-                //usuarioEditado.EsValido();
                 _papeleriaContext.Usuarios.Update(usuarioEditado);
                 _papeleriaContext.SaveChanges();
             }

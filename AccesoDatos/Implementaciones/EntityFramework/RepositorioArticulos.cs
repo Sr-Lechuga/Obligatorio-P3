@@ -91,8 +91,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Revisar
-                //articuloEditado.EsValido();
                 _papeleriaContext.Articulos.Update(articuloEditado);
                 _papeleriaContext.SaveChanges();
             }
@@ -110,8 +108,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Revisar la implementacion con Find, no es necesaria
-                Articulo articuloParaBorrar = this.GetById(id);
+                Articulo articuloParaBorrar = GetById(id);
                 _papeleriaContext.Articulos.Remove(articuloParaBorrar);
                 _papeleriaContext.SaveChanges();
             }

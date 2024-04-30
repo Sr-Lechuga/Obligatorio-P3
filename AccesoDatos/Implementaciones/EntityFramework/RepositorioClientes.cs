@@ -25,8 +25,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Revisar validacion
-                //clienteNuevo.EsValido();
                 _papeleriaContext.Clientes.Add(clienteNuevo);
                 _papeleriaContext.SaveChanges();
             }
@@ -93,8 +91,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: Revisar metodo de validacion
-                //clienteEditado.EsValido();
                 _papeleriaContext.Clientes.Update(clienteEditado);
                 _papeleriaContext.SaveChanges();
             }
@@ -116,7 +112,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: No recomendado
                 Cliente clienteParaBorrar = GetById(id);
                 _papeleriaContext.Clientes.Remove(clienteParaBorrar);
                 _papeleriaContext.SaveChanges(true);
