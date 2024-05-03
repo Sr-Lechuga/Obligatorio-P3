@@ -14,10 +14,9 @@ namespace AccesoDatos.Implementaciones.EntityFramework
     {
         private readonly PapeleriaContext _papeleriaContext;
 
-        public RepositorioPedidos(PapeleriaContext context)
+        public RepositorioPedidos()
         {
-            //Inyeccion de dependencia
-            _papeleriaContext = context;
+            _papeleriaContext = new PapeleriaContext();
         }
 
         #region CRUD Operations

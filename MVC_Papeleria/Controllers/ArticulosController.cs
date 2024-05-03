@@ -10,17 +10,14 @@ namespace MVC_Papeleria.Controllers
 {
     public class ArticulosController : Controller
     {
-
-        //repositorios 
-        private IRepositorioArticulos _repositorioArticulos = new RepositorioArticulos(new PapeleriaContext());
         //casos de uso
         private ICasoUsoAltaArticulo _altaArticulos;
         private ICasoUsoListarArticulos _getAllArticulos;
 
-        public ArticulosController()
+        public ArticulosController(ICasoUsoAltaArticulo altaArticulo, ICasoUsoListarArticulos listarArticulos)
         {
-            _altaArticulos = new CasoUsoAltaArticulo(_repositorioArticulos);
-            _getAllArticulos = new CasoUsoListarArticulos(_repositorioArticulos);
+            _altaArticulos = altaArticulo;
+            _getAllArticulos = listarArticulos;
         }
 
 

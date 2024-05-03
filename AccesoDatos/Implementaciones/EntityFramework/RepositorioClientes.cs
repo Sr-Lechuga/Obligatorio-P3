@@ -16,9 +16,10 @@ namespace AccesoDatos.Implementaciones.EntityFramework
     {
         private readonly PapeleriaContext _papeleriaContext;
 
-        public RepositorioClientes(PapeleriaContext context)
+        public RepositorioClientes()
         {
-            _papeleriaContext = context;
+            //Inyeccion de dependencia
+            _papeleriaContext = new PapeleriaContext();
         }
 
         public void Add(Cliente clienteNuevo)

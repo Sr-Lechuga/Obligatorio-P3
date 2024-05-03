@@ -9,18 +9,16 @@ namespace MVC_Papeleria.Controllers
 {
     public class ClientesController : Controller
     {
-        //repositorios
-        private IRepositorioClientes _repositorioClientes = new RepositorioClientes(new PapeleriaContext());
         //casos de uso
         private ICasoUsoBuscarCliente _filtrarTexto;
         private ICasoUsoBuscarCliente _filtrarMonto;
         private ICasoUsoListarClientes _getAllClientes;
 
-        public ClientesController()
+        public ClientesController(ICasoUsoBuscarCliente buscarPorTexto, ICasoUsoBuscarCliente buscarPorMonto, ICasoUsoListarClientes listarClientes)
         {
-            _filtrarTexto = new CasoUsoBuscarCliente(_repositorioClientes);
-            _filtrarMonto = new CasoUsoBuscarCliente(_repositorioClientes);
-            _getAllClientes = new CasoUsoListarClientes(_repositorioClientes);
+            _filtrarTexto = buscarPorTexto;
+            _filtrarMonto = buscarPorMonto;
+            _getAllClientes = listarClientes;
 
         }
 

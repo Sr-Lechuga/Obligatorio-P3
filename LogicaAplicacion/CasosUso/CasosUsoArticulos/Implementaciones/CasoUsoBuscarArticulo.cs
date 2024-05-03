@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
 {
-    public class CasoUsoBuscarArticulo(IRepositorioArticulos repositorioArticulos) : ICasoUsoBuscarArticulo
+    public class CasoUsoBuscarArticulo : ICasoUsoBuscarArticulo
     {
-        public IRepositorioArticulos RepositorioArticulos { get; set; } = repositorioArticulos;
+        public IRepositorioArticulos RepositorioArticulos { get; set; }
+
+        public CasoUsoBuscarArticulo(IRepositorioArticulos repositorioArticulos)
+        {
+            RepositorioArticulos = repositorioArticulos;
+        }
 
         public Articulo BuscarArticulo(int id)
         {

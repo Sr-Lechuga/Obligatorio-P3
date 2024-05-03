@@ -13,11 +13,11 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 {
     public class RepositorioArticulos : IRepositorioArticulos
     {
-        private readonly PapeleriaContext _papeleriaContext;
+        private PapeleriaContext _papeleriaContext;
 
-        public RepositorioArticulos(PapeleriaContext context)
+        public RepositorioArticulos()
         {
-            _papeleriaContext = context;
+            _papeleriaContext = new PapeleriaContext();
         }
 
         #region CRUD Operations

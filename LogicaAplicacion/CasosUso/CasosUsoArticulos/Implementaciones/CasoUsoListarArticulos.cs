@@ -11,9 +11,14 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
 {
-    public class CasoUsoListarArticulos(IRepositorioArticulos repositorioArticulos) : ICasoUsoListarArticulos
+    public class CasoUsoListarArticulos : ICasoUsoListarArticulos
     {
-        public IRepositorioArticulos RepositorioArticulos { get; set; } = repositorioArticulos;
+        public IRepositorioArticulos RepositorioArticulos { get; set; }
+
+        public CasoUsoListarArticulos(IRepositorioArticulos repositorioArticulos)
+        {
+            RepositorioArticulos = repositorioArticulos;
+        }
 
         public IEnumerable<ArticulosListadoDTO> LsitarArticulos()
         {

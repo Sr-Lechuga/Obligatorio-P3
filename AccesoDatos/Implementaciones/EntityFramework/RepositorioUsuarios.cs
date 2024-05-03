@@ -24,9 +24,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #region CRUD Operations
         public Usuario GetById(int id)
         {
-            if (!_papeleriaContext.Usuarios.Any())
-                throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
-
             Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
 
             return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de ID: {id}");
@@ -34,8 +31,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public Usuario RetrieveById(int id)
         {
-            if (!_papeleriaContext.Usuarios.Any())
-                throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
 
             Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
             
@@ -104,9 +99,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #region DML Methods
         public Usuario ObtenerUsuarioPorEmail(string email)
         {
-            if (!_papeleriaContext.Usuarios.Any())
-                throw new DataBaseSetException("No hay usuarios resgistrados, ingrese uno primero");
-
             Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Email.DireccionEmail == email);
             return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de email: {email}");
         }
