@@ -41,7 +41,7 @@ namespace LogicaNegocio.ValueObjects
             if (string.IsNullOrEmpty(CodigoArticuloValor.ToString()))
                 throw new ArticuloNoValidoException("El código del artículo no puede estar vacio");
             else if (!Regex.IsMatch(CodigoArticuloValor.ToString(), patronValido))
-                throw new ArticuloNoValidoException("El código del artículo debe tener 13 carácteres");
+                throw new ArticuloNoValidoException("El código del artículo debe tener 13 digitos");
         }
         #endregion
     }

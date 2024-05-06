@@ -53,8 +53,9 @@ namespace MVC_Papeleria.Controllers
                 _altaArticulos.AltaArticulo(art);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
