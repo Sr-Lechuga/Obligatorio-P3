@@ -35,7 +35,7 @@ namespace LogicaNegocio.ValueObjects
 
         private void ValidarRol()
         {
-            if (RolValor != ERol.ADMINISTRADOR || RolValor != ERol.USUARIO)
+            if (RolValor != ERol.ADMINISTRADOR && RolValor != ERol.USUARIO)
                 throw new UsuarioNoValidoException("Ingrese un rol valido");
         }
     }
