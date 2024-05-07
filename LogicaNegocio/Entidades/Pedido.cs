@@ -1,4 +1,6 @@
 ﻿using LogicaNegocio.Enumerados;
+using LogicaNegocio.Excepciones.Clientes;
+using LogicaNegocio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Entidades
 {
-    public abstract class Pedido
+    public abstract class Pedido : IValidable<Pedido>
     {
         #region Properies
         //TODO: Pasar esto a archivo de configuracion
@@ -42,6 +44,7 @@ namespace LogicaNegocio.Entidades
             Lineas = [];
             FechaEntregado = null;
             Estado = EEstado.NUEVO;
+            EsValido();
         }
 
         #region Methods definitions
@@ -51,6 +54,17 @@ namespace LogicaNegocio.Entidades
             double total = 0;
             return total;
         }
+
         #endregion
+        public void EsValido()
+        {
+            ValidarCliente();
+        }
+
+        public void ValidarCliente() 
+        {
+            if(Cliente == null ) throw new ClienteNoValidoException("Cliente no valido");
+
+        }
     }
 }
