@@ -26,7 +26,7 @@ namespace MVC_Papeleria.Controllers
         {
             if (HttpContext.Session.GetString("email") != null)
             {
-                return View(_getAllArticulos.LsitarArticulos());
+                return View(_getAllArticulos.ListarArticulos());
             }
             return RedirectToAction("Login");
         }

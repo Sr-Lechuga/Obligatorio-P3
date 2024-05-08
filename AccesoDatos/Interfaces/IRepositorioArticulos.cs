@@ -9,5 +9,6 @@ namespace AccesoDatos.Interfaces
 {
     public interface IRepositorioArticulos : IRepositorioCRUD<Articulo>
     {
+        public IEnumerable<Articulo> ListadoAscendente();
     }
 }

@@ -20,7 +20,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
             RepositorioArticulos = repositorioArticulos;
         }
 
-        public IEnumerable<ArticulosListadoDTO> LsitarArticulos()
+        public IEnumerable<ArticulosListadoDTO> ListarArticulos()
         {
             return MapperArticulo.FromList(RepositorioArticulos.GetAll());
         }
