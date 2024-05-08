@@ -36,7 +36,7 @@ namespace LogicaNegocio.ValueObjects
 
         private void ValidarCodigo()
         {
-            string patronValido = @"\d{13+}";
+            string patronValido = @"\d{13}";
 
             if (string.IsNullOrEmpty(CodigoArticuloValor.ToString()))
                 throw new ArticuloNoValidoException("El código del artículo no puede estar vacio");

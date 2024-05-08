@@ -6,6 +6,7 @@ using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones;
 using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Enumerados;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_Papeleria.Controllers
@@ -169,10 +170,12 @@ namespace MVC_Papeleria.Controllers
             if (logueado != null)
             {
                 HttpContext.Session.SetString("email", email);
-
-
+                HttpContext.Session.SetString("rol", logueado.Rol.RolValor.ToString());
             }
-            return RedirectToAction("Index", "Usuarios");
+            if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
+                return RedirectToAction("Index", "Usuarios");
+            else
+                return RedirectToAction("Index", "Articulos");
 
         }
         public ActionResult Logout()
