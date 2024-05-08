@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaAplicacion", "LogicaA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{370B8129-6458-48A5-AC6E-CCBD7677DBDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Papeleria", "MVC_Papeleria\MVC_Papeleria.csproj", "{D79E4721-9399-4D83-9A48-1DECE34C6CC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC_Papeleria", "MVC_Papeleria\MVC_Papeleria.csproj", "{D79E4721-9399-4D83-9A48-1DECE34C6CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{31B77A68-A5E0-4984-A0BB-FE580E2389A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D79E4721-9399-4D83-9A48-1DECE34C6CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B77A68-A5E0-4984-A0BB-FE580E2389A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B77A68-A5E0-4984-A0BB-FE580E2389A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B77A68-A5E0-4984-A0BB-FE580E2389A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B77A68-A5E0-4984-A0BB-FE580E2389A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
