@@ -47,9 +47,9 @@ namespace MVC_Papeleria.Controllers
         // GET: PedidosController/Create
         public ActionResult Create()
         {
-            if(tempPedido != null)
+            if(tempLineas != null)
             {
-                ViewBag.Lineas = tempPedido.Lineas;
+                ViewBag.Lineas = tempLineas;
             }
             return View();
         }
