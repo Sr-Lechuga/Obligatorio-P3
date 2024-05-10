@@ -26,7 +26,7 @@ namespace LogicaNegocio.Entidades
             PrecioUnitario = precioUnitario;
             Articulo = articulo;
         }
-        private LineaPedido() { }
+        public LineaPedido() { }
         #endregion
 
     }

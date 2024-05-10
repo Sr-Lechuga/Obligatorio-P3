@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
 using System;
@@ -22,7 +23,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones
 
         public void AltaPedido(PedidoDTO pedido)
         {
-            this.RepositorioPedidos.Add(pedido);
+            this.RepositorioPedidos.Add(MapperPedido.FromDTO(pedido));
         }
 
     }
