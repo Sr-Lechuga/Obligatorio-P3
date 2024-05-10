@@ -11,13 +11,13 @@ namespace LogicaNegocio.Entidades
         //TODO: Pasar esto a archivo de configuracion
         public static int s_PlazoMaximo;
 
-        public PedidoExpress(DateTime fechaPrometida, Cliente cliente) : base(fechaPrometida, cliente)
+        public PedidoExpress()
         {
         }
 
         public override double CalcularTotal()
         {
-            double totalPedidoBase = base.CalcularTotal();
+            double totalPedidoBase = 0;
 
             TimeSpan diferenciaFechas = FechaPrometida - FechaCreado;
             int diferenciaDias = diferenciaFechas.Days;

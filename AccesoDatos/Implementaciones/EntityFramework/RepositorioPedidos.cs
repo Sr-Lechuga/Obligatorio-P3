@@ -1,7 +1,9 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Enumerados;
 using LogicaNegocio.Excepciones.Generales;
 using LogicaNegocio.Excepciones.Pedidos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +26,8 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                /*_papeleriaContext.Pedidos.Add(pedidoNuevo);
-                _papeleriaContext.SaveChanges();*/
+                _papeleriaContext.Pedidos.Add(pedidoNuevo);
+                _papeleriaContext.SaveChanges();
             }
             catch (PedidoNoValidoException)
             {
@@ -33,43 +35,39 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
+                throw new Exception($"Error desconocido: {ex.Message}");
             }
         }
 
         public Pedido GetById(int id)
         {
-            /*try
+            try
             {
                 Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.AsNoTracking().FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            }*/
-            return null;
+                throw new Exception($"Error desconocido: {ex.Message}");
+            }
         }
 
         public Pedido RetrieveById(int id)
         {
-            /*try
+            try
             {
                 Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            }*/
-            return null;
+                throw new Exception($"Error desconocido: {ex.Message}");
+            }
         }
 
         public IEnumerable<Pedido> GetAll()
         {
-            /*
-            return _papeleriaContext.Pedidos.ToList();*/
-            return null;
+            return _papeleriaContext.Pedidos.ToList();
         }
 
         public void Update(int id, Pedido pedidoEditado)
@@ -92,9 +90,13 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public void Remove(int id)
         {
-            /*try
+            Pedido? pedidoEncontrado = GetById(id);
+            
+            try
             {
-                _papeleriaContext.Pedidos.Remove(pedidoEncontrado);
+                //Debe hacer una baja logica en lugar de una fisica
+                pedidoEncontrado.Estado = EEstado.ANULADO;
+                _papeleriaContext.Pedidos.Update(pedidoEncontrado);
                 _papeleriaContext.SaveChanges();
             }
             catch (PedidoNoEncontradoException)
@@ -103,8 +105,9 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
-            */
+                throw new Exception($"Error desconocido: {ex.Message}");
+            }
+            
         }
         #endregion
     }

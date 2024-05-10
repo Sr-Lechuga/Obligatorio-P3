@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones
             this.RepositorioPedidos = repositorioPedidos;
         }
 
-        public void AltaPedido(Pedido pedido)
+        public void AltaPedido(PedidoDTO pedido)
         {
             this.RepositorioPedidos.Add(pedido);
         }

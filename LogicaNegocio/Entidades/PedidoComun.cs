@@ -11,13 +11,14 @@ namespace LogicaNegocio.Entidades
         //TODO: Pasar esto a archivo de configuracion
         public static int s_PlazoMinimo;
 
-        public PedidoComun(DateTime fechaPrometida, Cliente cliente) : base(fechaPrometida, cliente)
-        {
-        }
+       public PedidoComun() 
+       {
+
+       }
 
         public override double CalcularTotal()
         {
-            double totalPedidoBase = base.CalcularTotal();
+            double totalPedidoBase = 0;
 
             if (Cliente.Direccion.Distancia > 100)
                 totalPedidoBase *= 1.05;

@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces
+namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
-    public interface ICasoUsoAltaPedido
+    public class MapperPedido
     {
-        public void AltaPedido(PedidoDTO pedido);
-
+        public static Pedido FromDTO(PedidoDTO pedido) 
+        {
+            Pedido pedido = new Pedido() 
+        }
     }
 }

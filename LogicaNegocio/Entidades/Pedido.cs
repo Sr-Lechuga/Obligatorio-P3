@@ -46,14 +46,14 @@ namespace LogicaNegocio.Entidades
             Estado = EEstado.NUEVO;
             EsValido();
         }
+        public Pedido() 
+        {
+
+        }
 
         #region Methods definitions
-        public virtual double CalcularTotal()
-        {
-            //TODO: Metodo para calcular el total de los pedidos
-            double total = 0;
-            return total;
-        }
+        public abstract double CalcularTotal();
+        
 
         #endregion
         public void EsValido()
