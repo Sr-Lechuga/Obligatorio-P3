@@ -32,9 +32,11 @@ namespace LogicaNegocio.Entidades
         public DateTime? FechaEntregado { get; set; }
 
         public EEstado Estado { get; set; }
+
+        public bool EsExpress {  get; set; }
         #endregion
 
-        protected Pedido(DateTime fechaPrometida, Cliente cliente)
+        protected Pedido(DateTime fechaPrometida, Cliente cliente, bool esExpress)
         {
             FechaPrometida = fechaPrometida;
             FechaCreado = DateTime.Now;
@@ -44,6 +46,7 @@ namespace LogicaNegocio.Entidades
             Lineas = [];
             FechaEntregado = null;
             Estado = EEstado.NUEVO;
+            EsExpress = esExpress;
             EsValido();
         }
         public Pedido() 

@@ -19,7 +19,6 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Pedidos
         public DateTime FechaEntregado { get; set; }
         public EEstado Estado { get; set; }
         public List<LineaPedido> Lineas { get; set; }
-
-
+        public bool EsExpress { get; set; }
     }
 }

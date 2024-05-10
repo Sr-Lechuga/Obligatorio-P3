@@ -12,7 +12,24 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
     {
         public static Pedido FromDTO(PedidoDTO pedido) 
         {
-            Pedido pedido = new Pedido() 
+
+            if (pedido.EsExpress)
+            {
+                PedidoExpress pedidoExpress = new PedidoExpress()
+                {
+                    FechaPrometida = pedido.FechaPrometida,
+
+                };
+                return pedidoExpress;
+            }
+            else
+            {
+                PedidoComun pedidoComun = new PedidoComun()
+                {
+
+                };
+                return pedidoComun;
+            }
         }
     }
 }
