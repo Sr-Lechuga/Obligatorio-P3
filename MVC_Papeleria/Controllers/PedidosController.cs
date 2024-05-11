@@ -18,7 +18,7 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoListarClientes _listarClientes;
         private ICasoUsoListarArticulos _listarArticulos;
         //TODO: Hacer linea pedidoDTO
-        private static List<LineaPedido> tempLineas;
+        private static List<LineaPedidoDTO> tempLineas;
 
         public PedidosController(ICasoUsoAltaPedido altaPedido, 
             ICasoUsoBajaPedido bajaPedido, 
@@ -83,7 +83,8 @@ namespace MVC_Papeleria.Controllers
                 //TODO Seguir
                 Articulo articulo = _buscarArticulo.BuscarArticulo(articuloId);
 
-                LineaPedido lineaPedido = new LineaPedido { 
+                LineaPedidoDTO lineaPedido = new LineaPedidoDTO
+                { 
                     Articulo = articulo,
                     CantidadArticulo = cantidadArticulo,
                     PrecioUnitario = articulo.PrecioVenta
@@ -91,7 +92,7 @@ namespace MVC_Papeleria.Controllers
 
                 if(tempLineas == null)
                 {
-                    tempLineas = new List<LineaPedido>();
+                    tempLineas = new List<LineaPedidoDTO>();
                 }
 
                 tempLineas.Add(lineaPedido);
