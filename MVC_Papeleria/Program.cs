@@ -40,6 +40,7 @@ namespace MVC_Papeleria
             //Articulos
             builder.Services.AddScoped<ICasoUsoAltaArticulo, CasoUsoAltaArticulo>();
             builder.Services.AddScoped<ICasoUsoListarArticulos, CasoUsoListarArticulos>();
+            builder.Services.AddScoped<ICasoUsoBuscarArticulo, CasoUsoBuscarArticulo>();
             //Clientes
             builder.Services.AddScoped<ICasoUsoBuscarCliente, CasoUsoBuscarCliente>();
             builder.Services.AddScoped<ICasoUsoListarClientes, CasoUsoListarClientes>();

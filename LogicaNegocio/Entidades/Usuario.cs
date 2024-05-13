@@ -4,6 +4,7 @@ using LogicaNegocio.Interfaces;
 using LogicaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace LogicaNegocio.Entidades
         public int Id { get; set; }
         public Email Email { get; set; }
         public NombreCompleto NombreCompleto { get; set; }
+        [Range(6, int.MinValue, ErrorMessage = "La contraseña debe tener minimo 6 caracteres")]
         public Contrasenia Contrasenia { get; set; }
         public ContraseniaEncriptada ContraseniaEncriptada { get; set; }
         public Rol Rol { get; set; }

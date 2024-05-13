@@ -1,6 +1,7 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoClientes.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.Articulos;
 using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
@@ -17,7 +18,7 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoListarPedido _listarPedidos;
         private ICasoUsoListarClientes _listarClientes;
         private ICasoUsoListarArticulos _listarArticulos;
-        //TODO: Hacer linea pedidoDTO
+       
         private static List<LineaPedidoDTO>? tempLineas;
 
         public PedidosController(ICasoUsoAltaPedido altaPedido, 
@@ -40,7 +41,7 @@ namespace MVC_Papeleria.Controllers
         // GET: PedidosController
         public ActionResult Index()
         {
-            return View(_listarPedidos.ListarPedidos());
+            return View(MapperPedido.ToList(_listarPedidos.ListarPedidos()));
         }
 
 
@@ -103,6 +104,13 @@ namespace MVC_Papeleria.Controllers
                 return View();
             }
         }
+        public ActionResult AnularPedido(int id) 
+        { 
+            //Hacer la logica de anularPedido
+            return View(); 
+        }
+
+
 
         // GET: PedidosController/Delete/5
         public ActionResult Delete(int id)

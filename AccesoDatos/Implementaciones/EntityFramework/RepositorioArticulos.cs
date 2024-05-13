@@ -126,7 +126,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #region DML Methods
         public IEnumerable<Articulo> ListadoAscendente()
         {
-            //TODO: ver si funciona
             return _papeleriaContext.Articulos.OrderBy(articulo => articulo.Nombre).ToList();
         }
         #endregion

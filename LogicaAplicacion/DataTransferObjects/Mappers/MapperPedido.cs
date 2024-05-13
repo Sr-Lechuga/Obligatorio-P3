@@ -17,8 +17,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 IVAAplicado = pedidoExpressDTO.IVAAplicado,
                 FechaEntregado = pedidoExpressDTO.FechaEntregado,
                 Estado = pedidoExpressDTO.Estado,
-                //TODO Hacer el mapper de lineaPedido
-                Lineas = pedidoExpressDTO.Lineas
+                Lineas = MapperLineaPedido.ToList(pedidoExpressDTO.Lineas)
 
             };
             return pedidoExpress;
@@ -37,8 +36,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 IVAAplicado = pedidoComunDTO.IVAAplicado,
                 FechaEntregado = pedidoComunDTO.FechaEntregado,
                 Estado = pedidoComunDTO.Estado,
-                //TODO Hacer el mapper de lineaPedido
-                Lineas = pedidoComunDTO.Lineas
+                Lineas = MapperLineaPedido.ToList(pedidoComunDTO.Lineas)
 
             };
             return pedidoComun;
@@ -60,13 +58,12 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 IVAAplicado = pedido.IVAAplicado,
                 FechaEntregado = pedido.FechaEntregado,
                 Estado = pedido.Estado,
-                //TODO Hacer el mapper de lineaPedido
-                Lineas = pedido.Lineas,
+                Lineas = MapperLineaPedido.FromList(pedido.Lineas),
 
             };
             return pedidoDTO;
         }
-        public static PedidoComunDTO ToDTO(PedidoComun pedido) 
+        public static PedidoComunDTO ToDTO(PedidoComun pedido)
         {
             if (pedido == null)
                 return null;
@@ -80,10 +77,24 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 IVAAplicado = pedido.IVAAplicado,
                 FechaEntregado = pedido.FechaEntregado,
                 Estado = pedido.Estado,
-                //TODO Hacer el mapper de lineaPedido
-                Lineas = pedido.Lineas,
+                Lineas = MapperLineaPedido.FromList(pedido.Lineas),
             };
             return pedidoDTO;
+        }
+        public static List<PedidoDTO> ToList(IEnumerable<Pedido> pedidos)
+        {
+            return pedidos.Select(x =>
+            {
+            if (x.GetType() == typeof(PedidoComun))
+            {
+                return MapperPedido.ToDTO((PedidoComun)x);
+            }
+            else
+            {
+                return MapperPedido.ToDTO((PedidoExpress)x);
+            }
+
+            ).ToList();
         }
     }
 }

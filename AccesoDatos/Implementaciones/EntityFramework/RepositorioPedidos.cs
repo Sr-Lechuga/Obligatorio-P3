@@ -85,16 +85,20 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             {
                 throw new Exception($"Error desconocido: {ex.Message} (Trace: {ex.StackTrace})");
             }*/
-            
+
         }
 
-        public void Remove(int id)
+        public void Remove(int id) 
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AnularPedido(int id)
         {
             Pedido? pedidoEncontrado = GetById(id);
-            
+
             try
             {
-                //Debe hacer una baja logica en lugar de una fisica
                 pedidoEncontrado.Estado = EEstado.ANULADO;
                 _papeleriaContext.Pedidos.Update(pedidoEncontrado);
                 _papeleriaContext.SaveChanges();
@@ -107,7 +111,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             {
                 throw new Exception($"Error desconocido: {ex.Message}");
             }
-            
         }
         #endregion
     }

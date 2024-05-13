@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.DataTransferObjects.Models.Clientes;
 using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
+using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,9 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Articulo = lineaPedido.Articulo
             };
         }
-        public static LineaPedidoDTO FromDTO(LineaPedidoDTO lineaPedidoDTO)
+        public static LineaPedido FromDTO(LineaPedidoDTO lineaPedidoDTO)
         {
-            return new LineaPedidoDTO
+            return new LineaPedido
             {
                 ArticuloId = lineaPedidoDTO.ArticuloId,
                 PedidoId = lineaPedidoDTO.PedidoId,
@@ -33,6 +34,15 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Articulo = lineaPedidoDTO.Articulo
             };
         }
-        
+        public static List<LineaPedido> ToList(IEnumerable<LineaPedidoDTO> lineas)
+        {
+            return lineas.Select(x => FromDTO(x)).ToList();
+        }
+
+        public static List<LineaPedidoDTO> FromList(IEnumerable<LineaPedido> lineas)
+        {
+            return lineas.Select(x => ToDTO(x)).ToList();
+        }
+
     }
 }

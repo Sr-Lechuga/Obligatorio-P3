@@ -20,7 +20,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones
 
         public void BajaPedido(int id)
         {
-            this.RepositorioPedidos.Remove(id);
+            this.RepositorioPedidos.AnularPedido(id);
         }
 
     }

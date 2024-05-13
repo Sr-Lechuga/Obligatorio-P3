@@ -9,5 +9,6 @@ namespace AccesoDatos.Interfaces
 {
     public interface IRepositorioPedidos : IRepositorioCRUD<Pedido>
     {
+        public void AnularPedido(int id);
     }
 }

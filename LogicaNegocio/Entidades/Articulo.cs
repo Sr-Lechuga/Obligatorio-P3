@@ -3,6 +3,7 @@ using LogicaNegocio.Interfaces;
 using LogicaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace LogicaNegocio.Entidades
         #region Properties
         public int Id { get; set; }
         public NombreArticulo Nombre { get; set; }
+        [Range(5, int.MinValue, ErrorMessage = "La descripción debe tener minimo 5 caracteres")]
+
         public DescripcionArticulo Descripcion { get; set; }
+        [Range(13, int.MinValue, ErrorMessage = "El código debe tener 13 dígitos")]
+
         public CodigoArticulo Codigo { get; set; }
         public decimal PrecioVenta { get; set; }
         public int Stock { get; set; }
