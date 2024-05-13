@@ -1,4 +1,5 @@
-﻿using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
+﻿using LogicaAplicacion.DataTransferObjects.Models.Clientes;
+using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,17 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Articulo = lineaPedido.Articulo
             };
         }
+        public static LineaPedidoDTO FromDTO(LineaPedidoDTO lineaPedidoDTO)
+        {
+            return new LineaPedidoDTO
+            {
+                ArticuloId = lineaPedidoDTO.ArticuloId,
+                PedidoId = lineaPedidoDTO.PedidoId,
+                CantidadArticulo = lineaPedidoDTO.CantidadArticulo,
+                PrecioUnitario = lineaPedidoDTO.PrecioUnitario,
+                Articulo = lineaPedidoDTO.Articulo
+            };
+        }
+        
     }
 }

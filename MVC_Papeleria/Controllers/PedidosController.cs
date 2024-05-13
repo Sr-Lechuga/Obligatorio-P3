@@ -18,7 +18,7 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoListarClientes _listarClientes;
         private ICasoUsoListarArticulos _listarArticulos;
         //TODO: Hacer linea pedidoDTO
-        private static List<LineaPedidoDTO> tempLineas;
+        private static List<LineaPedidoDTO>? tempLineas;
 
         public PedidosController(ICasoUsoAltaPedido altaPedido, 
             ICasoUsoBajaPedido bajaPedido, 

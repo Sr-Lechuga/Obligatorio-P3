@@ -13,6 +13,6 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Pedidos
         public int PedidoId { get; set; }
         public int CantidadArticulo { get; set; }
         public decimal PrecioUnitario { get; set; }
-        public Articulo Articulo { get; set; }
+        public required Articulo Articulo { get; set; }
     }
 }
