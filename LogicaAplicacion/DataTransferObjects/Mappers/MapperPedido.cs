@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
+using System.Linq;
 
 namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
@@ -23,7 +24,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             return pedidoExpress;
         }
 
-        public PedidoComun FromDTO(PedidoComunDTO pedidoComunDTO)
+        public static PedidoComun FromDTO(PedidoComunDTO pedidoComunDTO)
         {
 
 
@@ -81,20 +82,17 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             };
             return pedidoDTO;
         }
-        public static List<PedidoDTO> ToList(IEnumerable<Pedido> pedidos)
+        public static List<PedidoDTO> ToListAll(IEnumerable<Pedido> pedidos)
         {
-            return pedidos.Select(x =>
-            {
-            if (x.GetType() == typeof(PedidoComun))
-            {
-                return MapperPedido.ToDTO((PedidoComun)x);
-            }
-            else
-            {
-                return MapperPedido.ToDTO((PedidoExpress)x);
-            }
+            var express = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
+            var comun = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
 
-            ).ToList();
+            var expressDTOs = express.Select(p => FromDTO(p));
+            var comunDTOs = comun.Select(p => FromDTO(p));
+
+            var allDTOs = expressDTOs.Cast<PedidoDTO>().Concat(comunDTOs.Cast<PedidoDTO>());
+            return allDTOs.ToList();
         }
+
     }
 }

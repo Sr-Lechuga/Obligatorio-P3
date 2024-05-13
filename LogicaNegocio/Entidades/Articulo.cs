@@ -16,10 +16,8 @@ namespace LogicaNegocio.Entidades
         public int Id { get; set; }
         public NombreArticulo Nombre { get; set; }
         [Range(5, int.MinValue, ErrorMessage = "La descripción debe tener minimo 5 caracteres")]
-
         public DescripcionArticulo Descripcion { get; set; }
         [Range(13, int.MinValue, ErrorMessage = "El código debe tener 13 dígitos")]
-
         public CodigoArticulo Codigo { get; set; }
         public decimal PrecioVenta { get; set; }
         public int Stock { get; set; }

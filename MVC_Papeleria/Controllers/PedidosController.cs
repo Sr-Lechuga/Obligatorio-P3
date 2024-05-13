@@ -41,7 +41,7 @@ namespace MVC_Papeleria.Controllers
         // GET: PedidosController
         public ActionResult Index()
         {
-            return View(MapperPedido.ToList(_listarPedidos.ListarPedidos()));
+            return View(MapperPedido.ToListAll(_listarPedidos.ListarPedidos()));
         }
 
 

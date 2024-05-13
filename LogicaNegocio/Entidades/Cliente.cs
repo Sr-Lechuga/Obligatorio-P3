@@ -15,7 +15,6 @@ namespace LogicaNegocio.Entidades
         public NombreCompleto NombreCompleto { get; set; }
         public string RazonSocial { get; set; }
         [Range(12, int.MinValue, ErrorMessage = "El RUT debe tener 12 digitos")]
-
         public RUT RUT { get; set; }
         public Direccion Direccion { get; set; }
         #endregion
