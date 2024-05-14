@@ -99,8 +99,9 @@ namespace MVC_Papeleria.Controllers
                 tempLineas.Add(lineaPedido);
                 return RedirectToAction(nameof(Create));
             }
-            catch
+            catch(Exception ex)
             {
+                TempData["ErrorMessage"] = ex.StackTrace + ex.Message;
                 return View();
             }
         }

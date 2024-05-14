@@ -1,0 +1,85 @@
+﻿@using LogicaAplicacion.DataTransferObjects.Models.Pedidos
+@model LogicaAplicacion.DataTransferObjects.Models.Pedidos.PedidoDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear</h1>
+
+<h2>Pedidos</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaPrometida" class="control-label"></label>
+                <input asp-for="FechaPrometida" class="form-control" />
+                <span asp-validation-for="FechaPrometida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCreado" class="control-label"></label>
+                <input asp-for="FechaCreado" class="form-control" />
+                <span asp-validation-for="FechaCreado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IVAAplicado" class="control-label"></label>
+                <input asp-for="IVAAplicado" class="form-control" />
+                <span asp-validation-for="IVAAplicado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntregado" class="control-label"></label>
+                <input asp-for="FechaEntregado" class="form-control" />
+                <span asp-validation-for="FechaEntregado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h3>Lineas de pedido</h3>
+                @if(ViewBag.Lineas != null && ViewBag.Lineas.Count > 0) 
+                {
+                    @foreach(LineaPedidoDTO linea in ViewBag.Lineas) 
+                    {
+                        <p>Nombre: @linea.Articulo.Nombre.NombreArticuloValor</p>
+                        <p>Cantidad: @linea.CantidadArticulo</p>
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div>
+        <form asp-action="AddLineas">
+            <div class="form-group">
+                <label for="articuloId" class="control-label">Nombre Articulo</label>
+                <input id="articuloId" name="articuloId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="cantidadArticulo" class="control-label">Cantidad Articulo</label>
+                <input id="cantidadArticulo" name="cantidadArticulo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Atras</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
