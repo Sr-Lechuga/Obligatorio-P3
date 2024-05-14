@@ -37,7 +37,6 @@ namespace MVC_Papeleria.Controllers
         }
 
 
-
         // GET: PedidosController
         public ActionResult Index()
         {
@@ -105,13 +104,12 @@ namespace MVC_Papeleria.Controllers
                 return View();
             }
         }
+
         public ActionResult AnularPedido(int id) 
         { 
             //Hacer la logica de anularPedido
             return View(); 
         }
-
-
 
         // GET: PedidosController/Delete/5
         public ActionResult Delete(int id)
@@ -132,6 +130,67 @@ namespace MVC_Papeleria.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ActionResult AddLines()
+        {
+            try
+            {
+                IEnumerable<ArticulosListadoDTO> articulos = _listarArticulos.ListarArticulos();
+                ViewBag.Articulos = articulos;
+
+                if (tempLineas != null)
+                    ViewBag.LineasAgregadas = tempLineas;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction(nameof(Index));
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult AddLines(int articuloId, int cantidadArticulo)
+        {
+            try
+            {
+                Articulo articulo = _buscarArticulo.BuscarArticulo(articuloId);
+
+                LineaPedidoDTO lineaPedido = new LineaPedidoDTO
+                {
+                    Articulo = articulo,
+                    CantidadArticulo = cantidadArticulo,
+                    PrecioUnitario = articulo.PrecioVenta
+                };
+
+                if (tempLineas == null)
+                    tempLineas = new List<LineaPedidoDTO>();
+
+                tempLineas.Add(lineaPedido);
+
+                return RedirectToAction(nameof(AddLines));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction(nameof(Index));
+            }
+            
+        }
+
+        public ActionResult BorrarLineas()
+        {
+            if (tempLineas != null)
+            {
+                tempLineas = null;
+                ViewBag.LineasAgregadas = tempLineas;
+            }
+
+            return RedirectToAction(nameof(AddLines));
         }
     }
 }
