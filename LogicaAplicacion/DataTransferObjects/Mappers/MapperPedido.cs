@@ -84,13 +84,13 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
         }
         public static List<PedidoDTO> ToListAll(IEnumerable<Pedido> pedidos)
         {
-            var express = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
-            var comun = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
+            IEnumerable<PedidoExpressDTO> express = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
+            IEnumerable<PedidoComunDTO> comun = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
 
-            var expressDTOs = express.Select(p => FromDTO(p));
-            var comunDTOs = comun.Select(p => FromDTO(p));
+            IEnumerable<PedidoExpress> expressDTOs = express.Select(p => FromDTO(p));
+            IEnumerable<PedidoComun> comunDTOs = comun.Select(p => FromDTO(p));
 
-            var allDTOs = expressDTOs.Cast<PedidoDTO>().Concat(comunDTOs.Cast<PedidoDTO>());
+            IEnumerable<PedidoDTO> allDTOs = expressDTOs.Cast<PedidoDTO>().Concat(comunDTOs.Cast<PedidoDTO>());
             return allDTOs.ToList();
         }
 

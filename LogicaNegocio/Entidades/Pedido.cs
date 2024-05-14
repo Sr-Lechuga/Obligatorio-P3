@@ -11,7 +11,7 @@ namespace LogicaNegocio.Entidades
 {
     public abstract class Pedido : IValidable<Pedido>
     {
-        #region Properies
+        #region Properties
         //TODO: Pasar esto a archivo de configuracion
         public static double s_IVA = 22;
 
@@ -65,7 +65,7 @@ namespace LogicaNegocio.Entidades
         public void ValidarCliente() 
         {
             if(Cliente == null ) throw new ClienteNoValidoException("Cliente no valido");
-
+            FechaCreado = DateTime.Now;
         }
     }
 }
