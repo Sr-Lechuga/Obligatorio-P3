@@ -11,7 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC_Papeleria", "MVC_Papeleria\MVC_Papeleria.csproj", "{D79E4721-9399-4D83-9A48-1DECE34C6CC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{31B77A68-A5E0-4984-A0BB-FE580E2389A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{31B77A68-A5E0-4984-A0BB-FE580E2389A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL datos", "SQL datos", "{E8408055-1052-404F-8E6D-2DFCC451E5DC}"
+	ProjectSection(SolutionItems) = preProject
+		INSERTArticulos.sql = INSERTArticulos.sql
+		INSERTClientes.sql = INSERTClientes.sql
+		INSERTUsuarios.sql = INSERTUsuarios.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
