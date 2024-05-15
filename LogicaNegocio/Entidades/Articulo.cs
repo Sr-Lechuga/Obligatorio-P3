@@ -19,6 +19,7 @@ namespace LogicaNegocio.Entidades
         public DescripcionArticulo Descripcion { get; set; }
         [Range(13, int.MinValue, ErrorMessage = "El código debe tener 13 dígitos")]
         public CodigoArticulo Codigo { get; set; }
+        [Display(Name = "Precio")]
         public decimal PrecioVenta { get; set; }
         public int Stock { get; set; }
         #endregion

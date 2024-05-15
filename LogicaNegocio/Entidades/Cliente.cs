@@ -12,7 +12,9 @@ namespace LogicaNegocio.Entidades
     {
         #region Properties
         public int Id { get; set; }
+        [Display(Name = "Nombre Completo")]
         public NombreCompleto NombreCompleto { get; set; }
+        [Display(Name = "Razon Social")]
         public string RazonSocial { get; set; }
         [Range(12, int.MinValue, ErrorMessage = "El RUT debe tener 12 digitos")]
         public RUT RUT { get; set; }
