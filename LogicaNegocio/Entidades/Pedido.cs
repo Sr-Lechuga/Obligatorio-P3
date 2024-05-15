@@ -17,9 +17,11 @@ namespace LogicaNegocio.Entidades
         public static double s_IVA = 22;
 
         public int Id {  get; set; }
+
         [Display(Name = "Fecha prometida")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaPrometida { get; set; }
+
         [Display(Name = "Fecha creado")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaCreado { get; set; }
