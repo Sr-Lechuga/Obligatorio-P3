@@ -25,7 +25,7 @@
                     <option value="0">Seleccione el producto</option>
                     @foreach (ArticulosListadoDTO articulo in ViewBag.Articulos)
                     {
-                        <option value="@articulo.Id">@articulo.Nombre (@articulo.Codigo)</option>
+                        <option value="@articulo.Id">@articulo.Nombre - $@articulo.PrecioVenta (@articulo.Codigo)</option>
                     }
                 </select>
                 <span asp-validation-for="ArticuloId" class="text-danger"></span>
@@ -40,11 +40,11 @@
                 <input asp-for="CantidadArticulo" class="form-control" />
                 <span asp-validation-for="CantidadArticulo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="PrecioUnitario" class="control-label"></label>
                 <input asp-for="PrecioUnitario" class="form-control" id="precio_unitario" disabled />
                 <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <br />
                 <input type="submit" value="Agregar articulo(s)" class="btn btn-success" />
