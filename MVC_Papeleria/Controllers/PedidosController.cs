@@ -5,6 +5,7 @@ using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.Articulos;
 using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Enumerados;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_Papeleria.Controllers
@@ -18,14 +19,14 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoListarPedido _listarPedidos;
         private ICasoUsoListarClientes _listarClientes;
         private ICasoUsoListarArticulos _listarArticulos;
-       
+
         private static List<LineaPedidoDTO>? tempLineas;
 
-        public PedidosController(ICasoUsoAltaPedido altaPedido, 
-            ICasoUsoBajaPedido bajaPedido, 
+        public PedidosController(ICasoUsoAltaPedido altaPedido,
+            ICasoUsoBajaPedido bajaPedido,
             ICasoUsoBuscarArticulo buscarArticulo,
             ICasoUsoListarPedido listarPedidos,
-            ICasoUsoListarClientes listarClientes, 
+            ICasoUsoListarClientes listarClientes,
             ICasoUsoListarArticulos listarArticulos)
         {
             _altaPedido = altaPedido;
@@ -44,95 +45,7 @@ namespace MVC_Papeleria.Controllers
         }
 
 
-        // GET: PedidosController/Create
-        public ActionResult Create()
-        {
-            if(tempLineas != null)
-            {
-                ViewBag.Lineas = tempLineas;
-            }
-            return View();
-        }
-
-        // POST: PedidosController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(PedidoDTO nuevoPedido)
-        {
-            try
-            {
-                if(tempLineas != null && tempLineas.Count > 0)
-                {
-                    nuevoPedido.Lineas = tempLineas;
-                }
-                _altaPedido.AltaPedido(nuevoPedido);
-                tempLineas = null;
-                return RedirectToAction(nameof(Index));
-            }
-            //TODO Hacer los catch
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult AddLineas(int articuloId, int cantidadArticulo) 
-        {
-            try
-            {
-                //TODO Seguir
-                Articulo articulo = _buscarArticulo.BuscarArticulo(articuloId);
-
-                LineaPedidoDTO lineaPedido = new LineaPedidoDTO
-                { 
-                    Articulo = articulo,
-                    CantidadArticulo = cantidadArticulo,
-                    PrecioUnitario = articulo.PrecioVenta
-                };
-
-                if(tempLineas == null)
-                {
-                    tempLineas = new List<LineaPedidoDTO>();
-                }
-
-                tempLineas.Add(lineaPedido);
-                return RedirectToAction(nameof(Create));
-            }
-            catch(Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.StackTrace + ex.Message;
-                return View();
-            }
-        }
-
-        public ActionResult AnularPedido(int id) 
-        { 
-            //Hacer la logica de anularPedido
-            return View(); 
-        }
-
-        // GET: PedidosController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PedidosController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
+        // GET: PedidosController/AddLines
         public ActionResult AddLines()
         {
             try
@@ -153,6 +66,7 @@ namespace MVC_Papeleria.Controllers
 
         }
 
+        // POST: PedidosController/AddLines
         [HttpPost]
         public ActionResult AddLines(int articuloId, int cantidadArticulo)
         {
@@ -171,7 +85,6 @@ namespace MVC_Papeleria.Controllers
                     tempLineas = new List<LineaPedidoDTO>();
 
                 tempLineas.Add(lineaPedido);
-
                 return RedirectToAction(nameof(AddLines));
             }
             catch (Exception ex)
@@ -179,7 +92,82 @@ namespace MVC_Papeleria.Controllers
                 TempData["ErrorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
-            
+
+        }
+
+        // GET: PedidosController/Create
+        public ActionResult Create()
+        {
+            ViewBag.Clientes = _listarClientes.ListarClientes();
+
+            if (tempLineas != null)
+            {
+                ViewBag.Lineas = tempLineas;
+            }
+            return View();
+        }
+
+        // POST: PedidosController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PedidoDTO nuevoPedido)
+        {
+            try
+            {
+                if (tempLineas != null && tempLineas.Count > 0)
+                    nuevoPedido.Lineas = tempLineas;
+
+                nuevoPedido.FechaCreado = DateTime.Now;
+                //TODO: Agregar el parametro de settings
+                nuevoPedido.FechaPrometida = DateTime.Now.AddDays(5);
+                //TODO: Agregar el parametro de settings
+                nuevoPedido.IVAAplicado = 22;
+                nuevoPedido.Estado = EEstado.NUEVO;
+                nuevoPedido.Total = 12.3M;
+
+                _altaPedido.AltaPedido(nuevoPedido);
+
+                tempLineas = null;
+                return RedirectToAction(nameof(Index));
+            }
+            //TODO Hacer los catch
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction(nameof(Create));
+            }
+        }
+
+        public ActionResult AddLineas(int articuloId, int cantidadArticulo)
+        {
+            try
+            {
+                Articulo articulo = _buscarArticulo.BuscarArticulo(articuloId);
+
+                LineaPedidoDTO lineaPedido = new LineaPedidoDTO
+                {
+                    Articulo = articulo,
+                    CantidadArticulo = cantidadArticulo,
+                    PrecioUnitario = articulo.PrecioVenta
+                };
+
+                if (tempLineas == null)
+                    tempLineas = new List<LineaPedidoDTO>();
+
+                tempLineas.Add(lineaPedido);
+                return RedirectToAction(nameof(Create));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.StackTrace + ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult AnularPedido(int id)
+        {
+            //Hacer la logica de anularPedido
+            return View();
         }
 
         public ActionResult BorrarLineas()
