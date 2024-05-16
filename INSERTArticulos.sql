@@ -1,4 +1,4 @@
-﻿USE ObligatorioPapeleria2; 
+﻿USE ObligatorioPapeleria; 
 INSERT INTO [dbo].[Articulos] (Nombre_NombreArticuloValor, Descripcion_DescripcionArticuloValor, Codigo_CodigoArticuloValor, PrecioVenta, Stock)
 VALUES ('Hojas A4', 'Hojas A4 para impresora', '8572019346852', 250, 150),
 ('Lapices Faber Castell', 'Lapices Colores x24', '1234567891234', 150, 50),

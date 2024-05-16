@@ -14,6 +14,7 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string PasswordEncriptada { get; set; }
         public int Rol { get; set; }
 
         public UsuarioListadoDTO() { }
