@@ -137,7 +137,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             IEnumerable<Cliente> clientes = _papeleriaContext.Clientes
                 .Where(cli => cli.NombreCompleto.Nombre.Contains(texto) || cli.NombreCompleto.Apellido.Contains(texto))
                 .ToList();
-
+            //TODO tira errorcillo 
             return clientes.Any() ? clientes : throw new ClienteNoEncontradoException($"No se pudo encontrar ningun cliente que contenga {texto} en su nombre o apellido");
         }
 
