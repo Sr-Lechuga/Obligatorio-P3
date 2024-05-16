@@ -60,7 +60,7 @@ namespace LogicaNegocio.Entidades
         }
 
         #region Methods definitions
-        public abstract double CalcularTotal();
+        public abstract decimal CalcularTotal();
         
 
         #endregion

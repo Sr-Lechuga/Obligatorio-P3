@@ -26,6 +26,11 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
+                _papeleriaContext.Entry(pedidoNuevo.Cliente).State = EntityState.Unchanged;
+                foreach(var item in pedidoNuevo.Lineas) 
+                {
+                    _papeleriaContext.Entry(item.Articulo).State = EntityState.Unchanged;
+                }
                 _papeleriaContext.Pedidos.Add(pedidoNuevo);
                 _papeleriaContext.SaveChanges();
             }
@@ -67,7 +72,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<Pedido> GetAll()
         {
-            return _papeleriaContext.Pedidos.ToList();
+            return _papeleriaContext.Pedidos.Include(p=>p.Lineas).ToList();
         }
 
         public void Update(int id, Pedido pedidoEditado)

@@ -6,7 +6,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
     public class MapperPedido
     {
-        public static PedidoExpress FromDTO(PedidoDTO pedidoExpressDTO)
+        public static PedidoExpress FromDTO(PedidoExpressDTO pedidoExpressDTO)
         {
 
             PedidoExpress pedidoExpress = new PedidoExpress
@@ -14,13 +14,13 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 FechaPrometida = pedidoExpressDTO.FechaPrometida,
                 FechaCreado = pedidoExpressDTO.FechaCreado,
                 Cliente = pedidoExpressDTO.Cliente,
-                Total = pedidoExpressDTO.Total,
                 IVAAplicado = pedidoExpressDTO.IVAAplicado,
                 FechaEntregado = pedidoExpressDTO.FechaEntregado,
                 Estado = pedidoExpressDTO.Estado,
                 Lineas = MapperLineaPedido.ToList(pedidoExpressDTO.Lineas)
 
             };
+            pedidoExpress.Total = pedidoExpress.CalcularTotal();
             return pedidoExpress;
         }
 
@@ -33,17 +33,27 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 FechaPrometida = pedidoComunDTO.FechaPrometida,
                 FechaCreado = pedidoComunDTO.FechaCreado,
                 Cliente = pedidoComunDTO.Cliente,
-                Total = pedidoComunDTO.Total,
                 IVAAplicado = pedidoComunDTO.IVAAplicado,
                 FechaEntregado = pedidoComunDTO.FechaEntregado,
                 Estado = pedidoComunDTO.Estado,
                 Lineas = MapperLineaPedido.ToList(pedidoComunDTO.Lineas)
 
             };
+            pedidoComun.Total = pedidoComun.CalcularTotal();
             return pedidoComun;
 
         }
-
+        public static Pedido FromDTO(PedidoDTO pedido) 
+        {
+            if(pedido.Express) 
+            {
+                return FromDTO((PedidoExpressDTO)pedido);
+            }
+            else
+            {
+                return FromDTO((PedidoComunDTO)pedido);
+            }
+        }
         public static PedidoExpressDTO ToDTO(PedidoExpress pedido)
         {
             if (pedido == null)
@@ -51,11 +61,11 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
 
             PedidoExpressDTO pedidoDTO = new PedidoExpressDTO
             {
-
+                Id = pedido.Id,
                 FechaPrometida = pedido.FechaPrometida,
                 FechaCreado = pedido.FechaCreado,
                 Cliente = pedido.Cliente,
-                Total = pedido.Total,
+                Total = pedido.CalcularTotal(),
                 IVAAplicado = pedido.IVAAplicado,
                 FechaEntregado = pedido.FechaEntregado,
                 Estado = pedido.Estado,
@@ -71,10 +81,11 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
 
             PedidoComunDTO pedidoDTO = new PedidoComunDTO
             {
+                Id = pedido.Id,
                 FechaPrometida = pedido.FechaPrometida,
                 FechaCreado = pedido.FechaCreado,
                 Cliente = pedido.Cliente,
-                Total = pedido.Total,
+                Total = pedido.CalcularTotal(),
                 IVAAplicado = pedido.IVAAplicado,
                 FechaEntregado = pedido.FechaEntregado,
                 Estado = pedido.Estado,
@@ -84,12 +95,11 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
         }
         public static List<PedidoDTO> ToListAll(IEnumerable<Pedido> pedidos)
         {
-            IEnumerable<PedidoExpressDTO> express = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
-            IEnumerable<PedidoComunDTO> comun = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
+            //convertimos los pedidos a DTO
+            IEnumerable<PedidoExpressDTO> expressDTOs = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
+            IEnumerable<PedidoComunDTO> comunDTOs = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
 
-            IEnumerable<PedidoExpress> expressDTOs = express.Select(p => FromDTO(p));
-            IEnumerable<PedidoComun> comunDTOs = comun.Select(p => FromDTO(p));
-
+            //concatenamos para mostrar todos los pedidos
             IEnumerable<PedidoDTO> allDTOs = expressDTOs.Cast<PedidoDTO>().Concat(comunDTOs.Cast<PedidoDTO>());
             return allDTOs.ToList();
         }

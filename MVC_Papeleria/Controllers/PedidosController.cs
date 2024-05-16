@@ -114,16 +114,18 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
+                nuevoPedido.Express = false;
                 if (tempLineas != null && tempLineas.Count > 0)
                     nuevoPedido.Lineas = tempLineas;
-
+                nuevoPedido.Id = nuevoPedido.Id;
                 nuevoPedido.FechaCreado = DateTime.Now;
                 //TODO: Agregar el parametro de settings
                 nuevoPedido.FechaPrometida = DateTime.Now.AddDays(5);
                 //TODO: Agregar el parametro de settings
                 nuevoPedido.IVAAplicado = 22;
                 nuevoPedido.Estado = EEstado.NUEVO;
-                nuevoPedido.Total = 12.3M;
+                nuevoPedido.Total = nuevoPedido.Total;
+                nuevoPedido.Cliente = new Cliente() { Id = nuevoPedido.ClienteId };
 
                 _altaPedido.AltaPedido(nuevoPedido);
 

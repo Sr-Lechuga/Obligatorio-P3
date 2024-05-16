@@ -23,8 +23,8 @@
             </div>
             
             <div class="form-group">
-                <label asp-for="Cliente" class="control-label"></label>
-                <select name="Cliente" class="form-control">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select name="ClienteId" class="form-control">
                     <option value="0">Seleccione el cliente</option>
                     @foreach (ClienteDTO cliente in ViewBag.Clientes)
                     {

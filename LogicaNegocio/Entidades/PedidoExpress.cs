@@ -15,14 +15,18 @@ namespace LogicaNegocio.Entidades
         {
         }
 
-        public override double CalcularTotal()
+        public override decimal CalcularTotal()
         {
-            double totalPedidoBase = 0;
+            decimal totalPedidoBase = 0;
+            foreach (LineaPedido linea in Lineas)
+            {
+                totalPedidoBase += linea.CantidadArticulo * linea.PrecioUnitario;
+            }
 
             TimeSpan diferenciaFechas = FechaPrometida - FechaCreado;
             int diferenciaDias = diferenciaFechas.Days;
 
-            return diferenciaDias < 1 ? totalPedidoBase *= 1.15 : totalPedidoBase *= 1.1;
+            return diferenciaDias < 1 ? totalPedidoBase *= 1.15M : totalPedidoBase *= 1.1M;
         }
 
     }

@@ -39,8 +39,10 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Pedidos
 
         public EEstado Estado { get; set; }
 
+        public int ClienteId { get; set; }
 
         public List<LineaPedidoDTO>? Lineas { get; set; }
        
+        public bool Express { get; set; }
     }
 }

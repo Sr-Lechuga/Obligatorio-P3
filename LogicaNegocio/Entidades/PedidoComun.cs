@@ -16,12 +16,16 @@ namespace LogicaNegocio.Entidades
 
        }
 
-        public override double CalcularTotal()
+        public override decimal CalcularTotal()
         {
-            double totalPedidoBase = 0;
+            decimal totalPedidoBase = 0;
+            foreach (LineaPedido linea in Lineas)
+            {
+                totalPedidoBase += linea.CantidadArticulo * linea.PrecioUnitario;
+            }
 
             if (Cliente.Direccion.Distancia > 100)
-                totalPedidoBase *= 1.05;
+                totalPedidoBase *= 1.05M;
 
             return totalPedidoBase;
         }
