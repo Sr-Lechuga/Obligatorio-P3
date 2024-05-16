@@ -1,5 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using LogicaAplicacion.DataTransferObjects.Models.Pedidos
+@using LogicaAplicacion.DataTransferObjects.Models.Clientes
+@using LogicaNegocio.Enumerados
 @model LogicaAplicacion.DataTransferObjects.Models.Pedidos.PedidoDTO
 
 @{
@@ -15,66 +17,70 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label" >Fecha prometida</label>
-                <input asp-for="FechaPrometida"  class="form-control" />
-                <span asp-validation-for="FechaPrometida" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label  class="control-label">IVA Aplicado</label>
-                <input asp-for="IVAAplicado" class="form-control" />
-                <span asp-validation-for="IVAAplicado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label  class="control-label">Fecha entregado</label>
+                <label asp-for="FechaEntregado" class="control-label"></label>
                 <input asp-for="FechaEntregado" class="form-control" />
                 <span asp-validation-for="FechaEntregado" class="text-danger"></span>
             </div>
+            
+            <div class="form-group">
+                <label asp-for="Cliente" class="control-label"></label>
+                <select name="Cliente" class="form-control">
+                    <option value="0">Seleccione el cliente</option>
+                    @foreach (ClienteDTO cliente in ViewBag.Clientes)
+                    {
+                        <option value="@cliente.Id">@cliente.RazonSocial- $@cliente.Rut </option>
+                    }
+                </select>
+                <span asp-validation-for="Cliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCreado" class="control-label"></label>
+                <input asp-for="FechaCreado" class="form-control" value="@DateTime.Now" disabled/>
+                <span asp-validation-for="FechaCreado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrometida" class="control-label"></label>
+                <input asp-for="FechaPrometida" class="form-control" value="@DateTime.Now.AddDays(5)" disabled/>
+                <span asp-validation-for="FechaPrometida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" disabled/>
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IVAAplicado" class="control-label"></label>
+                <input asp-for="IVAAplicado" class="form-control" disabled/>
+                <span asp-validation-for="IVAAplicado" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
+                <input asp-for="Estado" class="form-control" value="@EEstado.NUEVO" disabled/>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <h3>Lineas de pedido</h3>
-                @if(ViewBag.Lineas != null && ViewBag.Lineas.Count > 0) 
-                {
-                    @foreach(LineaPedidoDTO linea in ViewBag.Lineas) 
-                    {
-                        <p>Nombre: @linea.Articulo.Nombre.NombreArticuloValor</p>
-                        <p>Cantidad: @linea.CantidadArticulo</p>
-                    }
-                }
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Finalizar Pedido" class="btn btn-success" />
             </div>
         </form>
     </div>
-    <div>
-        <form asp-action="AddLineas">
-            <div class="form-group">
-                <label for="articuloId" class="control-label">Nombre Articulo</label>
-                <input id="articuloId" name="articuloId" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="cantidadArticulo" class="control-label">Cantidad Articulo</label>
-                <input id="cantidadArticulo" name="cantidadArticulo" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <h3>Lineas del pedido</h3>
+            @if (ViewBag.Lineas != null && ViewBag.Lineas.Count > 0)
+            {
+                @foreach (LineaPedidoDTO linea in ViewBag.Lineas)
+                {
+                    <p><b>-> @linea.Articulo.Nombre.NombreArticuloValor</b>  @linea.CantidadArticulo x @linea.PrecioUnitario</p>
+                }
+            }
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Volver</a>
+<div class="action-buttons">
+    <a asp-action="AddLines">Atras</a>
 </div>
 
 @section Scripts {

@@ -20,6 +20,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
         {
             return new ArticulosListadoDTO()
             {
+                Id = art.Id,
                 Nombre = art.Nombre.NombreArticuloValor,
                 Descripcion = art.Descripcion.DescripcionArticuloValor,
                 Codigo = art.Codigo.CodigoArticuloValor,
