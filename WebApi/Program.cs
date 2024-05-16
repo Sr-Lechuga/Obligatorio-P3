@@ -3,6 +3,8 @@ using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones;
 using LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
 
 namespace WebApi
 {
@@ -17,9 +19,12 @@ namespace WebApi
 
             //Repositorios
             builder.Services.AddScoped<IRepositorioArticulos, RepositorioArticulos>();
+            builder.Services.AddScoped<IRepositorioPedidos, RepositorioPedidos>();
 
             //Casos de uso
             builder.Services.AddScoped<ICasoUsoListarArticulos, CasoUsoListarArticulos>();
+            builder.Services.AddScoped<ICasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo, CasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo>();
+            builder.Services.AddScoped<ICasoUsoListarOrdenadoDescendentementePorFechaPedido, CasoUsoListarOrdenadoDescendentementePorFechaPedido>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

@@ -125,6 +125,11 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                 throw new Exception($"Error desconocido: {ex.Message}");
             }
         }
+
+        public IEnumerable<Pedido> ListadoDescendente()
+        {
+            return _papeleriaContext.Pedidos.OrderByDescending(pedido => pedido.FechaCreado).ToList();
+        }
         #endregion
     }
 }
