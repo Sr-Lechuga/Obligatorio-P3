@@ -4,13 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-
 <form method="post">
-    <label>Texto a filtrar</label>
-    <input name="textoAFiltrar" type="text" placeholder="Nombre" />
-    <label>Monto a filtrar</label>
-    <input name="montoAFiltrar" type="text" placeholder="Monto" />
-    <input type="submit" value="Filtrar" />
+    <div class="row d-flex">
+        <div class="col-6">
+            <label class="form-label">Texto a filtrar</label>
+            <input name="textoAFiltrar" type="text" placeholder="Nombre" class="form-control" />
+        </div>
+        <div class="col-6">
+            <label class="form-label">Monto a filtrar</label>
+            <input name="montoAFiltrar" type="text" placeholder="Monto" class="form-control" />
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-6 align-content-center">
+            <input type="submit" value="Filtrar" class="btn btn-primary col-12" />
+        </div>
+    </div>
 </form>
 <h1>Clientes</h1>
 

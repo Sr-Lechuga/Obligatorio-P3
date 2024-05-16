@@ -13,7 +13,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoClientes.Interfaces
         public Cliente BuscarClientePorId(int id);
         public Cliente BuscarClientePorRut(string rut);
         public IEnumerable<ClienteDTO> BuscarClientePorTexto(string texto);
-        public IEnumerable<ClienteDTO> BuscarClientePorMonto(decimal texto);
+        public IEnumerable<ClienteDTO> BuscarClientePorMonto(decimal monto);
 
     }
 }

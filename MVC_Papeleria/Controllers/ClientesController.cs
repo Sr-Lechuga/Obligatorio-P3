@@ -38,12 +38,12 @@ namespace MVC_Papeleria.Controllers
             IEnumerable<ClienteDTO> filtrados = null;
             if (textoAFiltrar != null && montoAFiltrar != null)
             {
-                ViewBag.Error = "Solo filtrar por un campo";
+                ViewBag.ErrorMessage = "Solo filtrar por un campo";
                 return View(_getAllClientes.ListarClientes());
             }
             if (textoAFiltrar == null && montoAFiltrar == null)
             {
-                ViewBag.Error = "Solo filtrar por al menos un campo";
+                ViewBag.ErrorMessage = "Ingrese valores en al menos un campo para filtrar";
                 return View(_getAllClientes.ListarClientes());
             }
             if (textoAFiltrar != null)
@@ -53,6 +53,7 @@ namespace MVC_Papeleria.Controllers
             if (montoAFiltrar != null)
             {
                 decimal monto = decimal.Parse(montoAFiltrar);
+                filtrados = _filtrarMonto.BuscarClientePorMonto(monto);
             }
             if (filtrados == null || filtrados.Count() == 0)
             {
