@@ -32,6 +32,7 @@ namespace LogicaNegocio.ValueObjects
         public void EsValido()
         {
             ValidarContrasenia();
+            EsValido2();
         }
 
         private void ValidarContrasenia()

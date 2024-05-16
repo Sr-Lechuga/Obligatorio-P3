@@ -129,6 +129,8 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         public IEnumerable<Pedido> ListadoDescendente()
         {
             return _papeleriaContext.Pedidos.Where(p => p.Estado == EEstado.ANULADO)
+                .Include(p => p.Cliente)
+                .Include(p => p.Lineas)
                 .OrderByDescending(p => p.FechaCreado)
                 .ToList();
         }
