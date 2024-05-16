@@ -1,0 +1,68 @@
+﻿@model LogicaAplicacion.DataTransferObjects.Models.Pedidos.PedidoDTO
+
+@{
+    ViewData["Title"] = "AnularPedido";
+}
+
+<h1>Anular Pedido</h1>
+
+<h3>Estas seguro que queres anularlo?</h3>
+<div>
+    <h4>Pedido : @Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaPrometida)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaPrometida)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaCreado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaCreado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.IVAAplicado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.IVAAplicado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaEntregado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaEntregado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Express)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Express)
+        </dd>
+    </dl>
+    
+    <form asp-action="AnularPedido">
+        <a asp-action="Index" class="btn btn-primary">Atras</a>
+        <input type="submit" value="Anular" class="btn btn-danger" />
+    </form>
+</div>

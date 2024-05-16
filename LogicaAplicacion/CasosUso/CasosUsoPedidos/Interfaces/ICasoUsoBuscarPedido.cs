@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
+using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces
 {
     public interface ICasoUsoBuscarPedido
     {
-        public Pedido BuscarPedido(int id);
+        public PedidoDTO BuscarPedido(int id);
 
     }
 }

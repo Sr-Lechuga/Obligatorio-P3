@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MVC_Papeleria.Controllers
 {
     public class UsuariosController : Controller
-    {   
+    {
         //Casos de Uso
         private ICasoUsoLoginUsuario _loginUsuario;
         private ICasoUsoAltaUsuario _altaUsuario;
@@ -66,7 +66,7 @@ namespace MVC_Papeleria.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return View();
@@ -166,16 +166,24 @@ namespace MVC_Papeleria.Controllers
         [HttpPost]
         public ActionResult Login(string email, string contraseña)
         {
-            Usuario? logueado = _loginUsuario.Ejecutar(email, contraseña);
-            if (logueado != null)
+            try
             {
-                HttpContext.Session.SetString("email", email);
-                HttpContext.Session.SetString("rol", logueado.Rol.RolValor.ToString());
+                Usuario? logueado = _loginUsuario.Ejecutar(email, contraseña);
+                if (logueado != null)
+                {
+                    HttpContext.Session.SetString("email", email);
+                    HttpContext.Session.SetString("rol", logueado.Rol.RolValor.ToString());
+                }
+                if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
+                    return RedirectToAction("Index", "Usuarios");
+                else
+                    return RedirectToAction("Index", "Articulos");
             }
-            if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
-                return RedirectToAction("Index", "Usuarios");
-            else
-                return RedirectToAction("Index", "Articulos");
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Login");
+            }
 
         }
         public ActionResult Logout()

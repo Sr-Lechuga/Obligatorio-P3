@@ -15,11 +15,11 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Pedidos
         public int Id { get; set; }
 
         [Display(Name = "Fecha prometida")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaPrometida { get; set; }
 
         [Display(Name = "Fecha creado")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaCreado { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un cliente para el Pedido")]

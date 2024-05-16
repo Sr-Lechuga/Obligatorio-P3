@@ -16,6 +16,8 @@ namespace MVC_Papeleria.Controllers
         private ICasoUsoAltaPedido _altaPedido;
         private ICasoUsoBajaPedido _bajaPedido;
         private ICasoUsoBuscarArticulo _buscarArticulo;
+        private ICasoUsoBuscarCliente _buscarCliente;
+        private ICasoUsoBuscarPedido _buscarPedido;
         private ICasoUsoListarPedido _listarPedidos;
         private ICasoUsoListarClientes _listarClientes;
         private ICasoUsoListarArticulos _listarArticulos;
@@ -25,6 +27,8 @@ namespace MVC_Papeleria.Controllers
         public PedidosController(ICasoUsoAltaPedido altaPedido,
             ICasoUsoBajaPedido bajaPedido,
             ICasoUsoBuscarArticulo buscarArticulo,
+            ICasoUsoBuscarCliente buscarCliente,
+            ICasoUsoBuscarPedido buscarPedido,
             ICasoUsoListarPedido listarPedidos,
             ICasoUsoListarClientes listarClientes,
             ICasoUsoListarArticulos listarArticulos)
@@ -32,6 +36,8 @@ namespace MVC_Papeleria.Controllers
             _altaPedido = altaPedido;
             _bajaPedido = bajaPedido;
             _buscarArticulo = buscarArticulo;
+            _buscarCliente = buscarCliente;
+            _buscarPedido = buscarPedido;
             _listarPedidos = listarPedidos;
             _listarClientes = listarClientes;
             _listarArticulos = listarArticulos;
@@ -85,6 +91,7 @@ namespace MVC_Papeleria.Controllers
                     tempLineas = new List<LineaPedidoDTO>();
 
                 tempLineas.Add(lineaPedido);
+
                 return RedirectToAction(nameof(AddLines));
             }
             catch (Exception ex)
@@ -95,16 +102,36 @@ namespace MVC_Papeleria.Controllers
 
         }
 
+        // GET: PedidosController/BorrarLineas
+        public ActionResult BorrarLineas()
+        {
+            if (tempLineas != null)
+            {
+                tempLineas = null;
+                ViewBag.LineasAgregadas = null;
+            }
+
+            return RedirectToAction(nameof(AddLines));
+        }
+
         // GET: PedidosController/Create
         public ActionResult Create()
         {
             ViewBag.Clientes = _listarClientes.ListarClientes();
 
             if (tempLineas != null)
-            {
                 ViewBag.Lineas = tempLineas;
-            }
-            return View();
+
+            PedidoDTO pedidoDTO = new PedidoDTO();
+            pedidoDTO.Lineas = tempLineas;
+            pedidoDTO.FechaCreado = DateTime.Now.Date;
+            pedidoDTO.FechaPrometida = DateTime.Now.AddDays(5).Date;
+            pedidoDTO.FechaEntregado = DateTime.Now.Date;
+            pedidoDTO.IVAAplicado = 22;
+            pedidoDTO.Estado = EEstado.NUEVO;
+            pedidoDTO.Total = MapperPedido.FromDTO(pedidoDTO).CalcularCostoBase();
+
+            return View(pedidoDTO);
         }
 
         // POST: PedidosController/Create
@@ -114,7 +141,6 @@ namespace MVC_Papeleria.Controllers
         {
             try
             {
-                nuevoPedido.Express = false;
                 if (tempLineas != null && tempLineas.Count > 0)
                     nuevoPedido.Lineas = tempLineas;
                 nuevoPedido.Id = nuevoPedido.Id;
@@ -125,7 +151,8 @@ namespace MVC_Papeleria.Controllers
                 nuevoPedido.IVAAplicado = 22;
                 nuevoPedido.Estado = EEstado.NUEVO;
                 nuevoPedido.Total = nuevoPedido.Total;
-                nuevoPedido.Cliente = new Cliente() { Id = nuevoPedido.ClienteId };
+                //nuevoPedido.Cliente = new Cliente { Id = nuevoPedido.ClienteId };
+                nuevoPedido.Cliente = _buscarCliente.BuscarClientePorId(nuevoPedido.ClienteId);
 
                 _altaPedido.AltaPedido(nuevoPedido);
 
@@ -140,47 +167,44 @@ namespace MVC_Papeleria.Controllers
             }
         }
 
-        public ActionResult AddLineas(int articuloId, int cantidadArticulo)
+        public ActionResult AnularPedido(int id)
         {
+            if (id == null)
+            {
+                ViewBag.ErrorMessage = "Se requiere el id para el pedido";
+                return View();
+            }
             try
             {
-                Articulo articulo = _buscarArticulo.BuscarArticulo(articuloId);
-
-                LineaPedidoDTO lineaPedido = new LineaPedidoDTO
-                {
-                    Articulo = articulo,
-                    CantidadArticulo = cantidadArticulo,
-                    PrecioUnitario = articulo.PrecioVenta
-                };
-
-                if (tempLineas == null)
-                    tempLineas = new List<LineaPedidoDTO>();
-
-                tempLineas.Add(lineaPedido);
-                return RedirectToAction(nameof(Create));
+                PedidoDTO pedidoDTO = _buscarPedido.BuscarPedido(id);
+                
+                if(pedidoDTO != null)
+                    return View(pedidoDTO);
+                else
+                    return View();
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.StackTrace + ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
                 return View();
             }
         }
 
-        public ActionResult AnularPedido(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AnularPedido(int id, PedidoDTO pedidoDTO)
         {
-            //Hacer la logica de anularPedido
-            return View();
-        }
-
-        public ActionResult BorrarLineas()
-        {
-            if (tempLineas != null)
+            try
             {
-                tempLineas = null;
-                ViewBag.LineasAgregadas = tempLineas;
+                _bajaPedido.BajaPedido(pedidoDTO.Id);
+                return RedirectToAction(nameof(Index));
             }
-
-            return RedirectToAction(nameof(AddLines));
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View();
+            }
         }
+
     }
 }

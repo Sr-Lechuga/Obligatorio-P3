@@ -1,5 +1,7 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
+using LogicaAplicacion.DataTransferObjects.Models.Pedidos;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,9 +21,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones
             RepositorioPedidos = repositorioPedidos;
         }
 
-        public Pedido BuscarPedido(int id)
+        public PedidoDTO BuscarPedido(int id)
         {
-            return this.RepositorioPedidos.GetById(id);
+            return MapperPedido.ToDTO(RepositorioPedidos.GetById(id));
         }
 
     }

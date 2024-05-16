@@ -100,7 +100,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         public Usuario ObtenerUsuarioPorEmail(string email)
         {
             Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Email.DireccionEmail == email);
-            return usuarioEncontrado ?? throw new UsuarioNoEncontradoException($"No se pudo encontrar el usuario de email: {email}");
+            return usuarioEncontrado ?? throw new UsuarioNoEncontradoException("Credenciales incorrectas. Revise el mail y/o la contraseña");
         }
         #endregion
     }

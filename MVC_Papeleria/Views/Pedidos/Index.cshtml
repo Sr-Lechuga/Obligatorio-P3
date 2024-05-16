@@ -53,7 +53,9 @@
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
-                    @Html.ActionLink("Anular", "AnularPedido", new { /* id=item.PrimaryKey */ })
+                    <div class="action-buttons">
+                        @Html.ActionLink("Anular", "AnularPedido", new { id=item.Id})
+                    </div>
                 </td>
             </tr>
         }

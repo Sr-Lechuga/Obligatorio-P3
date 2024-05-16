@@ -6,102 +6,55 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
 {
     public class MapperPedido
     {
-        public static PedidoExpress FromDTO(PedidoExpressDTO pedidoExpressDTO)
+        public static Pedido FromDTO(PedidoDTO pedidoDTO) 
         {
-
-            PedidoExpress pedidoExpress = new PedidoExpress
+            Pedido pedido = new Pedido
             {
-                FechaPrometida = pedidoExpressDTO.FechaPrometida,
-                FechaCreado = pedidoExpressDTO.FechaCreado,
-                Cliente = pedidoExpressDTO.Cliente,
-                IVAAplicado = pedidoExpressDTO.IVAAplicado,
-                FechaEntregado = pedidoExpressDTO.FechaEntregado,
-                Estado = pedidoExpressDTO.Estado,
-                Lineas = MapperLineaPedido.ToList(pedidoExpressDTO.Lineas)
-
+                FechaPrometida = pedidoDTO.FechaPrometida,
+                FechaCreado = pedidoDTO.FechaCreado,
+                Cliente = pedidoDTO.Cliente,
+                IVAAplicado = pedidoDTO.IVAAplicado,
+                FechaEntregado = pedidoDTO.FechaEntregado,
+                Estado = pedidoDTO.Estado,
+                Lineas = MapperLineaPedido.ToList(pedidoDTO.Lineas),
+                Express = pedidoDTO.Express
             };
-            pedidoExpress.Total = pedidoExpress.CalcularTotal();
-            return pedidoExpress;
-        }
 
-        public static PedidoComun FromDTO(PedidoComunDTO pedidoComunDTO)
-        {
-
-
-            PedidoComun pedidoComun = new PedidoComun
-            {
-                FechaPrometida = pedidoComunDTO.FechaPrometida,
-                FechaCreado = pedidoComunDTO.FechaCreado,
-                Cliente = pedidoComunDTO.Cliente,
-                IVAAplicado = pedidoComunDTO.IVAAplicado,
-                FechaEntregado = pedidoComunDTO.FechaEntregado,
-                Estado = pedidoComunDTO.Estado,
-                Lineas = MapperLineaPedido.ToList(pedidoComunDTO.Lineas)
-
-            };
-            pedidoComun.Total = pedidoComun.CalcularTotal();
-            return pedidoComun;
-
-        }
-        public static Pedido FromDTO(PedidoDTO pedido) 
-        {
-            if(pedido.Express) 
-            {
-                return FromDTO((PedidoExpressDTO)pedido);
-            }
+            if (pedido.Cliente == null)
+                pedido.Total = pedido.CalcularCostoBase();
             else
-            {
-                return FromDTO((PedidoComunDTO)pedido);
-            }
+                pedido.Total = pedido.CalcularTotal();
+
+            return pedido;
         }
-        public static PedidoExpressDTO ToDTO(PedidoExpress pedido)
+
+        public static PedidoDTO ToDTO(Pedido pedido)
         {
             if (pedido == null)
                 return null;
 
-            PedidoExpressDTO pedidoDTO = new PedidoExpressDTO
+            PedidoDTO pedidoDTO = new PedidoDTO
             {
                 Id = pedido.Id,
                 FechaPrometida = pedido.FechaPrometida,
                 FechaCreado = pedido.FechaCreado,
                 Cliente = pedido.Cliente,
-                Total = pedido.CalcularTotal(),
                 IVAAplicado = pedido.IVAAplicado,
                 FechaEntregado = pedido.FechaEntregado,
                 Estado = pedido.Estado,
                 Lineas = MapperLineaPedido.FromList(pedido.Lineas),
-
+                Express = pedido.Express
             };
+            if (pedido.Cliente == null)
+                pedidoDTO.Total = pedido.CalcularCostoBase();
+            else
+                pedidoDTO.Total = pedido.CalcularTotal();
             return pedidoDTO;
         }
-        public static PedidoComunDTO ToDTO(PedidoComun pedido)
-        {
-            if (pedido == null)
-                return null;
 
-            PedidoComunDTO pedidoDTO = new PedidoComunDTO
-            {
-                Id = pedido.Id,
-                FechaPrometida = pedido.FechaPrometida,
-                FechaCreado = pedido.FechaCreado,
-                Cliente = pedido.Cliente,
-                Total = pedido.CalcularTotal(),
-                IVAAplicado = pedido.IVAAplicado,
-                FechaEntregado = pedido.FechaEntregado,
-                Estado = pedido.Estado,
-                Lineas = MapperLineaPedido.FromList(pedido.Lineas),
-            };
-            return pedidoDTO;
-        }
-        public static List<PedidoDTO> ToListAll(IEnumerable<Pedido> pedidos)
+        public static IEnumerable<PedidoDTO> ToListAll(IEnumerable<Pedido> pedidos)
         {
-            //convertimos los pedidos a DTO
-            IEnumerable<PedidoExpressDTO> expressDTOs = pedidos.OfType<PedidoExpress>().Select(p => ToDTO(p));
-            IEnumerable<PedidoComunDTO> comunDTOs = pedidos.OfType<PedidoComun>().Select(p => ToDTO(p));
-
-            //concatenamos para mostrar todos los pedidos
-            IEnumerable<PedidoDTO> allDTOs = expressDTOs.Cast<PedidoDTO>().Concat(comunDTOs.Cast<PedidoDTO>());
-            return allDTOs.ToList();
+            return pedidos.Select(p => ToDTO(p)).ToList();
         }
 
     }

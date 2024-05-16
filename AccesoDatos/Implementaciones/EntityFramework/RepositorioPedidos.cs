@@ -26,6 +26,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
+                //TODO: check this with same article twice
                 _papeleriaContext.Entry(pedidoNuevo.Cliente).State = EntityState.Unchanged;
                 foreach(var item in pedidoNuevo.Lineas) 
                 {
@@ -48,7 +49,11 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.AsNoTracking().FirstOrDefault(pedido => pedido.Id == id);
+                Pedido? pedidoEncontrado = _papeleriaContext.Pedidos
+                    .Include(p => p.Lineas)
+                    .Include(p => p.Cliente)
+                    .AsNoTracking()
+                    .FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
             catch (Exception ex)
@@ -61,7 +66,10 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                Pedido? pedidoEncontrado = _papeleriaContext.Pedidos.FirstOrDefault(pedido => pedido.Id == id);
+                Pedido? pedidoEncontrado = _papeleriaContext.Pedidos
+                    .Include(p => p.Lineas)
+                    .Include(p => p.Cliente)
+                    .FirstOrDefault(pedido => pedido.Id == id);
                 return pedidoEncontrado ?? throw new PedidoNoEncontradoException($"No se encontro el pedido de ID: {id}");
             }
             catch (Exception ex)
@@ -72,7 +80,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<Pedido> GetAll()
         {
-            return _papeleriaContext.Pedidos.Include(p=>p.Lineas).ToList();
+            return _papeleriaContext.Pedidos.Include(p=>p.Lineas).Include(p => p.Cliente).ToList();
         }
 
         public void Update(int id, Pedido pedidoEditado)

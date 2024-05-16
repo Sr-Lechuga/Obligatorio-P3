@@ -35,12 +35,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaCreado" class="control-label"></label>
-                <input asp-for="FechaCreado" class="form-control" value="@DateTime.Now" disabled/>
+                <input asp-for="FechaCreado" class="form-control" disabled/>
                 <span asp-validation-for="FechaCreado" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaPrometida" class="control-label"></label>
-                <input asp-for="FechaPrometida" class="form-control" value="@DateTime.Now.AddDays(5)" disabled/>
+                <input asp-for="FechaPrometida" class="form-control" disabled />
                 <span asp-validation-for="FechaPrometida" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,8 +55,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" value="@EEstado.NUEVO" disabled/>
+                <input asp-for="Estado" class="form-control" disabled/>
                 <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" asp-for="Express" value="true">
+                <label asp-for="Express" class="control-label">Express</label>
+                <input type="radio" asp-for="Express" value="false">
+                <label asp-for="Express" class="control-label">Comun</label>
+                <span asp-validation-for="Express" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <br />
