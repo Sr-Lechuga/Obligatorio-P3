@@ -25,13 +25,13 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            var convertirEmail = new ValueConverter<Email, string>(mail => mail.DireccionEmail, mail => new Email(mail));
-            modelBuilder.Entity<Usuario>().Property(mail => mail.Email).HasConversion(convertirEmail);
-            modelBuilder.Entity<Usuario>().HasIndex(mail => mail.Email).IsUnique();
+            //var convertirEmail = new ValueConverter<Email, string>(mail => mail.DireccionEmail, mail => new Email(mail));
+            //modelBuilder.Entity<Usuario>().Property(mail => mail.Email).HasConversion(convertirEmail);
+            //modelBuilder.Entity<Usuario>().HasIndex(mail => mail.Email).IsUnique();
 
-            var convertirRut = new ValueConverter<RUT, string>(rut => rut.NroRut, rut => new RUT(rut));
-            modelBuilder.Entity<Cliente>().Property(rut => rut.RUT.NroRut).HasConversion(convertirRut);
-            modelBuilder.Entity<Cliente>().HasIndex(rut => rut.RUT.NroRut).IsUnique();
+            //var convertirRut = new ValueConverter<RUT, string>(rut => rut.NroRut, rut => new RUT(rut));
+            //modelBuilder.Entity<Cliente>().Property(rut => rut.RUT.NroRut).HasConversion(convertirRut);
+            //modelBuilder.Entity<Cliente>().HasIndex(rut => rut.RUT.NroRut).IsUnique();
         }
     }
 }
