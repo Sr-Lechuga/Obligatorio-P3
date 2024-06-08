@@ -40,6 +40,10 @@ namespace WebApi.Controllers
             return null;
         }
 
+        [HttpGet("Page/{pageNumber}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // GET api/<TipoMovimientoController>/5
         [HttpGet("{id}")]
         public string Get(int id)
