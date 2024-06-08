@@ -173,17 +173,18 @@ namespace MVC_Papeleria.Controllers
                 {
                     HttpContext.Session.SetString("email", email);
                     HttpContext.Session.SetString("rol", logueado.Rol.RolValor.ToString());
+                    if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
+                        return RedirectToAction("Index", "Usuarios");
+                    else
+                        return RedirectToAction("Index", "Articulos");
                 }
-                if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
-                    return RedirectToAction("Index", "Usuarios");
-                else
-                    return RedirectToAction("Index", "Articulos");
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
                 return RedirectToAction("Login");
             }
+            return RedirectToAction("Login");
 
         }
         public ActionResult Logout()

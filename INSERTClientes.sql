@@ -1,4 +1,4 @@
-﻿USE ObligatorioPapeleria2; 
+﻿USE ObligatorioPapeleria; 
 INSERT INTO [dbo].[Clientes] (RazonSocial, Direccion_Calle, Direccion_Ciudad, Direccion_Distancia, Direccion_Numero, NombreCompleto_Apellido, NombreCompleto_Nombre, RUT_NroRut)
 VALUES ('Kawaii Gaming', 'Av Rivera', 'Montevideo', 5, 1234, 'Kim', 'Jiwoo', 195357789456),
 ('Librería del Este', 'Av Italia', 'Montevideo', 10, 1567, 'Jo', 'Haseul', 205479630812),

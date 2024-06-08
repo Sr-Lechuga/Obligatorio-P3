@@ -1,0 +1,7 @@
+SET IDENTITY_INSERT [dbo].[Pedidos] ON
+INSERT INTO [dbo].[Pedidos] ([Id], [FechaPrometida], [FechaCreado], [ClienteId], [Total], [IVAAplicado], [FechaEntregado], [Estado], [Express]) VALUES (1, N'2024-05-21 19:50:40', N'2024-05-16 19:50:40', 10, CAST(525.00 AS Decimal(18, 2)), 22, N'2024-05-16 00:00:00', 1, 0)
+INSERT INTO [dbo].[Pedidos] ([Id], [FechaPrometida], [FechaCreado], [ClienteId], [Total], [IVAAplicado], [FechaEntregado], [Estado], [Express]) VALUES (2, N'2024-05-21 19:50:54', N'2024-05-16 19:50:54', 1, CAST(717.00 AS Decimal(18, 2)), 22, N'2024-05-16 00:00:00', 4, 0)
+INSERT INTO [dbo].[Pedidos] ([Id], [FechaPrometida], [FechaCreado], [ClienteId], [Total], [IVAAplicado], [FechaEntregado], [Estado], [Express]) VALUES (3, N'2024-05-21 19:51:08', N'2024-05-16 19:51:08', 3, CAST(1514.70 AS Decimal(18, 2)), 22, N'2024-05-16 00:00:00', 1, 1)
+INSERT INTO [dbo].[Pedidos] ([Id], [FechaPrometida], [FechaCreado], [ClienteId], [Total], [IVAAplicado], [FechaEntregado], [Estado], [Express]) VALUES (4, N'2024-05-21 19:51:23', N'2024-05-16 19:51:23', 6, CAST(264.00 AS Decimal(18, 2)), 22, N'2024-05-16 00:00:00', 4, 1)
+INSERT INTO [dbo].[Pedidos] ([Id], [FechaPrometida], [FechaCreado], [ClienteId], [Total], [IVAAplicado], [FechaEntregado], [Estado], [Express]) VALUES (5, N'2024-05-21 19:51:55', N'2024-05-16 19:51:55', 7, CAST(327.80 AS Decimal(18, 2)), 22, N'2024-05-21 00:00:00', 1, 1)
+SET IDENTITY_INSERT [dbo].[Pedidos] OFF
