@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,10 @@ namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones
             // Inyeccion de dependencia
             this.RepositorioTiposMovimiento = repositorioTiposMovimiento;
         }
-        public void EditTipoMovimiento(TipoMovimientoDTO editTipoMovimientoDTO)
+
+        public void EditTipoMovimiento(int id, TipoMovimientoDTO editTipoMovimientoDTO)
         {
-            throw new NotImplementedException();
+            RepositorioTiposMovimiento.Update(id, MapperTipoMovimiento.FromDTO(editTipoMovimientoDTO));
         }
     }
 }

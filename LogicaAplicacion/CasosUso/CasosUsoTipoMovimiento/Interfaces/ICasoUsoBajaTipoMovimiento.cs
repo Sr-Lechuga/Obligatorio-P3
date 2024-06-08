@@ -9,6 +9,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces
 {
     public interface ICasoUsoBajaTipoMovimiento
     {
-        public void BajaTipoMovimiento(TipoMovimientoDTO bajaTipoMovimientoDTO);
+        public void BajaTipoMovimiento(int id);
     }
 }

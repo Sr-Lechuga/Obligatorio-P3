@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones
             this.RepositorioTiposMovimiento = repositorioTiposMovimiento;
         }
 
-        public void BajaTipoMovimiento(TipoMovimientoDTO bajaTipoMovimientoDTO)
+        public void BajaTipoMovimiento(int idTipoMovimiento)
         {
-            throw new NotImplementedException();
+            RepositorioTiposMovimiento.Remove(idTipoMovimiento);
         }
     }
 }

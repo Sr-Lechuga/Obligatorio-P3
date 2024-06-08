@@ -30,7 +30,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             };
         }
 
-        public static IEnumerable<TipoMovimientoDTO> FromList(IEnumerable<TipoMovimiento> tiposMovimiento)
+        public static IEnumerable<TipoMovimientoDTO> ToDTOList(IEnumerable<TipoMovimiento> tiposMovimiento)
         {
             return tiposMovimiento.Select(tipoMovimiento => ToDTO(tipoMovimiento));
         }

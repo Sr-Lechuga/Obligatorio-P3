@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,11 @@ namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones
         public CasoUsoObtenerPorTipoMovimiento(IRepositorioTipoMovimiento repositorioTiposMovimiento)
         {
             // Inyeccion de dependencia
-            this.RepositorioTiposMovimiento = repositorioTiposMovimiento;
+            RepositorioTiposMovimiento = repositorioTiposMovimiento;
         }
         public IEnumerable<TipoMovimientoDTO> ObtenerPorTipoMovimiento(string tipoMovimiento)
         {
-            throw new NotImplementedException();
+            return MapperTipoMovimiento.ToDTOList(RepositorioTiposMovimiento.GetByTipoMovimiento(tipoMovimiento));
         }
     }
 }
