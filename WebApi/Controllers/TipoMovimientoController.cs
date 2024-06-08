@@ -1,4 +1,5 @@
-﻿using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+﻿using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
