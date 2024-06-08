@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/TipoMovimiento")]
     [ApiController]
     public class TipoMovimientoController : ControllerBase
     {
@@ -40,12 +40,11 @@ namespace WebApi.Controllers
             return Ok(_listarTipoMovimiento.GetAll());
         }
 
-        [HttpGet("Page/{pageNumber}")]
+        [HttpGet("{tipoMovimientoId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // GET api/<TipoMovimientoController>/5
-        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
@@ -53,14 +52,40 @@ namespace WebApi.Controllers
 
         // POST api/<TipoMovimientoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<TipoMovimientoDTO> Create([FromBody]TipoMovimientoDTO tipoDTO)
         {
+            try
+            {
+                //TODO Autenticacion JWT 
+                //TODO Validacion de tipo
+                _altaTipoMovimiento.AltaTipoMovimiento(tipoDTO);
+                return Created("api/TipoMovimiento", tipoDTO);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<TipoMovimientoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{tipoMovimientoId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<TipoMovimientoDTO> Update([FromBody] TipoMovimientoDTO tipoDTO)
         {
+            try
+            {
+                _editTipoMovimiento.EditTipoMovimiento(tipoDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE api/<TipoMovimientoController>/5
