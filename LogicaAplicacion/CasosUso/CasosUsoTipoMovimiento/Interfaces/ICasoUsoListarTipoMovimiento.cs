@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces
 {
-    public interface ICasoUsoGetAll
+    public interface ICasoUsoListarTipoMovimiento
     {
         public IEnumerable<TipoMovimientoDTO> GetAll(); 
     }
