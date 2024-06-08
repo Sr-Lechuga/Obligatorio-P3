@@ -34,10 +34,10 @@ namespace WebApi.Controllers
         #endregion
 
         // GET: api/<TipoMovimientoController>
-        [HttpGet]
-        public IEnumerable<TipoMovimientoDTO> Get()
+        [HttpGet(Name = "GetAllTipoMovimientos")]
+        public ActionResult<IEnumerable<TipoMovimientoDTO>> Get()
         {
-            return null;
+            return Ok(_listarTipoMovimiento.GetAll());
         }
 
         // GET api/<TipoMovimientoController>/5
