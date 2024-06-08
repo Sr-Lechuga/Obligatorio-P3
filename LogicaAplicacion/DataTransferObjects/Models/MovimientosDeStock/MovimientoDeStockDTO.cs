@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.DataTransferObjects.Models.MovimientosDeStock
 {
-    public class MovimientosDeStockDTO
+    public class MovimientoDeStockDTO
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }

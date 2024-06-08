@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones
 {
-    internal class CasoUsoEditTipoMovimiento : ICasoUsoEditTipoMovimiento
+    public class CasoUsoEditTipoMovimiento : ICasoUsoEditTipoMovimiento
     {
         public IRepositorioTipoMovimiento RepositorioTiposMovimiento { get; init; }
 
         public CasoUsoEditTipoMovimiento(IRepositorioTipoMovimiento repositorioTiposMovimiento)
         {
             // Inyeccion de dependencia
-            this.RepositorioTiposMovimiento = repositorioTiposMovimiento;
+            RepositorioTiposMovimiento = repositorioTiposMovimiento;
         }
 
         public void EditTipoMovimiento(int id, TipoMovimientoDTO editTipoMovimientoDTO)

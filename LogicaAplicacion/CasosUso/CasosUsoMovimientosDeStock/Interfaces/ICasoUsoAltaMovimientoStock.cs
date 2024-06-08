@@ -10,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces
 {
     public interface ICasoUsoAltaMovimientoStock
     {
-        public void AltaMovimientoStock(MovimientosDeStockDTO movimientosDeStockDTO);
+        public void AltaMovimientoStock(MovimientoDeStockDTO movimientosDeStockDTO);
     }
 }

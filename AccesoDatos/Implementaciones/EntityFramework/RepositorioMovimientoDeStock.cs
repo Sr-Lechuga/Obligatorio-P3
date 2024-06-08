@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AccesoDatos.Implementaciones
+namespace AccesoDatos.Implementaciones.EntityFramework
 {
     public class RepositorioMovimientoDeStock : IRepositorioMovimientoDeStock
     {

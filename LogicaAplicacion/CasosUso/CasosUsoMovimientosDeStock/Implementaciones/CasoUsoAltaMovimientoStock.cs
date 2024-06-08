@@ -1,4 +1,6 @@
-﻿using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
+﻿using AccesoDatos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.MovimientosDeStock;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,16 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
 {
     public class CasoUsoAltaMovimientoStock : ICasoUsoAltaMovimientoStock
     {
-        public void AltaMovimientoStock(MovimientosDeStockDTO movimientosDeStockDTO)
+        public IRepositorioMovimientoDeStock RepositorioMovimientoStock { get; init; }
+
+        public CasoUsoAltaMovimientoStock(IRepositorioMovimientoDeStock repositorioMovimientoDeStock)
         {
-            throw new NotImplementedException();
+            // Inyeccion de dependencia
+            RepositorioMovimientoStock = repositorioMovimientoDeStock;
+        }
+        public void AltaMovimientoStock(MovimientoDeStockDTO movimientosDeStockDTO)
+        {
+            RepositorioMovimientoStock.Add(MapperMovimientoStock.FromDTO(movimientosDeStockDTO));
         }
     }
 }

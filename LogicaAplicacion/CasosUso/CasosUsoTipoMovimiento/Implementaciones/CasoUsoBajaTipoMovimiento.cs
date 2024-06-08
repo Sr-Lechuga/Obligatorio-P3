@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones
 {
-    internal class CasoUsoBajaTipoMovimiento : ICasoUsoBajaTipoMovimiento
+    public class CasoUsoBajaTipoMovimiento : ICasoUsoBajaTipoMovimiento
     {
         public IRepositorioTipoMovimiento RepositorioTiposMovimiento { get; init; }
 

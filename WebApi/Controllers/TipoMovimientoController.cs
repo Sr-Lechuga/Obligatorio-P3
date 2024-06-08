@@ -8,28 +8,30 @@ namespace WebApi.Controllers
     [ApiController]
     public class TipoMovimientoController : ControllerBase
     {
-        private ICasoUsoGetAll _getAll;
+        #region Properties
+        private ICasoUsoListarTipoMovimiento _listarTipoMovimiento;
         private ICasoUsoAltaTipoMovimiento _altaTipoMovimiento;
         private ICasoUsoBajaTipoMovimiento _bajaTipoMovimiento;
         private ICasoUsoEditTipoMovimiento _editTipoMovimiento;
         private ICasoUsoObtenerPorTipoMovimiento _obtenerPorTipoMovimiento;
+        #endregion
 
+        #region Constructor
         public TipoMovimientoController(
-            ICasoUsoGetAll getAll, 
-            ICasoUsoAltaTipoMovimiento altaTipoMovimiento, 
-            ICasoUsoBajaTipoMovimiento bajaTipoMovimiento, 
-            ICasoUsoEditTipoMovimiento editTipoMovimiento, 
+            ICasoUsoListarTipoMovimiento listarTipoMovimiento,
+            ICasoUsoAltaTipoMovimiento altaTipoMovimiento,
+            ICasoUsoBajaTipoMovimiento bajaTipoMovimiento,
+            ICasoUsoEditTipoMovimiento editTipoMovimiento,
             ICasoUsoObtenerPorTipoMovimiento obtenerPorTipoMovimiento
         )
         {
-            _getAll = getAll;
+            _listarTipoMovimiento = listarTipoMovimiento;
             _altaTipoMovimiento = altaTipoMovimiento;
             _bajaTipoMovimiento = bajaTipoMovimiento;
             _editTipoMovimiento = editTipoMovimiento;
             _obtenerPorTipoMovimiento = obtenerPorTipoMovimiento;
         }
-
-    
+        #endregion
 
         // GET: api/<TipoMovimientoController>
         [HttpGet]
