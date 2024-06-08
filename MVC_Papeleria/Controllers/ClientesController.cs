@@ -35,32 +35,37 @@ namespace MVC_Papeleria.Controllers
         [HttpPost]
         public ActionResult Index(string textoAFiltrar, string montoAFiltrar)
         {
-            IEnumerable<ClienteDTO> filtrados = null;
-            if (textoAFiltrar != null && montoAFiltrar != null)
+            try
             {
-                ViewBag.ErrorMessage = "Solo filtrar por un campo";
-                return View(_getAllClientes.ListarClientes());
+                IEnumerable<ClienteDTO> filtrados = null;
+                if (textoAFiltrar != null && montoAFiltrar != null)
+                {
+                    ViewBag.ErrorMessage = "Solo filtrar por un campo";
+                    return View(_getAllClientes.ListarClientes());
+                }
+                if (textoAFiltrar == null && montoAFiltrar == null)
+                {
+                    ViewBag.ErrorMessage = "Ingrese valores en al menos un campo para filtrar";
+                    return View(_getAllClientes.ListarClientes());
+                }
+                if (textoAFiltrar != null)
+                {
+                    filtrados = _filtrarTexto.BuscarClientePorTexto(textoAFiltrar);
+                }
+                if (montoAFiltrar != null)
+                {
+                    decimal monto = decimal.Parse(montoAFiltrar);
+                    filtrados = _filtrarMonto.BuscarClientePorMonto(monto);
+                }
+                return View(filtrados);
             }
-            if (textoAFiltrar == null && montoAFiltrar == null)
+            catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Ingrese valores en al menos un campo para filtrar";
-                return View(_getAllClientes.ListarClientes());
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction(nameof(Index));
             }
-            if (textoAFiltrar != null)
-            {
-                filtrados = _filtrarTexto.BuscarClientePorTexto(textoAFiltrar);
-            }
-            if (montoAFiltrar != null)
-            {
-                decimal monto = decimal.Parse(montoAFiltrar);
-                filtrados = _filtrarMonto.BuscarClientePorMonto(monto);
-            }
-            if (filtrados == null || filtrados.Count() == 0)
-            {
-                ViewBag.Message = "Lista vacia";
-                return View();
-            }
-            return View(filtrados);
+            
+            
 
         }
 

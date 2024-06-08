@@ -29,9 +29,9 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             //modelBuilder.Entity<Usuario>().Property(mail => mail.Email).HasConversion(convertirEmail);
             //modelBuilder.Entity<Usuario>().HasIndex(mail => mail.Email).IsUnique();
 
-            //var convertirRut = new ValueConverter<RUT, string>(rut => rut.NroRut, rut => new RUT(rut));
-            //modelBuilder.Entity<Cliente>().Property(rut => rut.RUT).HasConversion(convertirRut);
-            //modelBuilder.Entity<Cliente>().HasIndex(rut => rut.RUT).IsUnique();
+            var convertirRut = new ValueConverter<RUT, string>(rut => rut.NroRut, rut => new RUT(rut));
+            modelBuilder.Entity<Cliente>().Property(rut => rut.RUT.NroRut).HasConversion(convertirRut);
+            modelBuilder.Entity<Cliente>().HasIndex(rut => rut.RUT.NroRut).IsUnique();
         }
     }
 }
