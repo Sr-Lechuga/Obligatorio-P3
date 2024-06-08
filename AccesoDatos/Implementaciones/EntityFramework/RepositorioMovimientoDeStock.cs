@@ -21,7 +21,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                MovimientoStock.EsValido();
+                nuevoMovimientoStock.EsValido();
                 _papeleriaContext.MovimientoStock.Add(nuevoMovimientoStock);
                 _papeleriaContext.SaveChanges();
 

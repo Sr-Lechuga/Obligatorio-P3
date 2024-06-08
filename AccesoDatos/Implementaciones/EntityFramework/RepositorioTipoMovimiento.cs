@@ -37,7 +37,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                TipoMovimiento.EsValido();
+                nuevoTipoMovimiento.EsValido();
                 _papeleriaContext.TipoMovimientos.Add(nuevoTipoMovimiento);
                 _papeleriaContext.SaveChanges();
 
@@ -53,7 +53,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                TipoMovimiento.EsValido();
+                tipoMovimientoEditado.EsValido();
                 _papeleriaContext.TipoMovimientos.Update(tipoMovimientoEditado);
                 _papeleriaContext.SaveChanges();
             }
@@ -68,8 +68,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-
-                TipoMovimiento.EsValido();
                 TipoMovimiento tipoABorrar = GetById(id);
                 _papeleriaContext.TipoMovimientos.Remove(tipoABorrar);
                 _papeleriaContext.SaveChanges();
