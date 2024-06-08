@@ -17,7 +17,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<TipoMovimiento> TipoMovimientos { get; set; }
-
+        public DbSet<MovimientoStock> MovimientoStock { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

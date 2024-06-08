@@ -17,6 +17,11 @@ namespace LogicaNegocio.Entidades
 
         #region Constructor
         public TipoMovimiento() { }
+
+        public static void EsValido()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Methods
