@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Interfaces;
+﻿using AccesoDatos.Implementaciones.EntityFramework;
+using AccesoDatos.Interfaces;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,25 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 {
     public class RepositorioMovimientoDeStock : IRepositorioMovimientoDeStock
     {
-        public void Add(MovimientoStock obj)
+        private readonly PapeleriaContext _papeleriaContext;
+
+        public RepositorioMovimientoDeStock()
         {
-            throw new NotImplementedException();
+            _papeleriaContext = new PapeleriaContext();
+        }
+        public void Add(MovimientoStock nuevoMovimientoStock)
+        {
+            try
+            {
+                MovimientoStock.EsValido();
+                _papeleriaContext.MovimientoStock.Add(nuevoMovimientoStock);
+                _papeleriaContext.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error desconocido: {ex.Message}");
+            }
         }
 
         #region Not Needed

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LogicaNegocio.ValueObjects;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,16 +18,25 @@ namespace LogicaNegocio.Entidades
         #endregion
 
         #region Constructor
-        public TipoMovimiento() { }
-
-        public static void EsValido()
-        {
-            throw new NotImplementedException();
+        public TipoMovimiento() {}
+        public TipoMovimiento(int id, string nombre, bool reduccion) 
+        { 
+            Nombre = nombre;
+            Reduccion = reduccion;
+            EsValido();
         }
+
+
         #endregion
 
         #region Methods
-
+        public void EsValido()
+        {
+            if (Nombre.IsNullOrEmpty())
+            {
+                throw new Exception("El nombre no puede ser nulo o vacio");
+            }
+        }
         #endregion
     }
 }
