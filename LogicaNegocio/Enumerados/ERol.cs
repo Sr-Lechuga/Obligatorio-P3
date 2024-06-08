@@ -9,6 +9,7 @@ namespace LogicaNegocio.Enumerados
     public enum ERol
     {
         USUARIO = 1,
-        ADMINISTRADOR = 2
+        ADMINISTRADOR = 2,
+        ENCARGADO = 3
     }
 }
