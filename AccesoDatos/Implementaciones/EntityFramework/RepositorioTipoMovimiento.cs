@@ -53,6 +53,8 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
+                //TODO preguntarle al profe si esta bien settearlo aca
+                tipoMovimientoEditado.Id = id;
                 tipoMovimientoEditado.EsValido();
                 _papeleriaContext.TipoMovimientos.Update(tipoMovimientoEditado);
                 _papeleriaContext.SaveChanges();

@@ -1,6 +1,7 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebApi.Controllers
 {
@@ -35,26 +36,43 @@ namespace WebApi.Controllers
 
         // GET: api/<TipoMovimientoController>
         [HttpGet(Name = "GetAllTipoMovimientos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult<IEnumerable<TipoMovimientoDTO>> Get()
         {
-            return Ok(_listarTipoMovimiento.GetAll());
+            IEnumerable<TipoMovimientoDTO> lista = _listarTipoMovimiento.GetAll();
+            if (lista.Count() == 0)
+            {
+                return NoContent();
+            }else
+            {
+                return Ok(lista);
+            }
         }
 
-        [HttpGet("{tipoMovimientoId}")]
+        [HttpGet("tipo/{tipoMovimiento}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // GET api/<TipoMovimientoController>/5
-        public string Get(int id)
+        public ActionResult<IEnumerable<TipoMovimientoDTO>> GetByTipoMovimiento(string tipoMovimiento)
         {
-            return "value";
+            IEnumerable<TipoMovimientoDTO> lista = _obtenerPorTipoMovimiento.ObtenerPorTipoMovimiento(tipoMovimiento);
+            if (lista.Count() == 0)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return Ok(lista);
+            }
         }
 
         // POST api/<TipoMovimientoController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<TipoMovimientoDTO> Create([FromBody]TipoMovimientoDTO tipoDTO)
+        public ActionResult<TipoMovimientoDTO> Create([FromBody] TipoMovimientoDTO tipoDTO)
         {
             try
             {
@@ -74,24 +92,35 @@ namespace WebApi.Controllers
         [HttpPut("{tipoMovimientoId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<TipoMovimientoDTO> Update([FromBody] TipoMovimientoDTO tipoDTO)
+        public ActionResult<TipoMovimientoDTO> Update(int tipoMovimientoId, [FromBody] TipoMovimientoDTO tipoDTO)
         {
             try
             {
-                _editTipoMovimiento.EditTipoMovimiento(tipoDTO);
-                return Ok();
+                _editTipoMovimiento.EditTipoMovimiento(tipoMovimientoId, tipoDTO);
+                return Ok("Tipo movimiento " + tipoDTO.Nombre + " editado correctamente.");
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
 
         // DELETE api/<TipoMovimientoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<TipoMovimientoDTO> Delete(int id, [FromBody] TipoMovimientoDTO tipoDTO)
         {
+            try
+            {
+                //TODO caso de uso tipo movimiento sin referencias
+                _bajaTipoMovimiento.BajaTipoMovimiento(id);
+                return Ok("Tipo movimiento " + tipoDTO.Id + " dado de baja correctamente.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
