@@ -1,6 +1,7 @@
 ﻿using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
 using LogicaNegocio.Entidades;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,14 +32,13 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                 throw new Exception($"Error desconocido: {ex.Message}");
             }
         }
+        public MovimientoStock GetById(int id)
+        {
+            return _papeleriaContext.MovimientoStock.Find(id);
+        }
 
         #region Not Needed
         public IEnumerable<MovimientoStock> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public MovimientoStock GetById(int id)
         {
             throw new NotImplementedException();
         }

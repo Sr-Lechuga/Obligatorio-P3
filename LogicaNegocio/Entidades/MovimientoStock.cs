@@ -40,9 +40,10 @@ namespace LogicaNegocio.Entidades
         #region Methods
         public void EsValido()
         {
-            if (Fecha > DateTime.Now)
+            //TODO: Usted no dudaria?
+            if (Fecha != DateTime.Now)
             {
-                throw new Exception("La fecha debe ser el dia de hoy o anterior");
+                throw new Exception("La fecha debe ser el dia de hoy");
             }
             if (Cantidad < 0)
             {
