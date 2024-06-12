@@ -8,6 +8,12 @@ using LogicaAplicacion.CasosUso.CasosUsoPedidos.Implementaciones;
 using LogicaAplicacion.CasosUso.CasosUsoPedidos.Interfaces;
 using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones;
 using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace WebApi
 {
@@ -21,6 +27,7 @@ namespace WebApi
             builder.Services.AddControllers();
 
             #region Repositorios
+            builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             builder.Services.AddScoped<IRepositorioArticulos, RepositorioArticulos>();
             builder.Services.AddScoped<IRepositorioPedidos, RepositorioPedidos>();
             builder.Services.AddScoped<IRepositorioTipoMovimiento, RepositorioTipoMovimiento>();
@@ -28,6 +35,8 @@ namespace WebApi
             #endregion
 
             #region Casos de uso
+            //Usuarios
+            builder.Services.AddScoped<ICasoUsoGetUsuarioByEmail, CasoUsoGetUsuarioByEmail>();
             //Articulos
             builder.Services.AddScoped<ICasoUsoListarArticulos, CasoUsoListarArticulos>();
             builder.Services.AddScoped<ICasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo, CasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo>();
@@ -46,6 +55,48 @@ namespace WebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var clave = "CharliXCX!NewAlbum-BRAT-isOUTNOW!STREAM!!!";
+            builder.Services.AddAuthentication(
+                aut =>
+                {
+                    aut.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    aut.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }
+            ).AddJwtBearer(opciones =>
+                {
+                    opciones.RequireHttpsMetadata = false;
+                    opciones.SaveToken = true;
+                    opciones.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(clave)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                    };
+                }
+            );
+            var rutaArchivo = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WebApi.xml");
+            builder.Services.AddSwaggerGen(
+    opciones =>
+    {
+        opciones.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
+        {
+            Description = "Autorización estándar mediante esquema Bearer",
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Type = SecuritySchemeType.ApiKey
+        });
+        opciones.OperationFilter<SecurityRequirementsOperationFilter>();
+        opciones.IncludeXmlComments(rutaArchivo);
+        opciones.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+        {
+            Title = "Papeleria",
+            Description = "Proyecto Obligatorio 2 N3D",
+            Version = "v1"
+        });
+    }
+);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -55,6 +106,7 @@ namespace WebApi
                 app.UseSwaggerUI();
             }
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,6 +8,7 @@ namespace WebApi.Controllers
 {
     [Route("api/TipoMovimiento")]
     [ApiController]
+    [Authorize]
     public class TipoMovimientoController : ControllerBase
     {
         #region Properties

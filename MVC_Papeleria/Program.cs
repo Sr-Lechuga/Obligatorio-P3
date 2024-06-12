@@ -37,6 +37,7 @@ namespace MVC_Papeleria
             builder.Services.AddScoped<ICasoUsoEditarUsuario, CasoUsoEditarUsuario>();
             builder.Services.AddScoped<ICasoUsoBajaUsuario, CasoUsoBajaUsuario>();
             builder.Services.AddScoped<ICasoUsoBuscarUsuario, CasoUsoBuscarUsuario>();
+            builder.Services.AddScoped<ICasoUsoGetUsuarioByEmail, CasoUsoGetUsuarioByEmail>();
             //Articulos
             builder.Services.AddScoped<ICasoUsoAltaArticulo, CasoUsoAltaArticulo>();
             builder.Services.AddScoped<ICasoUsoListarArticulos, CasoUsoListarArticulos>();
@@ -77,6 +78,7 @@ namespace MVC_Papeleria
             app.UseStaticFiles();
 
             app.UseRouting();
+
 
             app.UseAuthorization();
 
