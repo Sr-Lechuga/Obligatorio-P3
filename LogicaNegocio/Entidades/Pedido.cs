@@ -13,7 +13,6 @@ namespace LogicaNegocio.Entidades
     public class Pedido : IValidable<Pedido>
     {
         #region Properties
-        //TODO: Pasar esto a archivo de configuracion
         public static double s_IVA = 22;
 
         public int Id { get; set; }

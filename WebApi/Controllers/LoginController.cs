@@ -20,7 +20,7 @@ namespace WebApi.Controllers
         /// <summary>
         /// Metodo que permite iniciar sesion y obtener un token.
         /// </summary>
-        /// <param name="usuario">Usuario con rol que desea iniciar sesion</param>
+        /// <param name="user">Usuario con rol que desea iniciar sesion</param>
         /// <returns>Retorna datos del usuario y token</returns>
         [HttpPost]
         [AllowAnonymous]

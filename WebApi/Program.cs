@@ -79,6 +79,7 @@ namespace WebApi
             builder.Services.AddSwaggerGen(
     opciones =>
     {
+        opciones.IncludeXmlComments(rutaArchivo);
         opciones.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
         {
             Description = "Autorización estándar mediante esquema Bearer",
@@ -87,7 +88,6 @@ namespace WebApi
             Type = SecuritySchemeType.ApiKey
         });
         opciones.OperationFilter<SecurityRequirementsOperationFilter>();
-        opciones.IncludeXmlComments(rutaArchivo);
         opciones.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
         {
             Title = "Papeleria",

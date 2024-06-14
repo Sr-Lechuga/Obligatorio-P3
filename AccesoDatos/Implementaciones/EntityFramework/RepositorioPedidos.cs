@@ -26,7 +26,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO: check this with same article twice
                 _papeleriaContext.Entry(pedidoNuevo.Cliente).State = EntityState.Unchanged;
                 foreach(var item in pedidoNuevo.Lineas) 
                 {

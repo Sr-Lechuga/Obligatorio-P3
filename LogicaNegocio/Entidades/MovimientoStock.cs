@@ -26,7 +26,7 @@ namespace LogicaNegocio.Entidades
         public MovimientoStock(DateTime fecha, Articulo articulo, int cantidad, 
             TipoMovimiento tipoMovimiento, Usuario user) 
         {
-            Fecha = fecha;
+            Fecha = DateTime.Now;
             Articulo = articulo;
             Cantidad = cantidad;
             TipoMovimiento = tipoMovimiento;
@@ -40,8 +40,7 @@ namespace LogicaNegocio.Entidades
         #region Methods
         public void EsValido()
         {
-            //TODO: Usted no dudaria?
-            if (Fecha != DateTime.Now)
+            if (DateTime.Now < Fecha)
             {
                 throw new Exception("La fecha debe ser el dia de hoy");
             }

@@ -8,7 +8,6 @@ namespace WebApi.Controllers
 {
     [Route("api/TipoMovimiento")]
     [ApiController]
-    [Authorize]
     public class TipoMovimientoController : ControllerBase
     {
         #region Properties
@@ -36,8 +35,11 @@ namespace WebApi.Controllers
         }
         #endregion
 
-        // GET: api/<TipoMovimientoController>
-        [HttpGet(Name = "GetAllTipoMovimientos")]
+        /// <summary>
+        /// Devuelve una lista con todos los tipos de movimiento registrados en el sistema
+        /// </summary>
+        /// <returns>Lista de tipos de movimiento</returns>
+        [HttpGet(Name = "getAllTipoMovimientos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult<IEnumerable<TipoMovimientoDTO>> Get()
@@ -52,11 +54,15 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("tipo/{tipoMovimiento}")]
+        /// <summary>
+        /// Devuelve una lista filtrada por un tipo de movimiento seleccionado
+        /// </summary>
+        /// <param name="tipoMovimiento">Tipo de movimiento utilizado para filtrar la lista completa</param>
+        /// <returns>Lista de tipos de movimiento</returns>
+        [HttpGet("getByTipo/{tipoMovimiento}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        // GET api/<TipoMovimientoController>/5
         public ActionResult<IEnumerable<TipoMovimientoDTO>> GetByTipoMovimiento(string tipoMovimiento)
         {
             IEnumerable<TipoMovimientoDTO> lista = _obtenerPorTipoMovimiento.ObtenerPorTipoMovimiento(tipoMovimiento);
@@ -70,7 +76,11 @@ namespace WebApi.Controllers
             }
         }
 
-        // POST api/<TipoMovimientoController>
+        /// <summary>
+        /// Registra un nuevo tipo de movimiento en el sistema.
+        /// </summary>
+        /// <param name="tipoDTO">Tipo de movimiento a registrar en el sistema.</param>
+        /// <returns>Sin retorno</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -78,8 +88,6 @@ namespace WebApi.Controllers
         {
             try
             {
-                //TODO Autenticacion JWT 
-                //TODO Validacion de tipo
                 _altaTipoMovimiento.AltaTipoMovimiento(tipoDTO);
                 return Created("api/TipoMovimiento", tipoDTO);
             }
@@ -90,8 +98,13 @@ namespace WebApi.Controllers
             }
         }
 
-        // PUT api/<TipoMovimientoController>/5
-        [HttpPut("{tipoMovimientoId}")]
+        /// <summary>
+        /// Modifica la informacion de un tipo de movimiento registrado en el sistema.
+        /// </summary>
+        /// <param name="tipoMovimientoId">Id del tipo de movimiento que se va a modificar.</param>
+        /// <param name="tipoDTO">Datos utilizados para modificar el tipo de movimiento seleccionado</param>
+        /// <returns>Sin retorno</returns>
+        [HttpPut("update/{tipoMovimientoId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<TipoMovimientoDTO> Update(int tipoMovimientoId, [FromBody] TipoMovimientoDTO tipoDTO)
@@ -107,15 +120,19 @@ namespace WebApi.Controllers
             }
         }
 
-        // DELETE api/<TipoMovimientoController>/5
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// Elimina el registro de un tipo de movimiento en el sistema
+        /// </summary>
+        /// <param name="id">Id del tipo de movimiento que se desea eliminar</param>
+        /// <param name="tipoDTO">Datos del tipo de movimiento que se desea eliminar</param>
+        /// <returns>Sin retorno</returns>
+        [HttpDelete("delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<TipoMovimientoDTO> Delete(int id, [FromBody] TipoMovimientoDTO tipoDTO)
         {
             try
             {
-                //TODO caso de uso tipo movimiento sin referencias
                 _bajaTipoMovimiento.BajaTipoMovimiento(id);
                 return Ok("Tipo movimiento " + tipoDTO.Id + " dado de baja correctamente.");
             }

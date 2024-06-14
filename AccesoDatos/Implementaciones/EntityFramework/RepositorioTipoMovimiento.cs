@@ -53,7 +53,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
-                //TODO preguntarle al profe si esta bien settearlo aca
                 tipoMovimientoEditado.Id = id;
                 tipoMovimientoEditado.EsValido();
                 _papeleriaContext.TipoMovimientos.Update(tipoMovimientoEditado);
@@ -70,6 +69,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             try
             {
+                //With AsNoTracking
                 TipoMovimiento tipoABorrar = GetById(id);
                 _papeleriaContext.TipoMovimientos.Remove(tipoABorrar);
                 _papeleriaContext.SaveChanges();

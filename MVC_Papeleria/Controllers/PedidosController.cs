@@ -145,9 +145,7 @@ namespace MVC_Papeleria.Controllers
                     nuevoPedido.Lineas = tempLineas;
                 nuevoPedido.Id = nuevoPedido.Id;
                 nuevoPedido.FechaCreado = DateTime.Now;
-                //TODO: Agregar el parametro de settings
                 nuevoPedido.FechaPrometida = DateTime.Now.AddDays(5);
-                //TODO: Agregar el parametro de settings
                 nuevoPedido.IVAAplicado = 22;
                 nuevoPedido.Estado = EEstado.NUEVO;
                 nuevoPedido.Total = nuevoPedido.Total;
@@ -159,7 +157,6 @@ namespace MVC_Papeleria.Controllers
                 tempLineas = null;
                 return RedirectToAction(nameof(Index));
             }
-            //TODO Hacer los catch
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
