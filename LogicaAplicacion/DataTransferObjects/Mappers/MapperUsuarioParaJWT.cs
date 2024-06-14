@@ -17,7 +17,8 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             {
                 Id = user.Id,
                 Email = user.Email.DireccionEmail,
-                Contrasenia = user.Contrasenia.Password
+                Contrasenia = user.Contrasenia.Password,
+                Rol = user.Rol.RolValor
             };
         }
         public static UsuarioDTO ToDTO(Usuario user)
@@ -27,6 +28,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Id = user.Id,
                 Email = user.Email.DireccionEmail,
                 Contrasenia = user.Contrasenia.Password,
+                Rol = user.Rol.RolValor
             };
         }
         

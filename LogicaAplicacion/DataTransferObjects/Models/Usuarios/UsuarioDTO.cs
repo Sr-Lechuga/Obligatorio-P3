@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicaNegocio.Enumerados;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
         public int Id { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }
+        public ERol Rol { get; set; }
 
     }
 }

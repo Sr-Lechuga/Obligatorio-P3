@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
+using LogicaNegocio.Enumerados;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace WebApi.Controllers
             {
                 ManejadorJWT handler = new ManejadorJWT(_getUser);
                 var usuario = handler.ObtenerUsuario(user.Email);
-                if (usuario == null || user.Contrasenia != usuario.Contrasenia)
+                if (usuario == null || user.Contrasenia != usuario.Contrasenia || usuario.Rol != ERol.ENCARGADO)
                 {
                     return Unauthorized("Credenciales invalidas");
                 }
