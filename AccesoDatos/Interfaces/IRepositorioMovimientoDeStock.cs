@@ -9,6 +9,5 @@ namespace AccesoDatos.Interfaces
 {
     public interface IRepositorioMovimientoDeStock :IRepositorioCRUD<MovimientoStock>
     {
-
     }
 }

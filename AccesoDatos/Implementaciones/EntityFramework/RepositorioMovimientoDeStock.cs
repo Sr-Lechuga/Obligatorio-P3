@@ -32,15 +32,16 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                 throw new Exception($"Error desconocido: {ex.Message}");
             }
         }
-        public MovimientoStock GetById(int id)
+
+        public IEnumerable<MovimientoStock> GetAll()
         {
-            return _papeleriaContext.MovimientoStock.Find(id);
+            return _papeleriaContext.MovimientoStock.ToList();
         }
 
         #region Not Needed
-        public IEnumerable<MovimientoStock> GetAll()
+        public MovimientoStock GetById(int id)
         {
-            throw new NotImplementedException();
+            return _papeleriaContext.MovimientoStock.Find(id);
         }
 
         public void Remove(int id)

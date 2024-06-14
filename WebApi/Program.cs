@@ -48,6 +48,7 @@ namespace WebApi
             builder.Services.AddScoped<ICasoUsoListarTipoMovimiento, CasoUsoListarTipoMovimiento>();
             builder.Services.AddScoped<ICasoUsoObtenerPorTipoMovimiento, CasoUsoObtenerPorTipoMovimiento>();
             //Movimientos de stock
+            builder.Services.AddScoped<ICasoUsoListarMovimientoStock, CasoUsoListarMovimientoStock>();
             builder.Services.AddScoped<ICasoUsoAltaMovimientoStock, CasoUsoAltaMovimientoStock>();
             #endregion
 

@@ -17,7 +17,13 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             _papeleriaContext = new PapeleriaContext();
         }
+
         #region CRUD
+        public IEnumerable<TipoMovimiento> GetAll()
+        {
+            return _papeleriaContext.TipoMovimientos.ToList();
+        }
+
         public TipoMovimiento GetById(int id)
         {
             try
@@ -82,10 +88,6 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #endregion
 
         #region Methods
-        public IEnumerable<TipoMovimiento> GetAll()
-        {
-            return _papeleriaContext.TipoMovimientos.ToList();
-        }
 
         public IEnumerable<TipoMovimiento> GetByTipoMovimiento(string tipoMovimiento)
         {

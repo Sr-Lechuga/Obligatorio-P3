@@ -39,7 +39,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult<IEnumerable<MovimientoDeStockDTO>> Get()
         {
-            IEnumerable<TipoMovimientoDTO> lista = _listarMovimientoStock.GetAll();
+            IEnumerable<MovimientoDeStockDTO> lista = _listarMovimientoStock.ListarMovimientosDeStock();
             if (lista.Count() == 0)
             {
                 return NoContent();
@@ -61,7 +61,6 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult<MovimientoDeStockDTO> Post([FromBody] MovimientoDeStockDTO movimientoDeStockDTO)
         {
-
             try
             {
                 _altaMovimientoStock.AltaMovimientoStock(movimientoDeStockDTO);
