@@ -18,7 +18,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Articulo = movimientosDeStockDTO.Articulo,
                 Cantidad = movimientosDeStockDTO.Cantidad,
                 Fecha = movimientosDeStockDTO.Fecha,
-                TipoMovimiento = MapperTipoMovimiento.FromDTO(movimientosDeStockDTO.TipoMovimiento),
+                TipoMovimiento = movimientosDeStockDTO.TipoMovimiento,
                 Usuario = movimientosDeStockDTO.Usuario
             };
         }
@@ -31,7 +31,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Articulo = movimientoStock.Articulo,
                 Cantidad = movimientoStock.Cantidad,
                 Fecha = movimientoStock.Fecha,
-                TipoMovimiento = MapperTipoMovimiento.ToDTO(movimientoStock.TipoMovimiento),
+                TipoMovimiento = movimientoStock.TipoMovimiento,
                 Usuario = movimientoStock.Usuario
             };
         }

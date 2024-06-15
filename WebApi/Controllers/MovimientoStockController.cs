@@ -1,6 +1,6 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.MovimientosDeStock;
-using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,5 +1,5 @@
 ﻿using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
-using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -14,7 +14,10 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
     {
         public IRepositorioMovimientoDeStock RepositorioMovimientoStock { get; init; }
 
-        public CasoUsoAltaMovimientoStock(IRepositorioMovimientoDeStock repositorioMovimientoDeStock)
+        public CasoUsoAltaMovimientoStock(
+            IRepositorioMovimientoDeStock repositorioMovimientoDeStock
+
+            )
         {
             // Inyeccion de dependencia
             RepositorioMovimientoStock = repositorioMovimientoDeStock;

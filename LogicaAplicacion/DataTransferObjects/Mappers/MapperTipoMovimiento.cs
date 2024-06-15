@@ -1,4 +1,4 @@
-﻿using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+﻿using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
 using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
