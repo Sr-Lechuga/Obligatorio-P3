@@ -21,7 +21,7 @@ namespace LogicaAplicacion.CasosUso.CasosUsoLogin.Implementaciones
         {
             Usuario buscado = RepositorioUsuarios.ObtenerUsuarioPorEmail(email);
 
-            return buscado.Contrasenia.Password == contraseña ? buscado : null;
+            return buscado.Contrasenia == contraseña ? buscado : null;
         }
 
 

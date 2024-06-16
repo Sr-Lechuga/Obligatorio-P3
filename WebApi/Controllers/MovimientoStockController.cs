@@ -1,6 +1,10 @@
-﻿using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
+﻿using LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoUsuarios.Interfaces;
+using LogicaAplicacion.DataTransferObjects.Mappers;
 using LogicaAplicacion.DataTransferObjects.Models.MovimientosDeStock;
-using LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento;
+using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,16 +20,25 @@ namespace WebApi.Controllers
         #region Properties
         private ICasoUsoListarMovimientoStock _listarMovimientoStock;
         private ICasoUsoAltaMovimientoStock _altaMovimientoStock;
+        private ICasoUsoBuscarArticulo _buscarArticulo;
+        private ICasoUsoBuscarUsuario _buscarUsuario;
+        private ICasoUsoBuscarTipoMovimiento _buscarTipoMovimiento;
         #endregion
 
         #region Constructor
         public MovimientoStockController(
             ICasoUsoAltaMovimientoStock altaMovimientoStock,
-            ICasoUsoListarMovimientoStock listarMovimientoStock
+            ICasoUsoListarMovimientoStock listarMovimientoStock,
+            ICasoUsoBuscarArticulo buscarArticulo,
+            ICasoUsoBuscarUsuario buscarUsuario,
+            ICasoUsoBuscarTipoMovimiento buscarTipoMovimiento
         ) 
         {
             _listarMovimientoStock = listarMovimientoStock;
             _altaMovimientoStock = altaMovimientoStock;
+            _buscarArticulo = buscarArticulo;
+            _buscarUsuario = buscarUsuario;
+            _buscarTipoMovimiento = buscarTipoMovimiento;
         }
         #endregion
 
@@ -59,12 +72,20 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public ActionResult<MovimientoDeStockDTO> Post([FromBody] MovimientoDeStockDTO movimientoDeStockDTO)
+        public ActionResult<MovimientoDeStockDTO> Post([FromBody] AltaMovimientoDeStockDTO altaMovimientoDeStockDTO)
         {
             try
             {
-                _altaMovimientoStock.AltaMovimientoStock(movimientoDeStockDTO);
-                return Created("api/TipoMovimiento", movimientoDeStockDTO);
+                MovimientoDeStockDTO movimientoCompleto = new  MovimientoDeStockDTO()
+                {
+                    Fecha = DateTime.Now.ToLocalTime(),
+                    Cantidad = altaMovimientoDeStockDTO.Cantidad,
+                    Articulo = _buscarArticulo.BuscarArticulo(altaMovimientoDeStockDTO.ArticuloId),
+                    Usuario = MapperUsuario.FromDTO(_buscarUsuario.BuscarUsuario(altaMovimientoDeStockDTO.UsuarioId)),
+                    TipoMovimiento = _buscarTipoMovimiento.BuscarTipoMovimiento(altaMovimientoDeStockDTO.TipoMovimientoId)
+                };
+                _altaMovimientoStock.AltaMovimientoStock(movimientoCompleto);
+                return Created("api/TipoMovimiento", movimientoCompleto);
             }
             catch (Exception ex)
             {

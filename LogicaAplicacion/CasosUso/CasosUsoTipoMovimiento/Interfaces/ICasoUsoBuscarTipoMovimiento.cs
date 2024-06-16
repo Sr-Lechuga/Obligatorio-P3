@@ -1,4 +1,4 @@
-﻿using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
+﻿using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces
 {
-    public interface ICasoUsoAltaTipoMovimiento
+    public interface ICasoUsoBuscarTipoMovimiento
     {
-        public void AltaTipoMovimiento(TipoMovimientoDTO nuevoTipoMovimientoDTO);
+        public TipoMovimiento BuscarTipoMovimiento(int id);
     }
 }

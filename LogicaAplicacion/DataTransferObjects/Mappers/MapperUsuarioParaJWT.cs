@@ -16,9 +16,9 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             return new UsuarioDTO
             {
                 Id = user.Id,
-                Email = user.Email.DireccionEmail,
-                Contrasenia = user.Contrasenia.Password,
-                Rol = user.Rol.RolValor
+                Email = user.Email,
+                Contrasenia = user.Contrasenia,
+                Rol = user.Rol
             };
         }
         public static UsuarioDTO ToDTO(Usuario user)
@@ -26,9 +26,9 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             return new UsuarioDTO
             {
                 Id = user.Id,
-                Email = user.Email.DireccionEmail,
-                Contrasenia = user.Contrasenia.Password,
-                Rol = user.Rol.RolValor
+                Email = user.Email,
+                Contrasenia = user.Contrasenia,
+                Rol = user.Rol
             };
         }
         

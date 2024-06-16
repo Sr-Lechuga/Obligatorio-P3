@@ -126,7 +126,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #region DML Methods
         public IEnumerable<Articulo> ListadoAscendente()
         {
-            return _papeleriaContext.Articulos.OrderBy(articulo => articulo.Nombre.NombreArticuloValor).ToList();
+            return _papeleriaContext.Articulos.OrderBy(articulo => articulo.Nombre).ToList();
         }
         //TODO Probar consulta b.
         public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2)

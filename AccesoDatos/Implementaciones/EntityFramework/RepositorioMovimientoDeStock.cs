@@ -23,13 +23,16 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             try
             {
                 nuevoMovimientoStock.EsValido();
+                _papeleriaContext.Entry(nuevoMovimientoStock.Articulo).State = EntityState.Unchanged;
+                _papeleriaContext.Entry(nuevoMovimientoStock.Usuario).State = EntityState.Unchanged;
+                _papeleriaContext.Entry(nuevoMovimientoStock.TipoMovimiento).State = EntityState.Unchanged;
                 _papeleriaContext.MovimientoStock.Add(nuevoMovimientoStock);
                 _papeleriaContext.SaveChanges();
 
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error desconocido: {ex.Message}");
+                throw new Exception(ex.Message);
             }
         }
 

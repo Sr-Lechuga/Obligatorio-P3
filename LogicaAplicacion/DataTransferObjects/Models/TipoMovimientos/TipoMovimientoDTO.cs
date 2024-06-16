@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaAplicacion.DataTransferObjects.Models.TipoMovimiento
+namespace LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos
 {
     [Index(nameof(Nombre), IsUnique = true)]
     public class TipoMovimientoDTO

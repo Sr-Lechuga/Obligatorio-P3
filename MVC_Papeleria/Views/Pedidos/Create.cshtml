@@ -79,7 +79,7 @@
             {
                 @foreach (LineaPedidoDTO linea in ViewBag.Lineas)
                 {
-                    <p><b>-> @linea.Articulo.Nombre.NombreArticuloValor</b>  @linea.CantidadArticulo x @linea.PrecioUnitario</p>
+                    <p><b>-> @linea.Articulo.Nombre</b>  @linea.CantidadArticulo x @linea.PrecioUnitario</p>
                 }
             }
         </div>

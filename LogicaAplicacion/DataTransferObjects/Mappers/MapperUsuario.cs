@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.DataTransferObjects.Models.Usuarios;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Enumerados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +26,25 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             return usuario;
         }
 
+        public static Usuario FromDTO(UsuarioListadoDTO dto)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+            var usuario = new Usuario(dto.Email, dto.Nombre, dto.Apellido, dto.Password, (ERol)dto.Rol)
+            {
+                Id = dto.Id
+            };
+            return usuario;
+        }
         public static UsuarioListadoDTO ToDTO(Usuario user)
         {
             return new UsuarioListadoDTO()
             {
-                Email = user.Email.DireccionEmail,
-                Password = user.Contrasenia.Password,
-                PasswordEncriptada = user.ContraseniaEncriptada.ValorContrasenia,
-                Rol = (int)user.Rol.RolValor,
-                Nombre = user.NombreCompleto.Nombre,
-                Apellido = user.NombreCompleto.Apellido,
+                Email = user.Email,
+                Password = user.Contrasenia,
+                PasswordEncriptada = user.ContraseniaEncriptada,
+                Rol = (int)user.Rol,
+                Nombre = user.Nombre,
+                Apellido = user.Apellido,
                 Id = user.Id
             };
         }
