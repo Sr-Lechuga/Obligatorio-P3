@@ -128,6 +128,15 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             return _papeleriaContext.Articulos.OrderBy(articulo => articulo.Nombre.NombreArticuloValor).ToList();
         }
+        //TODO Probar consulta b.
+        public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2)
+        {
+            return _papeleriaContext.MovimientoStock.Where(m => m.Fecha >= fecha1 && m.Fecha <= fecha2)
+                                                    .Select(m => m.Articulo)
+                                                    .Distinct()
+                                                    .ToList();
+        }
+
         #endregion
     }
 }

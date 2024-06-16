@@ -97,7 +97,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
            return tipoMovimientos;
         }
         
-
+       
 
         #endregion
 

@@ -38,6 +38,33 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             return _papeleriaContext.MovimientoStock.ToList();
         }
 
+        //TODO probar consulta a.
+        public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId)
+        {
+            return _papeleriaContext.MovimientoStock.Where(m => m.Articulo.Id == articuloId
+                                                    && m.TipoMovimiento.Id == tipoMovimientoId)
+                                                    .OrderByDescending(m => m.Fecha)
+                                                    .ThenBy(m => m.Cantidad)
+                                                    .Select(m => new MovimientoStock
+                                                    {
+                                                        Fecha = m.Fecha,
+                                                        Cantidad = m.Cantidad,
+                                                        Articulo = new Articulo
+                                                        {
+                                                            Nombre= m.Articulo.Nombre,
+                                                            Descripcion = m.Articulo.Descripcion,
+                                                            Codigo = m.Articulo.Codigo
+                                                        },
+                                                        TipoMovimiento = new TipoMovimiento
+                                                        {
+                                                            Nombre = m.TipoMovimiento.Nombre
+                                                        }
+
+                                                    })
+                                                    .ToList();
+        }
+
+       
         #region Not Needed
         public MovimientoStock GetById(int id)
         {
