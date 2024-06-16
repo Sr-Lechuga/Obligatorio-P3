@@ -13,16 +13,21 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
 {
     public class CasoUsoGetArticulosConMovimientos : ICasoUsoGetArticulosConMovimientos
     {
-        public IRepositorioArticulos RepositorioArticulos { get; set; }
+        private IRepositorioArticulos _repositorioArticulos { get; set; }
+        private IRepositorioSettings _settings { get; set; }
 
-        public CasoUsoGetArticulosConMovimientos(IRepositorioArticulos repositorioArticulos)
+        public CasoUsoGetArticulosConMovimientos(IRepositorioArticulos repositorioArticulos, 
+            IRepositorioSettings repositorioSettings)
         {
-            RepositorioArticulos = repositorioArticulos;
+            _repositorioArticulos = repositorioArticulos;
+            _settings = repositorioSettings;
         }
-        public IEnumerable<ArticulosListadoDTO> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2)
+        //TODO ERROR 
+        public IEnumerable<ArticulosListadoDTO> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize)
         {
-            IEnumerable<Articulo> articulos = RepositorioArticulos.GetArticulosConMovimientos(fecha1, fecha2);
-            return MapperArticulo.FromList(articulos);
+            int size = int.Parse(_settings.GetValueByName("PageSize") + "");
+            return _repositorioArticulos.GetArticulosConMovimientos(pageNumber, pageSize)
+                                        .Select(a => MapperArticulo.ToDTO(a));
         }
     }
 }

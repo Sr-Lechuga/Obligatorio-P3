@@ -10,6 +10,6 @@ namespace AccesoDatos.Interfaces
     public interface IRepositorioArticulos : IRepositorioCRUD<Articulo>
     {
         public IEnumerable<Articulo> ListadoAscendente();
-        public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2);
+        public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize);
     }
 }
