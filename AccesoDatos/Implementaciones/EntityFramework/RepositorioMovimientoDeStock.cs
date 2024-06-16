@@ -67,6 +67,20 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                                                     .ToList();
         }
 
+        public IEnumerable<MovimientoStock> GetResumenMovimientos()
+        {
+            IEnumerable<MovimientoStock> lista = _papeleriaContext.MovimientoStock
+                                                .GroupBy(m => m.Fecha.Year)
+                                                .Select(group => new MovimientoStock
+                                                {
+                                                    Id = group.Key
+                                                })
+                                                .ToList();
+
+
+            return lista;
+        }
+
        
         #region Not Needed
         public MovimientoStock GetById(int id)
