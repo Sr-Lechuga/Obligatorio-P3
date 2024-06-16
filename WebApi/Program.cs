@@ -37,8 +37,10 @@ namespace WebApi
             #region Casos de uso
             //Usuarios
             builder.Services.AddScoped<ICasoUsoGetUsuarioByEmail, CasoUsoGetUsuarioByEmail>();
+            builder.Services.AddScoped<ICasoUsoBuscarUsuario, CasoUsoBuscarUsuario>();
             //Articulos
             builder.Services.AddScoped<ICasoUsoListarArticulos, CasoUsoListarArticulos>();
+            builder.Services.AddScoped<ICasoUsoBuscarArticulo, CasoUsoBuscarArticulo>();
             builder.Services.AddScoped<ICasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo, CasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo>();
             builder.Services.AddScoped<ICasoUsoListarOrdenadoDescendentementePorFechaPedido, CasoUsoListarOrdenadoDescendentementePorFechaPedido>();
             //Tipo Movimiento
@@ -46,6 +48,7 @@ namespace WebApi
             builder.Services.AddScoped<ICasoUsoBajaTipoMovimiento, CasoUsoBajaTipoMovimiento>();
             builder.Services.AddScoped<ICasoUsoEditTipoMovimiento, CasoUsoEditTipoMovimiento>();
             builder.Services.AddScoped<ICasoUsoListarTipoMovimiento, CasoUsoListarTipoMovimiento>();
+            builder.Services.AddScoped<ICasoUsoBuscarTipoMovimiento, CasoUsoBuscarTipoMovimiento>();
             builder.Services.AddScoped<ICasoUsoObtenerPorTipoMovimiento, CasoUsoObtenerPorTipoMovimiento>();
             //Movimientos de stock
             builder.Services.AddScoped<ICasoUsoListarMovimientoStock, CasoUsoListarMovimientoStock>();

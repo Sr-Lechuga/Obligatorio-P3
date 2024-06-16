@@ -172,8 +172,8 @@ namespace MVC_Papeleria.Controllers
                 if (logueado != null)
                 {
                     HttpContext.Session.SetString("email", email);
-                    HttpContext.Session.SetString("rol", logueado.Rol.RolValor.ToString());
-                    if (logueado.Rol.RolValor == ERol.ADMINISTRADOR)
+                    HttpContext.Session.SetString("rol", logueado.Rol.ToString());
+                    if (logueado.Rol == ERol.ADMINISTRADOR)
                         return RedirectToAction("Index", "Usuarios");
                     else
                         return RedirectToAction("Index", "Articulos");

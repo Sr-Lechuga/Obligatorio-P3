@@ -99,7 +99,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         #region DML Methods
         public Usuario ObtenerUsuarioPorEmail(string email)
         {
-            Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Email.DireccionEmail == email);
+            Usuario? usuarioEncontrado = _papeleriaContext.Usuarios.FirstOrDefault(usuario => usuario.Email == email);
             return usuarioEncontrado ?? throw new UsuarioNoEncontradoException("Credenciales incorrectas. Revise el mail y/o la contraseña");
         }
         #endregion

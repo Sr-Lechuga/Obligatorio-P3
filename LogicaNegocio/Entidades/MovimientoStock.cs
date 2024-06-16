@@ -40,17 +40,21 @@ namespace LogicaNegocio.Entidades
         #region Methods
         public void EsValido()
         {
-            if (DateTime.Now < Fecha)
+            if (Fecha == DateTime.Now)
             {
                 throw new Exception("La fecha debe ser el dia de hoy");
             }
             if (Cantidad < 0)
             {
-                throw new Exception("La cantidad no puede ser negativo");
+                throw new Exception("La cantidad no puede ser negativa");
             }
             if (Cantidad > _tope) 
             {
-                throw new Exception("La cantidad no puede superar el tope");
+                throw new Exception("La cantidad no puede superar el tope de " + _tope + " unidades.");
+            }
+            if(Usuario.Rol != Enumerados.ERol.ENCARGADO)
+            {
+                throw new Exception("El usuario debe ser un encargado");
             }
             
         }
