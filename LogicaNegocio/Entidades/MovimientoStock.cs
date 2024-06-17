@@ -17,9 +17,6 @@ namespace LogicaNegocio.Entidades
         public Usuario Usuario { get; set; }
         #endregion
 
-        //TODO aplicar setting en el tope
-        public static int _tope = 20;
-
         #region Constructores
         public MovimientoStock() {}
 
@@ -47,10 +44,6 @@ namespace LogicaNegocio.Entidades
             if (Cantidad < 0)
             {
                 throw new Exception("La cantidad no puede ser negativa");
-            }
-            if (Cantidad > _tope) 
-            {
-                throw new Exception("La cantidad no puede superar el tope de " + _tope + " unidades.");
             }
             if(Usuario.Rol != Enumerados.ERol.ENCARGADO)
             {
