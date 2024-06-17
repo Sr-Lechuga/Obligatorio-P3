@@ -73,7 +73,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             var lista = _papeleriaContext.MovimientoStock
                                                 .GroupBy(m => m.Fecha.Year)
-                                                .Select(group => new 
+                                                .Select(group => new
                                                 {
                                                     Anio = group.Key,
                                                     TipoMovimiento = group.GroupBy(tm => tm.TipoMovimiento)
@@ -82,7 +82,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                                                         NombreTipo = tm.Key,
                                                         Cantidad = tm.Sum(movimiento => movimiento.Cantidad)
                                                     }),
-                                                    SumaMovimientos = group.Count()
+                                                    TotalAnio = group.Sum(m => m.Cantidad)
                                                 })
                                                 .OrderBy(group => group.Anio)
                                                 .ToList();
