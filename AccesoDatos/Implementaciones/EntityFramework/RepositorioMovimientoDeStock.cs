@@ -41,33 +41,35 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             return _papeleriaContext.MovimientoStock.ToList();
         }
 
-        //TODO probar consulta a.
-        public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId)
+        ///Consulta A con paginación
+        public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize)
         {
             return _papeleriaContext.MovimientoStock.Where(m => m.Articulo.Id == articuloId
-                                                    && m.TipoMovimiento.Id == tipoMovimientoId)
-                                                    .OrderByDescending(m => m.Fecha)
-                                                    .ThenBy(m => m.Cantidad)
-                                                    .Select(m => new MovimientoStock
-                                                    {
-                                                        Fecha = m.Fecha,
-                                                        Cantidad = m.Cantidad,
-                                                        Articulo = new Articulo
+                                                        && m.TipoMovimiento.Id == tipoMovimientoId)
+                                                        .OrderByDescending(m => m.Fecha)
+                                                        .ThenBy(m => m.Cantidad)
+                                                        .Skip((pageNumber - 1) * pageSize)
+                                                        .Take(pageSize)
+                                                        .Select(m => new MovimientoStock
                                                         {
-                                                            Nombre= m.Articulo.Nombre,
-                                                            Descripcion = m.Articulo.Descripcion,
-                                                            Codigo = m.Articulo.Codigo
-                                                        },
-                                                        TipoMovimiento = new TipoMovimiento
-                                                        {
-                                                            Nombre = m.TipoMovimiento.Nombre
-                                                        }
+                                                            Fecha = m.Fecha,
+                                                            Cantidad = m.Cantidad,
+                                                            Articulo = new Articulo
+                                                            {
+                                                                Nombre = m.Articulo.Nombre,
+                                                                Descripcion = m.Articulo.Descripcion,
+                                                                Codigo = m.Articulo.Codigo
+                                                            },
+                                                            TipoMovimiento = new TipoMovimiento
+                                                            {
+                                                                Nombre = m.TipoMovimiento.Nombre
+                                                            }
 
-                                                    })
-                                                    .ToList();
+                                                        })
+                                                        .ToList();
         }
 
-       
+
         #region Not Needed
         public MovimientoStock GetById(int id)
         {

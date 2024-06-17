@@ -128,12 +128,15 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         {
             return _papeleriaContext.Articulos.OrderBy(articulo => articulo.Nombre).ToList();
         }
-        //TODO Probar consulta b.
-        public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2)
+        //Consulta B con paginación
+        public IEnumerable<Articulo> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize)
         {
             return _papeleriaContext.MovimientoStock.Where(m => m.Fecha >= fecha1 && m.Fecha <= fecha2)
                                                     .Select(m => m.Articulo)
                                                     .Distinct()
+                                                    .OrderBy(a => a.Id) 
+                                                    .Skip((pageNumber - 1) * pageSize)
+                                                    .Take(pageSize)
                                                     .ToList();
         }
 
