@@ -44,6 +44,7 @@ namespace WebApi
             builder.Services.AddScoped<ICasoUsoBuscarArticulo, CasoUsoBuscarArticulo>();
             builder.Services.AddScoped<ICasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo, CasoUsoListarOrdenadoAlfabeticamenteAscendenteArticulo>();
             builder.Services.AddScoped<ICasoUsoListarOrdenadoDescendentementePorFechaPedido, CasoUsoListarOrdenadoDescendentementePorFechaPedido>();
+            builder.Services.AddScoped<ICasoUsoGetArticulosConMovimientos, CasoUsoGetArticulosConMovimientos>();
             //Tipo Movimiento
             builder.Services.AddScoped<ICasoUsoAltaTipoMovimiento, CasoUsoAltaTipoMovimiento>();
             builder.Services.AddScoped<ICasoUsoBajaTipoMovimiento, CasoUsoBajaTipoMovimiento>();
@@ -56,7 +57,6 @@ namespace WebApi
             builder.Services.AddScoped<ICasoUsoAltaMovimientoStock, CasoUsoAltaMovimientoStock>();
             builder.Services.AddScoped<ICasoUsoGetResumenMovimientos, CasoUsoGetResumenMovimientos>();
             //Reportes
-            builder.Services.AddScoped<ICasoUsoGetArticulosConMovimientos, CasoUsoGetArticulosConMovimientos>();
             builder.Services.AddScoped<ICasoUsoGetMovimientos, CasoUsoGetMovimientos>();
 
             #endregion

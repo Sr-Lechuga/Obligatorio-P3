@@ -25,10 +25,10 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
             _repositorioMovimientoStock = repositorioMovimientoDeStock;
             _settings = repositorioSettings;
         }
-        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize)
+        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber)
         {
             int size = int.Parse(_settings.GetValueByName("PageSize") + "");
-            return _repositorioMovimientoStock.GetMovimientos(articuloId, tipoMovimientoId, pageNumber, pageSize)
+            return _repositorioMovimientoStock.GetMovimientos(articuloId, tipoMovimientoId, pageNumber, size)
                                               .Select(m => MapperMovimientoStock.ToDTO(m));
         }
     }
