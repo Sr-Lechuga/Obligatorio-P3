@@ -24,6 +24,9 @@ namespace WebApi.Controllers
             _getMovimientos = getMovimientos;
         }
         [HttpGet("GetArticulosConMovimientos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<ArticulosListadoDTO>> ArticulosConMovimientos(DateTime fecha1, DateTime fecha2)
         {
             try
@@ -45,7 +48,9 @@ namespace WebApi.Controllers
             }
         }
         [HttpGet("GetMovimientos")]
-
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<MovimientoDeStockDTO>> Movimientos(int articuloId, int tipoMovimientoId)
         {
             try
@@ -62,7 +67,6 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
-
                 return BadRequest("Los id son incorrectos intente de nuevo");
             }
         }
