@@ -53,6 +53,10 @@ namespace WebApi
             //Movimientos de stock
             builder.Services.AddScoped<ICasoUsoListarMovimientoStock, CasoUsoListarMovimientoStock>();
             builder.Services.AddScoped<ICasoUsoAltaMovimientoStock, CasoUsoAltaMovimientoStock>();
+            //Reportes
+            builder.Services.AddScoped<ICasoUsoGetArticulosConMovimientos, CasoUsoGetArticulosConMovimientos>();
+            builder.Services.AddScoped<ICasoUsoGetMovimientos, CasoUsoGetMovimientos>();
+
             #endregion
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
