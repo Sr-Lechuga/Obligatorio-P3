@@ -32,6 +32,7 @@ namespace WebApi
             builder.Services.AddScoped<IRepositorioPedidos, RepositorioPedidos>();
             builder.Services.AddScoped<IRepositorioTipoMovimiento, RepositorioTipoMovimiento>();
             builder.Services.AddScoped<IRepositorioMovimientoDeStock, RepositorioMovimientoDeStock>();
+            builder.Services.AddScoped<IRepositorioSettings, RepositorioSettings>();
             #endregion
 
             #region Casos de uso

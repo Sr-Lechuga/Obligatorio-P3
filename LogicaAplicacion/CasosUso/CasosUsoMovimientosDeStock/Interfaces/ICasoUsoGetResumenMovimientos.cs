@@ -9,6 +9,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces
 {
     public interface ICasoUsoGetResumenMovimientos
     {
-        public IEnumerable<MovimientoDeStockDTO> GetResumenMovimientos();
+        public IEnumerable<Object> GetResumenMovimientos();
     }
 }

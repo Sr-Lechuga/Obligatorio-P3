@@ -24,7 +24,8 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
         }
         public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId)
         {
-            IEnumerable<MovimientoStock> movimientos = RepositorioMovimientoStock.GetMovimientos(articuloId,  tipoMovimientoId);
+            //TODO: Traer las settings
+            IEnumerable<MovimientoStock> movimientos = RepositorioMovimientoStock.GetMovimientos(articuloId,  tipoMovimientoId,1,20);
             return MapperMovimientoStock.ToDTOList(movimientos);
         }
     }

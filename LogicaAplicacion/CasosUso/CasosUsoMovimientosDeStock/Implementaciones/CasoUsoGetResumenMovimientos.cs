@@ -23,9 +23,9 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
             RepositorioMovimientoStock = repositorioMovimientoDeStock;
         }
 
-        public IEnumerable<MovimientoDeStockDTO> GetResumenMovimientos()
+        public IEnumerable<Object> GetResumenMovimientos()
         {
-            return MapperMovimientoStock.ToDTOList(RepositorioMovimientoStock.GetResumenMovimientos());
+            return RepositorioMovimientoStock.GetResumenMovimientos();
         }
     }
 }

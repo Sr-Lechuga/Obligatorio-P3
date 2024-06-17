@@ -35,7 +35,8 @@ namespace WebApi.Controllers
         {
             try
             {
-               IEnumerable<ArticulosListadoDTO> articulos = _getArticulosConMovimientos.GetArticulosConMovimientos(fecha1, fecha2);
+                //traer valores
+               IEnumerable<ArticulosListadoDTO> articulos = _getArticulosConMovimientos.GetArticulosConMovimientos(fecha1, fecha2, 1, 20);
                 if (articulos.Count() == 0)
                 {
                     return NoContent();
@@ -80,11 +81,11 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<IEnumerable<MovimientoDeStockDTO>> ResumenMovimientos()
+        public ActionResult<IEnumerable<Object>> ResumenMovimientos()
         {
             try
             {
-                IEnumerable<MovimientoDeStockDTO> movimientos = _getResumenMovimientos.GetResumenMovimientos();
+                IEnumerable<Object> movimientos = _getResumenMovimientos.GetResumenMovimientos();
                 if (movimientos.Count() == 0)
                 {
                     return NoContent();

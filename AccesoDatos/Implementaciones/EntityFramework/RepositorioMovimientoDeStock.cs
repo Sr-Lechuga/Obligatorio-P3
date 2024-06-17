@@ -69,14 +69,22 @@ namespace AccesoDatos.Implementaciones.EntityFramework
                                                         .ToList();
         }
 
-        public IEnumerable<MovimientoStock> GetResumenMovimientos()
+        public IEnumerable<Object> GetResumenMovimientos()
         {
-            IEnumerable<MovimientoStock> lista = _papeleriaContext.MovimientoStock
+            var lista = _papeleriaContext.MovimientoStock
                                                 .GroupBy(m => m.Fecha.Year)
-                                                .Select(group => new MovimientoStock
+                                                .Select(group => new 
                                                 {
-                                                    Id = group.Key
+                                                    Anio = group.Key,
+                                                    TipoMovimiento = group.GroupBy(tm => tm.TipoMovimiento)
+                                                    .Select(tm => new
+                                                    {
+                                                        NombreTipo = tm.Key,
+                                                        Cantidad = tm.Sum(movimiento => movimiento.Cantidad)
+                                                    }),
+                                                    SumaMovimientos = group.Count()
                                                 })
+                                                .OrderBy(group => group.Anio)
                                                 .ToList();
 
 
