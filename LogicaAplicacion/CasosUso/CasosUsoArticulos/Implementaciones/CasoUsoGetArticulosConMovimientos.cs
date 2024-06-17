@@ -22,11 +22,11 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Implementaciones
             _repositorioArticulos = repositorioArticulos;
             _settings = repositorioSettings;
         }
-        //TODO ERROR 
+        
         public IEnumerable<ArticulosListadoDTO> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize)
         {
             int size = int.Parse(_settings.GetValueByName("PageSize") + "");
-            return _repositorioArticulos.GetArticulosConMovimientos(fecha1,fecha2,pageNumber, pageSize)
+            return _repositorioArticulos.GetArticulosConMovimientos(fecha1, fecha2, pageNumber, pageSize)
                                         .Select(a => MapperArticulo.ToDTO(a));
         }
     }
