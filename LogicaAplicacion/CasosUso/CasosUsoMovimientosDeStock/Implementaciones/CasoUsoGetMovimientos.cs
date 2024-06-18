@@ -14,18 +14,22 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Implementaciones
 {
     public class CasoUsoGetMovimientos : ICasoUsoGetMovimientos
     {
-        public IRepositorioMovimientoDeStock RepositorioMovimientoStock { get; init; }
+        private IRepositorioMovimientoDeStock _repositorioMovimientoStock { get; init; }
+        private IRepositorioSettings _settings {  get; set; }
 
         public CasoUsoGetMovimientos(
-            IRepositorioMovimientoDeStock repositorioMovimientoDeStock)
+            IRepositorioMovimientoDeStock repositorioMovimientoDeStock, 
+            IRepositorioSettings repositorioSettings)
         {
             // Inyeccion de dependencia
-            RepositorioMovimientoStock = repositorioMovimientoDeStock;
+            _repositorioMovimientoStock = repositorioMovimientoDeStock;
+            _settings = repositorioSettings;
         }
-        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId)
+        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize)
         {
-            IEnumerable<MovimientoStock> movimientos = RepositorioMovimientoStock.GetMovimientos(articuloId,  tipoMovimientoId);
-            return MapperMovimientoStock.ToDTOList(movimientos);
+            int size = int.Parse(_settings.GetValueByName("PageSize") + "");
+            return _repositorioMovimientoStock.GetMovimientos(articuloId, tipoMovimientoId, pageNumber, pageSize)
+                                              .Select(m => MapperMovimientoStock.ToDTO(m));
         }
     }
 }

@@ -9,6 +9,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces
 {
     public interface ICasoUsoGetMovimientos
     {
-        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId);
+        public IEnumerable<MovimientoDeStockDTO> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize);
     }
 }
