@@ -27,16 +27,16 @@ namespace WebApi.Controllers
             _getResumenMovimientos = getResumenMovimientos;
         }
 
-        [HttpGet("GetArticulosConMovimientos")]
+        [HttpGet("GetArticulosConMovimientos/{fecha1}/{fecha2}/{pageNumber}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         //TODO Error con el paginado
-        public ActionResult<IEnumerable<ArticulosListadoDTO>> ArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize)
+        public ActionResult<IEnumerable<ArticulosListadoDTO>> ArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber)
         {
             try
             {
-               IEnumerable<ArticulosListadoDTO> articulos = _getArticulosConMovimientos.GetArticulosConMovimientos(fecha1, fecha2);
+               IEnumerable<ArticulosListadoDTO> articulos = _getArticulosConMovimientos.GetArticulosConMovimientos(fecha1, fecha2, pageNumber);
                 if (articulos.Count() == 0)
                 {
                     return NoContent();
@@ -53,16 +53,16 @@ namespace WebApi.Controllers
             }
         }
         
-        [HttpGet("GetMovimientos")]
+        [HttpGet("GetMovimientos/{articuloId}/{tipoMovimientoId}/{pageNumber}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         //TODO Error con el paginado
-        public ActionResult<IEnumerable<MovimientoDeStockDTO>> Movimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize)
+        public ActionResult<IEnumerable<MovimientoDeStockDTO>> Movimientos(int articuloId, int tipoMovimientoId, int pageNumber)
         {
             try
             {
-                IEnumerable<MovimientoDeStockDTO> movimientos = _getMovimientos.GetMovimientos(articuloId, tipoMovimientoId);
+                IEnumerable<MovimientoDeStockDTO> movimientos = _getMovimientos.GetMovimientos(articuloId, tipoMovimientoId, pageNumber);
                 if (movimientos.Count() == 0)
                 {
                     return NoContent();

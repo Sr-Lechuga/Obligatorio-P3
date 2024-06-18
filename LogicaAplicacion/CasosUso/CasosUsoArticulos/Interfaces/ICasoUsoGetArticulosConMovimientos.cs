@@ -10,6 +10,6 @@ namespace LogicaAplicacion.CasosUso.CasosUsoArticulos.Interfaces
 {
     public interface ICasoUsoGetArticulosConMovimientos
     {
-        public IEnumerable<ArticulosListadoDTO> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber, int pageSize);
+        public IEnumerable<ArticulosListadoDTO> GetArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber);
     }
 }
