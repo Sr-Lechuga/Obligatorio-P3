@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (pageNumber < 1) return BadRequest("El numero de pagina debe ser mayor a 0")
+                if (pageNumber < 1) return BadRequest("El numero de pagina debe ser mayor a 0");
                IEnumerable<ArticulosListadoDTO> articulos = _getArticulosConMovimientos.GetArticulosConMovimientos(fecha1, fecha2, pageNumber);
                 if (articulos.Count() == 0)
                 {
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (pageNumber < 1) return BadRequest("El numero de pagina debe ser mayor a 0")
+                if (pageNumber < 1) return BadRequest("El numero de pagina debe ser mayor a 0");
                 IEnumerable<MovimientoDeStockDTO> movimientos = _getMovimientos.GetMovimientos(articuloId, tipoMovimientoId, pageNumber);
                 if (movimientos.Count() == 0)
                 {
