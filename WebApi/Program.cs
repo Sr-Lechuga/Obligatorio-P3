@@ -53,6 +53,7 @@ namespace WebApi
             //Movimientos de stock
             builder.Services.AddScoped<ICasoUsoListarMovimientoStock, CasoUsoListarMovimientoStock>();
             builder.Services.AddScoped<ICasoUsoAltaMovimientoStock, CasoUsoAltaMovimientoStock>();
+            builder.Services.AddScoped<ICasoUsoGetResumenMovimientos, CasoUsoGetResumenMovimientos>();
             //Reportes
             builder.Services.AddScoped<ICasoUsoGetArticulosConMovimientos, CasoUsoGetArticulosConMovimientos>();
             builder.Services.AddScoped<ICasoUsoGetMovimientos, CasoUsoGetMovimientos>();

@@ -16,13 +16,17 @@ namespace WebApi.Controllers
     {
         private ICasoUsoGetArticulosConMovimientos _getArticulosConMovimientos;
         private ICasoUsoGetMovimientos _getMovimientos;
+        private ICasoUsoGetResumenMovimientos _getResumenMovimientos;
 
         public ReportesController(ICasoUsoGetArticulosConMovimientos getArticulosConMovimientos,
-                                  ICasoUsoGetMovimientos getMovimientos) 
+                                  ICasoUsoGetMovimientos getMovimientos,
+                                  ICasoUsoGetResumenMovimientos getResumenMovimientos) 
         {
             _getArticulosConMovimientos = getArticulosConMovimientos;
             _getMovimientos = getMovimientos;
+            _getResumenMovimientos = getResumenMovimientos;
         }
+
         [HttpGet("GetArticulosConMovimientos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -42,12 +46,13 @@ namespace WebApi.Controllers
                     return Ok(articulos);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return BadRequest("Las fechas no son correctas");
             }
         }
+        
         [HttpGet("GetMovimientos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -67,9 +72,33 @@ namespace WebApi.Controllers
                     return Ok(movimientos);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest("Los id son incorrectos intente de nuevo");
+            }
+        }
+
+        [HttpGet("GetResumenMovimientos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<IEnumerable<MovimientoDeStockDTO>> ResumenMovimientos()
+        {
+            try
+            {
+                IEnumerable<MovimientoDeStockDTO> movimientos = _getResumenMovimientos.GetResumenMovimientos();
+                if (movimientos.Count() == 0)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return Ok(movimientos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 

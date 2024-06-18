@@ -9,6 +9,8 @@ namespace AccesoDatos.Interfaces
 {
     public interface IRepositorioMovimientoDeStock :IRepositorioCRUD<MovimientoStock>
     {
-        public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize);
+        public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId);
+
+        public IEnumerable<MovimientoStock> GetResumenMovimientos();
     }
 }
