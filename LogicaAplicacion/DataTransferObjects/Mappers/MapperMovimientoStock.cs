@@ -29,10 +29,13 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             {
                 Id = movimientoStock.Id,
                 Articulo = movimientoStock.Articulo,
+                ArticuloId = movimientoStock.Articulo.Id,
                 Cantidad = movimientoStock.Cantidad,
                 Fecha = movimientoStock.Fecha,
                 TipoMovimiento = movimientoStock.TipoMovimiento,
-                Usuario = movimientoStock.Usuario
+                TipoMovimientoId = movimientoStock.TipoMovimiento.Id,
+                Usuario = movimientoStock.Usuario,
+                UsuarioId = movimientoStock.Usuario.Id
             };
         }
 

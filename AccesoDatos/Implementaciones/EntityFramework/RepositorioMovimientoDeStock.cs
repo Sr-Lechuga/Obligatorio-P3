@@ -1,5 +1,6 @@
 ﻿using AccesoDatos.Implementaciones.EntityFramework;
 using AccesoDatos.Interfaces;
+using Azure;
 using LogicaNegocio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -44,29 +45,18 @@ namespace AccesoDatos.Implementaciones.EntityFramework
         ///Consulta A con paginación
         public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize)
         {
-            return _papeleriaContext.MovimientoStock.Where(m => m.Articulo.Id == articuloId
-                                                        && m.TipoMovimiento.Id == tipoMovimientoId)
-                                                        .OrderByDescending(m => m.Fecha)
-                                                        .ThenBy(m => m.Cantidad)
-                                                        .Skip((pageNumber - 1) * pageSize)
-                                                        .Take(pageSize)
-                                                        .Select(m => new MovimientoStock
-                                                        {
-                                                            Fecha = m.Fecha,
-                                                            Cantidad = m.Cantidad,
-                                                            Articulo = new Articulo
-                                                            {
-                                                                Nombre = m.Articulo.Nombre,
-                                                                Descripcion = m.Articulo.Descripcion,
-                                                                Codigo = m.Articulo.Codigo
-                                                            },
-                                                            TipoMovimiento = new TipoMovimiento
-                                                            {
-                                                                Nombre = m.TipoMovimiento.Nombre
-                                                            }
+            IEnumerable<MovimientoStock> lista = _papeleriaContext.MovimientoStock
+                                   .Include(m => m.Articulo)
+                                   .Include(m => m.Usuario)
+                                   .Include(m => m.TipoMovimiento)
+                                   .Where(m => m.Articulo.Id == articuloId && m.TipoMovimiento.Id == tipoMovimientoId)
+                                   .OrderByDescending(m => m.Fecha)
+                                   .ThenBy(m => m.Cantidad)
+                                   .Skip((pageNumber - 1) * pageSize)
+                                   .Take(pageSize)
+                                   .ToList();
+            return lista;
 
-                                                        })
-                                                        .ToList();
         }
 
         public IEnumerable<Object> GetResumenMovimientos()
@@ -91,7 +81,7 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             return lista;
         }
 
-       
+
         #region Not Needed
         public MovimientoStock GetById(int id)
         {
