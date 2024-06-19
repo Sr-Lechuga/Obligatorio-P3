@@ -30,6 +30,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
                 Id = movimientoStock.Id,
                 Articulo = movimientoStock.Articulo,
                 ArticuloId = movimientoStock.Articulo.Id,
+                ArticuloName = movimientoStock.Articulo.Nombre,
                 Cantidad = movimientoStock.Cantidad,
                 Fecha = movimientoStock.Fecha,
                 TipoMovimiento = movimientoStock.TipoMovimiento,

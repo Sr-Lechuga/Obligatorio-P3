@@ -13,6 +13,7 @@ namespace LogicaAplicacion.DataTransferObjects.Models.MovimientosDeStock
         public DateTime Fecha { get; set; }
         public Articulo? Articulo { get; set; }
         public int ArticuloId { get; set; }
+        public string ArticuloName { get; set; }
         public int Cantidad { get; set; }
         public TipoMovimiento? TipoMovimiento { get; set; }
         public int TipoMovimientoId { get; set; }
