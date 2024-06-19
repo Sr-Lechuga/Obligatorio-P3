@@ -14,7 +14,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class MovimientoStockController : ControllerBase
     {
         #region Properties

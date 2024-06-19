@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ReportesController : ControllerBase
     {
         private ICasoUsoGetArticulosConMovimientos _getArticulosConMovimientos;
