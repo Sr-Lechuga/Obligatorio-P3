@@ -53,7 +53,7 @@ namespace LogicaNegocio.Entidades
         #endregion
 
         #region Methods
-        private string Encriptar(string contrasenia)
+        public static string Encriptar(string contrasenia)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
