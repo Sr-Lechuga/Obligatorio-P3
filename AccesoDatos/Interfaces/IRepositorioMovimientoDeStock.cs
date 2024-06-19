@@ -12,5 +12,6 @@ namespace AccesoDatos.Interfaces
         public IEnumerable<MovimientoStock> GetMovimientos(int articuloId, int tipoMovimientoId, int pageNumber, int pageSize);
 
         public IEnumerable<Object> GetResumenMovimientos();
+        public bool TipoMovimientoEnUso(int tipoMovimientoId);
     }
 }

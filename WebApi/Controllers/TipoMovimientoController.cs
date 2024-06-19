@@ -1,4 +1,6 @@
-﻿using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
+﻿using LogicaAplicacion.CasosUso.CasosUsoMovimientosDeStock.Interfaces;
+using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Implementaciones;
+using LogicaAplicacion.CasosUso.CasosUsoTipoMovimiento.Interfaces;
 using LogicaAplicacion.DataTransferObjects.Models.TipoMovimientos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,7 @@ namespace WebApi.Controllers
         private ICasoUsoBajaTipoMovimiento _bajaTipoMovimiento;
         private ICasoUsoEditTipoMovimiento _editTipoMovimiento;
         private ICasoUsoObtenerPorTipoMovimiento _obtenerPorTipoMovimiento;
+        private ICasoUsoTipoMovimientoEnUso _tipoMovimientoEnUso;
         #endregion
 
         #region Constructor
@@ -24,7 +27,8 @@ namespace WebApi.Controllers
             ICasoUsoAltaTipoMovimiento altaTipoMovimiento,
             ICasoUsoBajaTipoMovimiento bajaTipoMovimiento,
             ICasoUsoEditTipoMovimiento editTipoMovimiento,
-            ICasoUsoObtenerPorTipoMovimiento obtenerPorTipoMovimiento
+            ICasoUsoObtenerPorTipoMovimiento obtenerPorTipoMovimiento,
+            ICasoUsoTipoMovimientoEnUso tipoMovimientoEnUso
         )
         {
             _listarTipoMovimiento = listarTipoMovimiento;
@@ -32,6 +36,7 @@ namespace WebApi.Controllers
             _bajaTipoMovimiento = bajaTipoMovimiento;
             _editTipoMovimiento = editTipoMovimiento;
             _obtenerPorTipoMovimiento = obtenerPorTipoMovimiento;
+            _tipoMovimientoEnUso = tipoMovimientoEnUso;
         }
         #endregion
 
@@ -133,6 +138,10 @@ namespace WebApi.Controllers
         {
             try
             {
+                if (_tipoMovimientoEnUso.EstaTipoMovimientoEnUso(id))
+                {
+                    throw new Exception("No se puede eliminar el movimiento, esta en uso.");
+                }
                 _bajaTipoMovimiento.BajaTipoMovimiento(id);
                 return Ok("Tipo movimiento " + tipoDTO.Id + " dado de baja correctamente.");
             }

@@ -84,6 +84,16 @@ namespace AccesoDatos.Implementaciones.EntityFramework
             return lista;
         }
 
+        public bool TipoMovimientoEnUso (int tipoMovimientoId)
+        {
+            bool estaEnUso =  _papeleriaContext.MovimientoStock
+                .Include(m => m.TipoMovimiento)
+                .Select(tm => tm.TipoMovimiento.Id == tipoMovimientoId)
+                .ToList()
+                .Count() > 0;
+
+            return estaEnUso;
+        }
 
         #region Not Needed
         public MovimientoStock GetById(int id)

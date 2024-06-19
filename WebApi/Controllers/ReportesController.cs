@@ -26,18 +26,18 @@ namespace WebApi.Controllers
             _getMovimientos = getMovimientos;
             _getResumenMovimientos = getResumenMovimientos;
         }
+
         /// <summary>
-        /// Lista los articulos que contengan movimientos entre dos fechas dadas
+        /// Lista los articulos que contengan movimientos entre dos fechas dadas.
         /// </summary>
-        /// <param name="fecha1"></param>
-        /// <param name="fecha2"></param>
-        /// <param name="pageNumber"></param>
+        /// <param name="fecha1">Fecha desde la que se realizara la busqueda.</param>
+        /// <param name="fecha2">Fecha hasta la que se realizara la busqueda.</param>
+        /// <param name="pageNumber">Numero de pagina del reporte. La cantidad de elementos por pagina se define en las settings.</param>
         /// <returns>Retorna la lista de articulos con sus respectivos movimientos</returns>
         [HttpGet("GetArticulosConMovimientos/{fecha1}/{fecha2}/{pageNumber}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        
         public ActionResult<IEnumerable<ArticulosListadoDTO>> ArticulosConMovimientos(DateTime fecha1, DateTime fecha2, int pageNumber)
         {
             try
@@ -59,18 +59,18 @@ namespace WebApi.Controllers
                 return BadRequest("Las fechas no son correctas");
             }
         }
+        
         /// <summary>
         /// Lista todos los movimientos de ese tipo Id realizados sobre ese articulo Id
         /// </summary>
-        /// <param name="articuloId"></param>
-        /// <param name="tipoMovimientoId"></param>
-        /// <param name="pageNumber"></param>
+        /// <param name="articuloId">Id del tipo de articulo que se desea buscar</param>
+        /// <param name="tipoMovimientoId">Id del tipo de movimiento por el que se desea filtrar</param>
+        /// <param name="pageNumber">Numero de pagina del reporte. La cantidad de elementos por pagina se define en las settings.</param>
         /// <returns>Retorna los movimientos</returns>
         [HttpGet("GetMovimientos/{articuloId}/{tipoMovimientoId}/{pageNumber}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //TODO Error con el paginado
         public ActionResult<IEnumerable<MovimientoDeStockDTO>> Movimientos(int articuloId, int tipoMovimientoId, int pageNumber)
         {
             try
@@ -91,6 +91,7 @@ namespace WebApi.Controllers
                 return BadRequest("Los id son incorrectos intente de nuevo");
             }
         }
+        
         /// <summary>
         /// Resumen de movimientos con sus respectivas cantidades movidas agrupadas por año y por tipo de movimiento
         /// </summary>
