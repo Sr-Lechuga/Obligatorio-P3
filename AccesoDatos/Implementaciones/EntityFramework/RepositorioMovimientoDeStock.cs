@@ -39,7 +39,10 @@ namespace AccesoDatos.Implementaciones.EntityFramework
 
         public IEnumerable<MovimientoStock> GetAll()
         {
-            return _papeleriaContext.MovimientoStock.ToList();
+            return _papeleriaContext.MovimientoStock.Include(m => m.TipoMovimiento)
+                                                    .Include(m => m.Usuario)
+                                                    .Include(m => m.Articulo)
+                                                    .ToList();
         }
 
         ///Consulta A con paginación
