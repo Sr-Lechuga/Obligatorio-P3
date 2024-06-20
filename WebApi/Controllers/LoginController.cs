@@ -33,7 +33,7 @@ namespace WebApi.Controllers
             {
                 ManejadorJWT handler = new ManejadorJWT(_getUser);
                 var usuario = handler.ObtenerUsuario(user.Email);
-                if (usuario == null || Usuario.Encriptar(user.Contrasenia) != usuario.Contrasenia || usuario.Rol != ERol.ENCARGADO)
+                if (usuario == null || Usuario.Encriptar(user.Contrasenia) != usuario.ContraseniaEncriptada || usuario.Rol != ERol.ENCARGADO)
                 {
                     return Unauthorized("Credenciales invalidas");
                 }

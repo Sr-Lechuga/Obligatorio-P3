@@ -17,7 +17,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             {
                 Id = user.Id,
                 Email = user.Email,
-                Contrasenia = user.Contrasenia,
+                ContraseniaEncriptada = user.ContraseniaEncriptada,
                 Rol = user.Rol
             };
         }
@@ -27,7 +27,7 @@ namespace LogicaAplicacion.DataTransferObjects.Mappers
             {
                 Id = user.Id,
                 Email = user.Email,
-                Contrasenia = user.Contrasenia,
+                ContraseniaEncriptada = user.ContraseniaEncriptada,
                 Rol = user.Rol
             };
         }

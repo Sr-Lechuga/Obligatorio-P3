@@ -12,6 +12,7 @@ namespace LogicaAplicacion.DataTransferObjects.Models.Usuarios
         public int Id { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }
+        public string? ContraseniaEncriptada { get; set; }
         public ERol Rol { get; set; }
 
     }
